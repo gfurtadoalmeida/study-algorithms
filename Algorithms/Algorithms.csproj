@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <Authors>Gabriel Furtado de Almeida</Authors>
+    <Company />
+    <Description />
+    <Copyright>Gabriel Furtado de Almeida</Copyright>
+  </PropertyGroup>
+
+</Project>
