@@ -19,7 +19,10 @@ namespace Executor
 
             Describe("Ïnput", input);
 
-            AbstractSort<Int32> algorithm = new SelectionSort<Int32>();
+            AbstractSort<Int32> algorithm = null;
+
+            //algorithm = new SelectionSort<Int32>();
+            algorithm = new InsertionSort<Int32>();
 
             algorithm.Sort(input);
 
