@@ -22,7 +22,8 @@ namespace Executor
             AbstractSort<Int32> algorithm = null;
 
             //algorithm = new SelectionSort<Int32>();
-            algorithm = new InsertionSort<Int32>();
+            //algorithm = new InsertionSort<Int32>();
+            algorithm = new ShellSort<Int32>();
 
             algorithm.Sort(input);
 
