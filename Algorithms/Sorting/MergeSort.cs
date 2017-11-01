@@ -47,10 +47,13 @@ namespace Algorithms.Sorting
             // Dividing until we find the minimum array size
             // for each side (right and left).
 
+            // Sweep (split-merge) one side first (half-array) and 
+            // then the second.
+
             this.TopDownSort(input, low, mid);
             this.TopDownSort(input, mid + 1, high);
 
-            // Then we merge up (from the smallest array to to bigger one).
+            // Then we merge up (from the smallest array to the bigger one).
             // The merge that really does the trick of sorting.
 
             this.Merge(input, low, mid, high);
@@ -59,13 +62,21 @@ namespace Algorithms.Sorting
         private void BottomUpSort(T[] input, Int32 low, Int32 high)
         {
             Int32 count = input.Length;
+            Int32 setSize = 2;
 
-            for (high = 1; high < count; high = high + high)
-                for (low = 0; low < count - high; low += high + high)
+            // Starts from the left to right doubling the set size on each pass.
+            // Full sweep from left to right on each pass.
+
+            for (int mid = 1; mid < count; mid = setSize / 2)
+            {
+                for (low = 0; low < count - mid; low += setSize)
                     this.Merge(input,
                                low,
-                               low + high - 1,
-                               Math.Min(low + high + high - 1, count - 1));
+                               low + mid - 1,
+                               Math.Min(low + setSize - 1, count - 1));
+
+                setSize *= 2;
+            }
         }
 
         private void Merge(T[] input, Int32 low, Int32 mid, Int32 high)
