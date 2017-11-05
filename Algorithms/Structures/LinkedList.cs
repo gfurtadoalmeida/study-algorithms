@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Algorithms.Structures
 {
-    public sealed class LinkedList<T> : System.Collections.Generic.IEnumerable<T>
+    public sealed class LinkedList<T> : IEnumerable<T>
     {
         private Node _head;
         private Int32 _itensCount;

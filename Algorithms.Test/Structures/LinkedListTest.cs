@@ -40,14 +40,14 @@ namespace Algorithms.Test.Structures
         [Fact]
         public void Test_AddRemoveOrder()
         {
-            LinkedList<Int32> stack = new LinkedList<Int32>();
-            stack.Add(18);
-            stack.Add(2);
-            stack.Add(88);
+            LinkedList<Int32> list = new LinkedList<Int32>();
+            list.Add(18);
+            list.Add(2);
+            list.Add(88);
 
-            Assert.Equal(88, stack.Remove());
-            Assert.Equal(2, stack.Remove());
-            Assert.Equal(18, stack.Remove());
+            Assert.Equal(88, list.Remove());
+            Assert.Equal(2, list.Remove());
+            Assert.Equal(18, list.Remove());
         }
 
         [Fact]
