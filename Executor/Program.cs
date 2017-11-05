@@ -24,8 +24,8 @@ namespace Executor
             //algorithm = new SelectionSort<Int32>();
             //algorithm = new InsertionSort<Int32>();
             //algorithm = new ShellSort<Int32>();
-            //algorithm = new MergeSort<Int32>(MergeSort<Int32>.MergeSortType.TopDown);
-            //algorithm = new MergeSort<Int32>(MergeSort<Int32>.MergeSortType.BottomUp);
+            //algorithm = new MergeSort<Int32>(MergeSortType.TopDown);
+            //algorithm = new MergeSort<Int32>(MergeSortType.BottomUp);
             algorithm = new QuickSort<Int32>();
 
             algorithm.Sort(input);

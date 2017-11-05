@@ -2,10 +2,10 @@
 
 namespace Algorithms.Sorting
 {
+    public enum MergeSortType : byte { TopDown = 1, BottomUp = 2 }
+
     public sealed class MergeSort<T> : AbstractSort<T> where T : IComparable<T>
     {
-        public enum MergeSortType : byte { TopDown = 1, BottomUp = 2 }
-
         private Action<T[], Int32, Int32> _method;
         private T[] _auxiliaryArray;
 
