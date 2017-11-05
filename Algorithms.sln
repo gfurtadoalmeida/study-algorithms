@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Executor", "Executor\Execut
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Algorithms", "Algorithms\Algorithms.csproj", "{22581CC5-EFD6-40F6-A4BA-9A0F7ADD39D6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Algorithms.Test", "Algorithms.Test\Algorithms.Test.csproj", "{9C662754-93A7-4416-9B2C-0247FE896CEF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{22581CC5-EFD6-40F6-A4BA-9A0F7ADD39D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22581CC5-EFD6-40F6-A4BA-9A0F7ADD39D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22581CC5-EFD6-40F6-A4BA-9A0F7ADD39D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9C662754-93A7-4416-9B2C-0247FE896CEF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C662754-93A7-4416-9B2C-0247FE896CEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C662754-93A7-4416-9B2C-0247FE896CEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C662754-93A7-4416-9B2C-0247FE896CEF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
