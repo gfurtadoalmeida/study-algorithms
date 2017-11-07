@@ -7,6 +7,7 @@ namespace Algorithms.Structures
     public sealed class DoubleLinkedList<T> : IEnumerable<T>
     {
         private Node _head;
+        private Node _tail;
         private Int32 _itensCount;
 
         public Boolean IsEmpty => this._head == null;
@@ -15,7 +16,10 @@ namespace Algorithms.Structures
         public void Add(T item)
         {
             if (this.IsEmpty)
+            {
                 this._head = new Node(item, null, null);
+                this._tail = this._head;
+            }
             else
             {
                 this._head = new Node(item, null, this._head);
@@ -34,7 +38,9 @@ namespace Algorithms.Structures
 
             Node childNode = new Node(childItem, parentNode, parentNode.Next);
 
-            if (parentNode.Next != null)
+            if (parentNode == this._tail)
+                this._tail = childNode;
+            else
                 parentNode.Next.Previous = childNode;
 
             parentNode.Next = childNode;
@@ -51,15 +57,25 @@ namespace Algorithms.Structures
 
             Node grandParentNode = new Node(grandParentItem, parentNode.Previous, parentNode);
 
-            if (parentNode.Previous != null)
+            if (parentNode == this._head)
+                this._head = grandParentNode;
+            else
                 parentNode.Previous.Next = grandParentNode;
 
             parentNode.Previous = grandParentNode;
 
-            if (parentNode == this._head)
-                this._head = grandParentNode;
-
             this._itensCount++;
+        }
+
+        public void AddEnd(T item)
+        {
+            if (this.IsEmpty)
+                this.Add(item);
+            else
+            {
+                this._tail.Next = new Node(item, this._tail, null);
+                this._tail = this._tail.Next;
+            }
         }
 
         public T Remove()
@@ -70,7 +86,23 @@ namespace Algorithms.Structures
             T item = this._head.Value;
 
             this._head = this._head.Next;
+
+            if (this._head == null)
+                this._tail = null;
+
             this._itensCount--;
+
+            return item;
+        }
+
+        public T RemoveEnd()
+        {
+            if (this.IsEmpty)
+                throw new InvalidOperationException("No more itens to be removed.");
+
+            T item = this._tail.Value;
+
+            this._tail = this._tail.Next;
 
             return item;
         }
@@ -87,7 +119,9 @@ namespace Algorithms.Structures
                     {
                         this._head = this._head.Next;
 
-                        if (this._head != null)
+                        if (this._head == null)
+                            this._tail = null;
+                        else
                             this._head.Previous = null;
                     }
                     else
@@ -140,10 +174,6 @@ namespace Algorithms.Structures
             public T Value;
             public Node Previous;
             public Node Next;
-
-            public Node()
-            {
-            }
 
             public Node(T value, Node previous, Node next)
             {

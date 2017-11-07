@@ -112,6 +112,19 @@ namespace Algorithms.Test.Structures
         }
 
         [Fact]
+        public void Test_AddRemoveOrder_End()
+        {
+            DoubleLinkedList<Int32> list = new DoubleLinkedList<Int32>();
+            list.Add(18);
+            list.Add(2);
+            list.AddEnd(88);
+
+            Assert.Equal(2, list.Remove());
+            Assert.Equal(18, list.Remove());
+            Assert.Equal(88, list.Remove());
+        }
+        
+        [Fact]
         public void Test_RemoveOrder_Custom()
         {
             DoubleLinkedList<Int32> list = new DoubleLinkedList<Int32>();
@@ -123,6 +136,17 @@ namespace Algorithms.Test.Structures
 
             Assert.Equal(88, list.Remove());
             Assert.Equal(18, list.Remove());
+        }
+
+        [Fact]
+        public void Test_RemoveOrder_End()
+        {
+            DoubleLinkedList<Int32> list = new DoubleLinkedList<Int32>();
+            list.Add(18);
+            list.Add(2);
+            list.Add(88);
+
+            Assert.Equal(18, list.RemoveEnd());
         }
 
         [Fact]
