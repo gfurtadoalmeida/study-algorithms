@@ -76,10 +76,6 @@ namespace Algorithms.Structures
             public T Value;
             public Node Next;
 
-            public Node()
-            {
-            }
-
             public Node(T value, Node next)
             {
                 this.Value = value;
