@@ -8,7 +8,8 @@ namespace Algorithms.Sorting
         {
             Boolean swapped = false;
 
-            // Loop through all numbers 
+            // Loop through all numbers, except the last one in the 
+            // logic that follows we check current and current + 1.
             for (int i = 0; i < input.Length - 1; i++)
             {
                 swapped = false;
