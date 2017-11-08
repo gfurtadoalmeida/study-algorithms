@@ -14,9 +14,7 @@ namespace Algorithms.Sorting
             // ...
             // Repeat until end
 
-            Int32 count = input.Length;
-
-            for (int i = 1; i < count; i++)
+            for (int i = 1; i < input.Length; i++)
             {
                 for (int j = i; j > 0; j--)
                 {
