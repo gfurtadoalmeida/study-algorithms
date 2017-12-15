@@ -1,5 +1,5 @@
 # Algorithms
-Some algorithms e data structures I'm trying to learn
+Some algorithms and data structures I'm trying to learn
 
 # Reference
 Sedgewick, Robert. Algorithms. Pearson Education: http://a.co/6IdwySJ  
