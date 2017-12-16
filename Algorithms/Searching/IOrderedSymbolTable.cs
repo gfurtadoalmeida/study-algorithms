@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Algorithms.Searching
 {
-    public interface ISymbolTable<TKey, TValue> where TKey : IComparable<TKey>
+    public interface IOrderedSymbolTable<TKey, TValue> where TKey : IComparable<TKey>
     {
         Int32 Size { get; }
 

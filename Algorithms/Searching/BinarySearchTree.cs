@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Algorithms.Searching
 {
-    public sealed class BinarySearchTree<TKey, TValue> : ISymbolTable<TKey, TValue> where TKey : IComparable<TKey>
+    public sealed class BinarySearchTree<TKey, TValue> : IOrderedSymbolTable<TKey, TValue> where TKey : IComparable<TKey>
     {
         private Node _root;
 
