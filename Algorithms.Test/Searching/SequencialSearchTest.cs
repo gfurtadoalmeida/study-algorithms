@@ -39,11 +39,11 @@ namespace Algorithms.Test.Searching
         }
 
         [Fact]
-        public void Test_Put_Get()
+        public void Test_Add_Get()
         {
             var seq = new SequencialSearch<Byte, Char>();
 
-            seq.Put(1, 'A');
+            seq.Add(1, 'A');
 
             Assert.Equal('A', seq.Get(1));
         }
@@ -61,7 +61,7 @@ namespace Algorithms.Test.Searching
         {
             var seq = new SequencialSearch<Byte, Char>();
 
-            seq.Put(1, 'A');
+            seq.Add(1, 'A');
             seq.Delete(1);
 
             Assert.False(seq.Contains(1));
@@ -72,8 +72,8 @@ namespace Algorithms.Test.Searching
         {
             var seq = new SequencialSearch<Byte, Char>();
 
-            seq.Put(1, 'A');
-            seq.Put(2, 'B');
+            seq.Add(1, 'A');
+            seq.Add(2, 'B');
 
             Assert.True(seq.Contains(1));
             Assert.True(seq.Contains(2));
@@ -95,12 +95,12 @@ namespace Algorithms.Test.Searching
         {
             SequencialSearch<Byte, Char> seq = new SequencialSearch<Byte, Char>();
             
-            seq.Put(1, 'A');
-            seq.Put(2, 'B');
-            seq.Put(3, 'C');
-            seq.Put(4, 'D');
-            seq.Put(5, 'E');
-            seq.Put(6, 'F');
+            seq.Add(1, 'A');
+            seq.Add(2, 'B');
+            seq.Add(3, 'C');
+            seq.Add(4, 'D');
+            seq.Add(5, 'E');
+            seq.Add(6, 'F');
 
             return seq;
         }

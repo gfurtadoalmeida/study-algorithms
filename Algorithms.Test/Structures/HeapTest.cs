@@ -12,7 +12,7 @@ namespace Algorithms.Test.Structures
             Heap<Int32> heap = new Heap<Int32>(1);
 
             Assert.True(heap.IsEmpty);
-            Assert.Equal(0, heap.Size);
+            Assert.Equal(0, heap.Count);
         }
 
         [Fact]
@@ -23,7 +23,7 @@ namespace Algorithms.Test.Structures
             heap.RemoveTop();
 
             Assert.True(heap.IsEmpty);
-            Assert.Equal(0, heap.Size);
+            Assert.Equal(0, heap.Count);
         }
 
         [Fact]
@@ -34,7 +34,7 @@ namespace Algorithms.Test.Structures
             heap.Insert(2);
 
             Assert.False(heap.IsEmpty);
-            Assert.Equal(2, heap.Size);
+            Assert.Equal(2, heap.Count);
         }
 
         [Fact]

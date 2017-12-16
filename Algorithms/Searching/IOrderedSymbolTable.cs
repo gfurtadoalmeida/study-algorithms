@@ -5,38 +5,38 @@ namespace Algorithms.Searching
 {
     public interface IOrderedSymbolTable<TKey, TValue> where TKey : IComparable<TKey>
     {
-        Int32 Size { get; }
-
         Boolean IsEmpty { get; }
 
-        void Put(TKey key, TValue value);
+        Int32 Count { get; }
 
-        TValue Get(TKey key);
-
-        void Delete(TKey key);
-
-        Boolean Contains(TKey key);
-
-        TKey Min();
-
-        TKey Max();
-
-        TKey Floor(TKey key);
+        void Add(TKey key, TValue value);
 
         TKey Ceiling(TKey key);
 
-        Int32 Rank(TKey key);
+        Boolean Contains(TKey key);
 
-        TKey Select(Int32 rank);
+        Int32 CountBetween(TKey low, TKey high);
+
+        void Delete(TKey key);
 
         void DeleteMin();
 
         void DeleteMax();
 
-        Int32 Count(TKey low, TKey high);
+        TKey Floor(TKey key);
+
+        TValue Get(TKey key);
 
         IEnumerable<TKey> Keys();
 
         IEnumerable<TKey> Keys(TKey low, TKey high);
+
+        TKey Max();
+
+        TKey Min();
+
+        Int32 Rank(TKey key);
+
+        TKey Select(Int32 rank);
     }
 }

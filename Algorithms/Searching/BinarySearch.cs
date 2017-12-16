@@ -8,9 +8,9 @@ namespace Algorithms.Searching
         private TKey[] _keys;
         private TValue[] _values;
 
-        public Int32 Size { get; private set; }
+        public Int32 Count { get; private set; }
 
-        public Boolean IsEmpty => this.Size == 0;
+        public Boolean IsEmpty => this.Count == 0;
 
         public BinarySearch() : this(10)
         {
@@ -22,11 +22,37 @@ namespace Algorithms.Searching
             this._values = new TValue[capacity];
         }
 
+        public void Add(TKey key, TValue value)
+        {
+            Int32 rank = this.Rank(key);
+
+            if (rank < this.Count && this._keys[rank].CompareTo(key) == 0)
+            {
+                this._values[rank] = value;
+
+                return;
+            }
+
+            if (this.Count == this._keys.Length)
+                this.Resize(2 * this._keys.Length);
+
+            for (int j = this.Count; j > rank; j--)
+            {
+                this._keys[j] = this._keys[j - 1];
+                this._values[j] = this._values[j - 1];
+            }
+
+            this._keys[rank] = key;
+            this._values[rank] = value;
+
+            this.Count++;
+        }
+
         public TKey Ceiling(TKey key)
         {
             Int32 rank = this.Rank(key);
 
-            if (rank == this.Size)
+            if (rank == this.Count)
                 return default(TKey);
             else
                 return this._keys[rank];
@@ -37,7 +63,7 @@ namespace Algorithms.Searching
             return this.TryGet(key, out _);
         }
 
-        public Int32 Count(TKey low, TKey high)
+        public Int32 CountBetween(TKey low, TKey high)
         {
             if (low.CompareTo(high) > 0)
                 return 0;
@@ -54,21 +80,21 @@ namespace Algorithms.Searching
             {
                 Int32 rank = this.Rank(key);
 
-                if (rank == this.Size || this._keys[rank].CompareTo(key) != 0)
+                if (rank == this.Count || this._keys[rank].CompareTo(key) != 0)
                     return;
 
-                for (int i = rank; i < this.Size - 1; i++)
+                for (int i = rank; i < this.Count - 1; i++)
                 {
                     this._keys[i] = this._keys[i + 1];
                     this._values[i] = this._values[i + 1];
                 }
 
-                this.Size--;
+                this.Count--;
 
-                this._keys[this.Size] = default(TKey);
-                this._values[this.Size] = default(TValue);
+                this._keys[this.Count] = default(TKey);
+                this._values[this.Count] = default(TValue);
 
-                if (this.Size > 0 && this.Size == this._keys.Length / 4)
+                if (this.Count > 0 && this.Count == this._keys.Length / 4)
                     Resize(this._keys.Length / 2);
             }
         }
@@ -87,7 +113,7 @@ namespace Algorithms.Searching
         {
             Int32 rank = this.Rank(key);
 
-            if (rank < this.Size && key.CompareTo(this._keys[rank]) == 0)
+            if (rank < this.Count && key.CompareTo(this._keys[rank]) == 0)
                 return this._keys[rank];
 
             if (rank == 0)
@@ -127,7 +153,7 @@ namespace Algorithms.Searching
 
         public TKey Max()
         {
-            return this._keys[this.Size - 1];
+            return this._keys[this.Count - 1];
         }
 
         public TKey Min()
@@ -135,36 +161,10 @@ namespace Algorithms.Searching
             return this._keys[0];
         }
 
-        public void Put(TKey key, TValue value)
-        {
-            Int32 rank = this.Rank(key);
-
-            if (rank < this.Size && this._keys[rank].CompareTo(key) == 0)
-            {
-                this._values[rank] = value;
-
-                return;
-            }
-
-            if (this.Size == this._keys.Length)
-                this.Resize(2 * this._keys.Length);
-
-            for (int j = this.Size; j > rank; j--)
-            {
-                this._keys[j] = this._keys[j - 1];
-                this._values[j] = this._values[j - 1];
-            }
-
-            this._keys[rank] = key;
-            this._values[rank] = value;
-
-            this.Size++;
-        }
-
         public Int32 Rank(TKey key)
         {
             Int32 low = 0;
-            Int32 high = this.Size - 1;
+            Int32 high = this.Count - 1;
 
             while (low <= high)
             {
@@ -195,8 +195,8 @@ namespace Algorithms.Searching
             TKey[] tempKeys = new TKey[capacity];
             TValue[] tempValues = new TValue[capacity];
 
-            Array.Copy(this._keys, tempKeys, this.Size);
-            Array.Copy(this._values, tempValues, this.Size);
+            Array.Copy(this._keys, tempKeys, this.Count);
+            Array.Copy(this._values, tempValues, this.Count);
 
             this._keys = tempKeys;
             this._values = tempValues;
@@ -206,7 +206,7 @@ namespace Algorithms.Searching
         {
             Int32 i = this.Rank(key);
 
-            if (i < this.Size && this._keys[i].CompareTo(key) == 0)
+            if (i < this.Count && this._keys[i].CompareTo(key) == 0)
             {
                 value = this._values[i];
 

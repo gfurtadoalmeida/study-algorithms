@@ -11,15 +11,7 @@ namespace Algorithms.Searching
 
         public Boolean IsEmpty => this.Size == 0;
 
-        public TValue Get(TKey key)
-        {
-            if (this.TryGet(key, out TValue value))
-                return value;
-
-            throw new KeyNotFoundException();
-        }
-
-        public void Put(TKey key, TValue value)
+        public void Add(TKey key, TValue value)
         {
             for (Node x = this._first; x != null; x = x.Next)
                 if (x.Key.Equals(key))
@@ -33,6 +25,7 @@ namespace Algorithms.Searching
 
             this.Size++;
         }
+
         public Boolean Contains(TKey key)
         {
             return this.TryGet(key, out _);
@@ -41,6 +34,14 @@ namespace Algorithms.Searching
         public void Delete(TKey key)
         {
             this._first = this.Delete(this._first, key);
+        }
+
+        public TValue Get(TKey key)
+        {
+            if (this.TryGet(key, out TValue value))
+                return value;
+
+            throw new KeyNotFoundException();
         }
 
         public IEnumerable<TKey> Keys()

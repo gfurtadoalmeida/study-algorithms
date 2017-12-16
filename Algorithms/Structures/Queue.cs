@@ -9,6 +9,7 @@ namespace Algorithms.Structures
         private Int32 _itensCount;
 
         public Boolean IsEmpty => this._head == null;
+
         public Int32 Count => this._itensCount;
 
         public void Enqueue(T item)

@@ -47,7 +47,8 @@ namespace Algorithms.Structures
         private Int32 _heapOrderComparer;
 
         public Boolean IsEmpty => this._lastIndex == 0;
-        public Int32 Size => this._lastIndex;
+
+        public Int32 Count => this._lastIndex;
 
         public Heap(Int32 maxItens) : this(HeapType.Max, maxItens)
         {

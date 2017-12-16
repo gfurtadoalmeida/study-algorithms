@@ -13,7 +13,7 @@ namespace Algorithms.Test.Searching
             var bst = new RedBlackTree<Byte, Char>();
 
             Assert.True(bst.IsEmpty);
-            Assert.Equal(0, bst.Size);
+            Assert.Equal(0, bst.Count);
         }
 
         [Fact]
@@ -22,13 +22,13 @@ namespace Algorithms.Test.Searching
             var bst = this.CreateFullRBT();
             bst.Delete(11); // GAP
 
-            Int32 count = bst.Size;
+            Int32 count = bst.Count;
 
             for (byte i = 1; i <= count; i++)
                 bst.Delete(i);
 
             Assert.True(bst.IsEmpty);
-            Assert.Equal(0, bst.Size);
+            Assert.Equal(0, bst.Count);
         }
 
         [Fact]
@@ -40,11 +40,11 @@ namespace Algorithms.Test.Searching
         }
 
         [Fact]
-        public void Test_Put_Get()
+        public void Test_Add_Get()
         {
             var bst = new RedBlackTree<Byte, Char>();
 
-            bst.Put(1, 'A');
+            bst.Add(1, 'A');
 
             Assert.Equal('A', bst.Get(1));
         }
@@ -62,7 +62,7 @@ namespace Algorithms.Test.Searching
         {
             var bst = new RedBlackTree<Byte, Char>();
 
-            bst.Put(1, 'A');
+            bst.Add(1, 'A');
             bst.Delete(1);
 
             Assert.False(bst.Contains(1));
@@ -73,8 +73,8 @@ namespace Algorithms.Test.Searching
         {
             var bst = new RedBlackTree<Byte, Char>();
 
-            bst.Put(1, 'A');
-            bst.Put(2, 'B');
+            bst.Add(1, 'A');
+            bst.Add(2, 'B');
 
             Assert.True(bst.Contains(1));
             Assert.True(bst.Contains(2));
@@ -173,11 +173,11 @@ namespace Algorithms.Test.Searching
         }
 
         [Fact]
-        public void Test_Count()
+        public void Test_CountBetween()
         {
             var bst = this.CreateFullRBT();
 
-            Assert.Equal(9, bst.Count(1, 11));
+            Assert.Equal(9, bst.CountBetween(1, 11));
         }
 
         [Fact]
@@ -222,16 +222,16 @@ namespace Algorithms.Test.Searching
             //           /
             //         8H
 
-            bst.Put(6, 'F');
-            bst.Put(4, 'D');
-            bst.Put(7, 'G');
-            bst.Put(2, 'B');
-            bst.Put(11, 'K');
-            bst.Put(9, 'I');
-            bst.Put(5, 'E');
-            bst.Put(8, 'H');
-            bst.Put(3, 'C');
-            bst.Put(1, 'A');
+            bst.Add(6, 'F');
+            bst.Add(4, 'D');
+            bst.Add(7, 'G');
+            bst.Add(2, 'B');
+            bst.Add(11, 'K');
+            bst.Add(9, 'I');
+            bst.Add(5, 'E');
+            bst.Add(8, 'H');
+            bst.Add(3, 'C');
+            bst.Add(1, 'A');
 
             return bst;
         }

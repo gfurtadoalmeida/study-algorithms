@@ -7,9 +7,15 @@ namespace Algorithms.Searching
     {
         private Node _root;
 
-        public Int32 Size => this.GetNodeSize(this._root);
+        public Int32 Count => this.GetNodeSize(this._root);
 
         public Boolean IsEmpty => this.GetNodeSize(this._root) == 0;
+
+        public void Add(TKey key, TValue value)
+        {
+            this._root = this.Put(this._root, key, value);
+            this._root.Color = Node.NodeColor.Black;
+        }
 
         public TKey Ceiling(TKey key)
         {
@@ -26,7 +32,7 @@ namespace Algorithms.Searching
             return this.TryGet(this._root, key, out _);
         }
 
-        public Int32 Count(TKey low, TKey high)
+        public Int32 CountBetween(TKey low, TKey high)
         {
             return this.Rank(high) - this.Rank(low);
         }
@@ -86,7 +92,7 @@ namespace Algorithms.Searching
 
         public IEnumerable<TKey> Keys()
         {
-            Queue<TKey> queue = new Queue<TKey>(this.Size);
+            Queue<TKey> queue = new Queue<TKey>(this.Count);
 
             this.Keys(this._root, this.Min(), this.Max(), queue);
 
@@ -112,11 +118,6 @@ namespace Algorithms.Searching
             return this.Min(this._root).Key;
         }
 
-        public void Put(TKey key, TValue value)
-        {
-            this._root = this.Put(this._root, key, value);
-            this._root.Color = Node.NodeColor.Black;
-        }
 
         public Int32 Rank(TKey key)
         {

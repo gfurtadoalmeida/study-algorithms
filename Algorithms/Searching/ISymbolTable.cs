@@ -9,13 +9,13 @@ namespace Algorithms.Searching
 
         Boolean IsEmpty { get; }
 
+        void Add(TKey key, TValue value);
+
         TValue Get(TKey key);
 
-        void Put(TKey key, TValue value);
+        Boolean Contains(TKey key);
 
         void Delete(TKey key);
-
-        Boolean Contains(TKey key);
 
         IEnumerable<TKey> Keys();
     }

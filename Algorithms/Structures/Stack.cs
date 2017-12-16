@@ -7,6 +7,7 @@ namespace Algorithms.Structures
         private LinkedList<T> _list = new LinkedList<T>();
 
         public Boolean IsEmpty => this._list.IsEmpty;
+
         public Int32 Count => this._list.Count;
 
         public void Push(T item)

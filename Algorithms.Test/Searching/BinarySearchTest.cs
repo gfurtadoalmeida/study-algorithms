@@ -13,7 +13,7 @@ namespace Algorithms.Test.Searching
             var bin = new BinarySearch<Byte, Char>();
 
             Assert.True(bin.IsEmpty);
-            Assert.Equal(0, bin.Size);
+            Assert.Equal(0, bin.Count);
         }
 
         [Fact]
@@ -22,13 +22,13 @@ namespace Algorithms.Test.Searching
             var bin = this.CreateFullBinarySearch();
             bin.Delete(11); // GAP
 
-            Int32 count = bin.Size;
+            Int32 count = bin.Count;
 
             for (byte i = 1; i <= count; i++)
                 bin.Delete(i);
 
             Assert.True(bin.IsEmpty);
-            Assert.Equal(0, bin.Size);
+            Assert.Equal(0, bin.Count);
         }
 
         [Fact]
@@ -40,11 +40,11 @@ namespace Algorithms.Test.Searching
         }
 
         [Fact]
-        public void Test_Put_Get()
+        public void Test_Add_Get()
         {
             var bin = new BinarySearch<Byte, Char>();
 
-            bin.Put(1, 'A');
+            bin.Add(1, 'A');
 
             Assert.Equal('A', bin.Get(1));
         }
@@ -62,7 +62,7 @@ namespace Algorithms.Test.Searching
         {
             var bin = new BinarySearch<Byte, Char>();
 
-            bin.Put(1, 'A');
+            bin.Add(1, 'A');
             bin.Delete(1);
 
             Assert.False(bin.Contains(1));
@@ -73,8 +73,8 @@ namespace Algorithms.Test.Searching
         {
             var bin = new BinarySearch<Byte, Char>();
 
-            bin.Put(1, 'A');
-            bin.Put(2, 'B');
+            bin.Add(1, 'A');
+            bin.Add(2, 'B');
 
             Assert.True(bin.Contains(1));
             Assert.True(bin.Contains(2));
@@ -173,14 +173,14 @@ namespace Algorithms.Test.Searching
         }
 
         [Fact]
-        public void Test_Count()
+        public void Test_CountBetween()
         {
             var bin = this.CreateFullBinarySearch();
 
             // You expected 9 right?
             // INternally it's an array. The element 11 (a.k.a GAP)
             // made the creation of an element of index 10 necessary.
-            Assert.Equal(10, bin.Count(1, 11));
+            Assert.Equal(10, bin.CountBetween(1, 11));
         }
 
         [Fact]
@@ -213,16 +213,16 @@ namespace Algorithms.Test.Searching
         {
             BinarySearch<Byte, Char> bin = new BinarySearch<Byte, Char>();
 
-            bin.Put(6, 'F');
-            bin.Put(4, 'D');
-            bin.Put(7, 'G');
-            bin.Put(2, 'B');
-            bin.Put(11, 'K');
-            bin.Put(9, 'I');
-            bin.Put(5, 'E');
-            bin.Put(8, 'H');
-            bin.Put(3, 'C');
-            bin.Put(1, 'A');
+            bin.Add(6, 'F');
+            bin.Add(4, 'D');
+            bin.Add(7, 'G');
+            bin.Add(2, 'B');
+            bin.Add(11, 'K');
+            bin.Add(9, 'I');
+            bin.Add(5, 'E');
+            bin.Add(8, 'H');
+            bin.Add(3, 'C');
+            bin.Add(1, 'A');
 
             return bin;
         }
