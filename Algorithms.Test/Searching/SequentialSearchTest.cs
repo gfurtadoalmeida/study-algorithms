@@ -5,12 +5,12 @@ using Xunit;
 
 namespace Algorithms.Test.Searching
 {
-    public sealed class SequencialSearchTreeTest
+    public sealed class SequentialSearchTest
     {
         [Fact]
         public void Test_IsEmpty_Size_OnCreation()
         {
-            var seq = new SequencialSearch<Byte, Char>();
+            var seq = new SequentialSearch<Byte, Char>();
 
             Assert.True(seq.IsEmpty);
             Assert.Equal(0, seq.Size);
@@ -41,7 +41,7 @@ namespace Algorithms.Test.Searching
         [Fact]
         public void Test_Add_Get()
         {
-            var seq = new SequencialSearch<Byte, Char>();
+            var seq = new SequentialSearch<Byte, Char>();
 
             seq.Add(1, 'A');
 
@@ -51,7 +51,7 @@ namespace Algorithms.Test.Searching
         [Fact]
         public void Test_Get_KeyNotFoundException()
         {
-            var seq = new SequencialSearch<Byte, Char>();
+            var seq = new SequentialSearch<Byte, Char>();
 
             Assert.Throws(typeof(KeyNotFoundException), () => seq.Get(100));
         }
@@ -59,7 +59,7 @@ namespace Algorithms.Test.Searching
         [Fact]
         public void Test_Delete()
         {
-            var seq = new SequencialSearch<Byte, Char>();
+            var seq = new SequentialSearch<Byte, Char>();
 
             seq.Add(1, 'A');
             seq.Delete(1);
@@ -70,7 +70,7 @@ namespace Algorithms.Test.Searching
         [Fact]
         public void Test_Contains()
         {
-            var seq = new SequencialSearch<Byte, Char>();
+            var seq = new SequentialSearch<Byte, Char>();
 
             seq.Add(1, 'A');
             seq.Add(2, 'B');
@@ -91,9 +91,9 @@ namespace Algorithms.Test.Searching
                 Assert.Equal(count--, keys.Current);
         }
 
-        private SequencialSearch<Byte, Char> CreateFullSequencialSearch()
+        private SequentialSearch<Byte, Char> CreateFullSequencialSearch()
         {
-            SequencialSearch<Byte, Char> seq = new SequencialSearch<Byte, Char>();
+            SequentialSearch<Byte, Char> seq = new SequentialSearch<Byte, Char>();
             
             seq.Add(1, 'A');
             seq.Add(2, 'B');

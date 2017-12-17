@@ -5,7 +5,7 @@ namespace Algorithms.Searching
 {
     public sealed class SeparateChainHash<TKey, TValue> : ISymbolTable<TKey, TValue> where TKey : IComparable<TKey>
     {
-        private SequencialSearch<TKey, TValue>[] _sequentialSearches;
+        private SequentialSearch<TKey, TValue>[] _sequentialSearches;
         private Boolean _countMayHaveChanged;
         private Int32 _count;
 
@@ -35,10 +35,10 @@ namespace Algorithms.Searching
 
         public SeparateChainHash(Int32 capacity)
         {
-            this._sequentialSearches = new SequencialSearch<TKey, TValue>[capacity];
+            this._sequentialSearches = new SequentialSearch<TKey, TValue>[capacity];
 
             for (int i = 0; i < capacity; i++)
-                this._sequentialSearches[i] = new SequencialSearch<TKey, TValue>();
+                this._sequentialSearches[i] = new SequentialSearch<TKey, TValue>();
         }
 
         public void Add(TKey key, TValue value)
