@@ -13,10 +13,10 @@ namespace Algorithms.Searching
 
         public void Add(TKey key, TValue value)
         {
-            for (Node x = this._first; x != null; x = x.Next)
-                if (x.Key.Equals(key))
+            for (Node node = this._first; node != null; node = node.Next)
+                if (node.Key.Equals(key))
                 {
-                    x.Value = value;
+                    node.Value = value;
 
                     return;
                 }
@@ -58,10 +58,10 @@ namespace Algorithms.Searching
 
         private Boolean TryGet(TKey key, out TValue value)
         {
-            for (Node x = this._first; x != null; x = x.Next)
-                if (x.Key.Equals(key))
+            for (Node node = this._first; node != null; node = node.Next)
+                if (node.Key.Equals(key))
                 {
-                    value = x.Value;
+                    value = node.Value;
 
                     return true;
                 }

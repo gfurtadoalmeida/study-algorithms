@@ -21,10 +21,10 @@ namespace Algorithms.Searching
         {
             Node node = this.Ceiling(this._root, key);
 
-            if (node == null)
-                return default(TKey);
-            return
-                node.Key;
+            if (node != null)
+                return node.Key;
+
+            throw new KeyNotFoundException();
         }
 
         public Boolean Contains(TKey key)
@@ -74,20 +74,18 @@ namespace Algorithms.Searching
         {
             Node node = this.Floor(this._root, key);
 
-            if (node == null)
-                return default(TKey);
-            return
-                node.Key;
+            if (node != null)
+                return node.Key;
+
+            throw new KeyNotFoundException();
         }
 
         public TValue Get(TKey key)
         {
-            TValue value;
+            if (this.TryGet(this._root, key, out TValue value))
+                return value;
 
-            if (!this.TryGet(this._root, key, out value))
-                throw new KeyNotFoundException();
-
-            return value;
+            throw new KeyNotFoundException();
         }
 
         public IEnumerable<TKey> Keys()
@@ -118,7 +116,6 @@ namespace Algorithms.Searching
             return this.Min(this._root).Key;
         }
 
-
         public Int32 Rank(TKey key)
         {
             return this.Rank(this._root, key);
@@ -128,10 +125,10 @@ namespace Algorithms.Searching
         {
             Node node = this.Select(this._root, rank);
 
-            if (node == null)
-                throw new KeyNotFoundException();
+            if (node != null)
+                return node.Key;
 
-            return node.Key;
+            throw new KeyNotFoundException();
         }
 
         private Int32 GetNodeSize(Node node)
@@ -141,23 +138,25 @@ namespace Algorithms.Searching
 
         private Boolean TryGet(Node node, TKey key, out TValue value)
         {
+            if (node != null)
+            {
+                Int32 cmp = key.CompareTo(node.Key);
+
+                if (cmp < 0)
+                    return this.TryGet(node.Left, key, out value);
+                else if (cmp > 0)
+                    return this.TryGet(node.Right, key, out value);
+                else
+                {
+                    value = node.Value;
+
+                    return true;
+                }
+            }
+
             value = default(TValue);
 
-            if (node == null)
-                return false;
-
-            Int32 cmp = key.CompareTo(node.Key);
-
-            if (cmp < 0)
-                return this.TryGet(node.Left, key, out value);
-            else if (cmp > 0)
-                return this.TryGet(node.Right, key, out value);
-            else
-            {
-                value = node.Value;
-
-                return true;
-            }
+            return false;
         }
 
         private Node Put(Node node, TKey key, TValue value)
@@ -183,8 +182,8 @@ namespace Algorithms.Searching
             if (this.IsNodeRed(node.Left) && this.IsNodeRed(node.Right))
                 this.FlipNodeColors(node);
 
-            node.Count = 1 +
-                         this.GetNodeSize(node.Left)
+            node.Count = 1
+                         + this.GetNodeSize(node.Left)
                          + this.GetNodeSize(node.Right);
 
             return node;
