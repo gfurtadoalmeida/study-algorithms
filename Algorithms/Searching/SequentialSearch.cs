@@ -7,9 +7,9 @@ namespace Algorithms.Searching
     {
         private Node _first;
 
-        public Int32 Size { get; private set; }
+        public Int32 Count { get; private set; }
 
-        public Boolean IsEmpty => this.Size == 0;
+        public Boolean IsEmpty => this.Count == 0;
 
         public void Add(TKey key, TValue value)
         {
@@ -23,7 +23,7 @@ namespace Algorithms.Searching
 
             this._first = new Node(key, value, this._first);
 
-            this.Size++;
+            this.Count++;
         }
 
         public Boolean Contains(TKey key)
@@ -78,7 +78,7 @@ namespace Algorithms.Searching
 
             if (node.Key.Equals(key))
             {
-                this.Size--;
+                this.Count--;
 
                 return node.Next;
             }

@@ -5,7 +5,7 @@ namespace Algorithms.Searching
 {
     public interface ISymbolTable<TKey, TValue> where TKey : IComparable<TKey>
     {
-        Int32 Size { get; }
+        Int32 Count { get; }
 
         Boolean IsEmpty { get; }
 

@@ -8,7 +8,7 @@ namespace Algorithms.Test.Searching
     public sealed class BinarySearchTest
     {
         [Fact]
-        public void Test_IsEmpty_Size_OnCreation()
+        public void Test_IsEmpty_Count_OnCreation()
         {
             var bin = new BinarySearch<Byte, Char>();
 
@@ -17,7 +17,7 @@ namespace Algorithms.Test.Searching
         }
 
         [Fact]
-        public void Test_IsEmpty_Size_WhenCleaning()
+        public void Test_IsEmpty_Count_WhenCleaning()
         {
             var bin = this.CreateFullBinarySearch();
             bin.Delete(11); // GAP
@@ -32,7 +32,7 @@ namespace Algorithms.Test.Searching
         }
 
         [Fact]
-        public void Test_NotEmpty_WhenPutting()
+        public void Test_NotEmpty_WhenAdding()
         {
             var bin = this.CreateFullBinarySearch();
 

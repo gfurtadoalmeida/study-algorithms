@@ -8,30 +8,30 @@ namespace Algorithms.Test.Searching
     public sealed class SequentialSearchTest
     {
         [Fact]
-        public void Test_IsEmpty_Size_OnCreation()
+        public void Test_IsEmpty_Count_OnCreation()
         {
             var seq = new SequentialSearch<Byte, Char>();
 
             Assert.True(seq.IsEmpty);
-            Assert.Equal(0, seq.Size);
+            Assert.Equal(0, seq.Count);
         }
 
         [Fact]
-        public void Test_IsEmpty_Size_WhenCleaning()
+        public void Test_IsEmpty_Count_WhenCleaning()
         {
             var seq = this.CreateFullSequencialSearch();
 
-            Int32 count = seq.Size;
+            Int32 count = seq.Count;
 
             for (byte i = 1; i <= count; i++)
                 seq.Delete(i);
 
             Assert.True(seq.IsEmpty);
-            Assert.Equal(0, seq.Size);
+            Assert.Equal(0, seq.Count);
         }
 
         [Fact]
-        public void Test_NotEmpty_WhenPutting()
+        public void Test_NotEmpty_WhenAdding()
         {
             var seq = this.CreateFullSequencialSearch();
 
@@ -85,7 +85,7 @@ namespace Algorithms.Test.Searching
             var seq = this.CreateFullSequencialSearch();
             var keys = seq.Keys().GetEnumerator();
 
-            Int32 count = seq.Size;
+            Int32 count = seq.Count;
 
             while (keys.MoveNext())
                 Assert.Equal(count--, keys.Current);

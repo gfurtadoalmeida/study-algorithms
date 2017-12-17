@@ -9,7 +9,7 @@ namespace Algorithms.Searching
         private Boolean _countMayHaveChanged;
         private Int32 _count;
 
-        public Int32 Size
+        public Int32 Count
         {
             get
             {
@@ -20,14 +20,14 @@ namespace Algorithms.Searching
                     this._count = 0;
 
                     for (int i = 0; i < this._sequentialSearches.Length; i++)
-                        this._count += this._sequentialSearches[i].Size;
+                        this._count += this._sequentialSearches[i].Count;
                 }
 
                 return this._count;
             }
         }
 
-        public Boolean IsEmpty => this.Size == 0;
+        public Boolean IsEmpty => this.Count == 0;
 
         public SeparateChainHash() : this(10)
         {

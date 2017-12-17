@@ -8,7 +8,7 @@ namespace Algorithms.Test.Searching
     public sealed class BinarySearchTreeTest
     {
         [Fact]
-        public void Test_IsEmpty_Size_OnCreation()
+        public void Test_IsEmpty_Count_OnCreation()
         {
             var bst = new BinarySearchTree<Byte, Char>();
 
@@ -17,7 +17,7 @@ namespace Algorithms.Test.Searching
         }
 
         [Fact]
-        public void Test_IsEmpty_Size_WhenCleaning()
+        public void Test_IsEmpty_Count_WhenCleaning()
         {
             var bst = this.CreateFullBST();
             bst.Delete(11); // GAP
@@ -32,7 +32,7 @@ namespace Algorithms.Test.Searching
         }
 
         [Fact]
-        public void Test_NotEmpty_WhenPutting()
+        public void Test_NotEmpty_WhenAdding()
         {
             var bst = this.CreateFullBST();
 

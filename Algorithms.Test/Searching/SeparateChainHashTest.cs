@@ -8,30 +8,30 @@ namespace Algorithms.Test.Searching
     public sealed class SeparateChainHashTest
     {
         [Fact]
-        public void Test_IsEmpty_Size_OnCreation()
+        public void Test_IsEmpty_Count_OnCreation()
         {
             var hash = new SeparateChainHash<Byte, Char>();
 
             Assert.True(hash.IsEmpty);
-            Assert.Equal(0, hash.Size);
+            Assert.Equal(0, hash.Count);
         }
 
         [Fact]
-        public void Test_IsEmpty_Size_WhenCleaning()
+        public void Test_IsEmpty_Count_WhenCleaning()
         {
             var hash = this.CreateFullSeparateChainHash();
 
-            Int32 count = hash.Size;
+            Int32 count = hash.Count;
 
             for (byte i = 1; i <= count; i++)
                 hash.Delete(i);
 
             Assert.True(hash.IsEmpty);
-            Assert.Equal(0, hash.Size);
+            Assert.Equal(0, hash.Count);
         }
 
         [Fact]
-        public void Test_NotEmpty_WhenPutting()
+        public void Test_NotEmpty_WhenAdding()
         {
             var hash = this.CreateFullSeparateChainHash();
 
