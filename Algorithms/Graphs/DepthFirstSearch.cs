@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using AST = Algorithms.Structures;
 
 namespace Algorithms.Graphs
 {
-    // Traverses a graph in a depthward motion
+    /// <summary>
+    /// Traverses a graph in a depthward motion. 
+    /// Goal: discover the existence of a connection.
+    /// </summary>
     public sealed class DepthFirstSearch
     {
         // For each vertice on the graph, have a boolean
@@ -11,8 +15,8 @@ namespace Algorithms.Graphs
         private Boolean[] _connectedToSourceMap;
 
         // For each vertice on the graph, store the last vertice
-        // that was used to access the vertice _edgesTo[x]
-        private Int32[] _edgesTo;
+        // that was used to access the vertice _edgeTo[x]
+        private Int32[] _edgeTo;
 
         public Int32 ConnectedToSourceCount { get; private set; }
 
@@ -33,7 +37,7 @@ namespace Algorithms.Graphs
                                                       "Value must be greater or equal to zero and less than " + graph.VerticesCount);
 
             this._connectedToSourceMap = new Boolean[graph.VerticesCount];
-            this._edgesTo = new Int32[graph.VerticesCount];
+            this._edgeTo = new Int32[graph.VerticesCount];
 
             this.SourceVertice = sourceVertice;
 
@@ -54,9 +58,9 @@ namespace Algorithms.Graphs
             if (!this.IsConnectedToSource(vertice))
                 return null;
 
-            Stack<Int32> path = new Stack<Int32>();
+            AST.Stack<Int32> path = new AST.Stack<Int32>();
 
-            for (int i = vertice; i != this.SourceVertice; i = this._edgesTo[i])
+            for (int i = vertice; i != this.SourceVertice; i = this._edgeTo[i])
                 path.Push(i);
 
             path.Push(this.SourceVertice);
@@ -66,18 +70,29 @@ namespace Algorithms.Graphs
 
         private void DFS(Graph graph, Int32 vertice)
         {
+            // DFS operates on a recursive way, calling itself for each non-marked 
+            // adjacent vertice of the current vertice.
+            // It will not find the shortest path, but will answer if there is or not a 
+            // connection to some vertice.
+
+            // Mark it connected because this function will be called only for 
+            // vertices connected to source.
             this._connectedToSourceMap[vertice] = true;
 
             this.ConnectedToSourceCount++;
 
-            using (IEnumerator<Int32> connections = graph.EnumerateConnections(vertice))
-            {
-                while (connections.MoveNext())
-                    if (!this._connectedToSourceMap[connections.Current])
-                    {
-                        this._edgesTo[connections.Current] = vertice;
+            // For each adjacent vertice connected to "vertice" and not marked:
+            //   - Set the last vertice connected to the adjacent vertice to "vertice".
+            //   - Recursive call DSF to the adjacent vertices.
 
-                        this.DFS(graph, connections.Current);
+            using (IEnumerator<Int32> adjacents = graph.GetAdjacentVertices(vertice))
+            {
+                while (adjacents.MoveNext())
+                    if (!this._connectedToSourceMap[adjacents.Current])
+                    {
+                        this._edgeTo[adjacents.Current] = vertice;
+
+                        this.DFS(graph, adjacents.Current);
                     }
             }
         }

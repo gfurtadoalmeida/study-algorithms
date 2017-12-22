@@ -34,7 +34,7 @@ namespace Algorithms.Graphs
             this.EdgesCount++;
         }
 
-        public IEnumerator<Int32> EnumerateConnections(Int32 verticeIndex)
+        public IEnumerator<Int32> GetAdjacentVertices(Int32 verticeIndex)
         {
             this.ThrowIfVerticeIndexOutOfRange(nameof(verticeIndex), verticeIndex);
 
