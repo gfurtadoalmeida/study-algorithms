@@ -11,12 +11,12 @@ namespace Algorithms.Graphs
 
             for (int i = 0; i < graph.VerticesCount; i++)
                 if (!marked[i])
-                    if (CheckCycle(i, i))
+                    if (HasCycle(i, i))
                         break;
 
             return hasCycle;
 
-            Boolean CheckCycle(Int32 vertice, Int32 parentVertice)
+            Boolean HasCycle(Int32 vertice, Int32 parentVertice)
             {
                 marked[vertice] = true;
 
@@ -27,7 +27,7 @@ namespace Algorithms.Graphs
                         if (adjacents.Current == vertice) // Self-loop: my adjacent is me.
                             hasCycle = true;
                         else if (!marked[adjacents.Current])
-                            CheckCycle(adjacents.Current, vertice);
+                            HasCycle(adjacents.Current, vertice);
                         else if (adjacents.Current != parentVertice) // Back-edge: if it's visited and not my parent so it looped to a vertice.
                             hasCycle = true;
                     }
