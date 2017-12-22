@@ -49,5 +49,30 @@ namespace Algorithms.Test.Structures
             Assert.Equal(2, stack.Pop());
             Assert.Equal(18, stack.Pop());
         }
+
+        [Fact]
+        public void Test_Enumeration()
+        {
+            Stack<Int32> stack = new Stack<Int32>();
+            stack.Push(18);
+            stack.Push(2);
+            stack.Push(88);
+
+            using (var enumerator = stack.GetEnumerator())
+            {
+                enumerator.MoveNext();
+
+                Assert.Equal(88, enumerator.Current);
+
+                enumerator.MoveNext();
+
+                Assert.Equal(2, enumerator.Current);
+
+                enumerator.MoveNext();
+
+                Assert.Equal(18, enumerator.Current);
+                Assert.False(enumerator.MoveNext());
+            }
+        }
     }
 }
