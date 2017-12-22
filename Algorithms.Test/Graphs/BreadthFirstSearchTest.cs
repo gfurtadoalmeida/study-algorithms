@@ -10,7 +10,7 @@ namespace Algorithms.Test.Graphs
         [Fact]
         public void Test_ConnectedToSourceCount()
         {
-            BreadthFirstSearch bfs = this.CreateDFS();
+            BreadthFirstSearch bfs = this.CreateBFS();
 
             Assert.True(bfs.IsConnectedToSource(5));
         }
@@ -18,7 +18,7 @@ namespace Algorithms.Test.Graphs
         [Fact]
         public void Test_SourceVertice()
         {
-            BreadthFirstSearch bfs = this.CreateDFS();
+            BreadthFirstSearch bfs = this.CreateBFS();
 
             Assert.Equal(5, bfs.SourceVertice);
         }
@@ -26,7 +26,7 @@ namespace Algorithms.Test.Graphs
         [Fact]
         public void Test_IsConnectedToSource_True()
         {
-            BreadthFirstSearch bfs = this.CreateDFS();
+            BreadthFirstSearch bfs = this.CreateBFS();
 
             Assert.True(bfs.IsConnectedToSource(3));
         }
@@ -34,7 +34,7 @@ namespace Algorithms.Test.Graphs
         [Fact]
         public void Test_IsConnectedToSource_False()
         {
-            BreadthFirstSearch bfs = this.CreateDFS();
+            BreadthFirstSearch bfs = this.CreateBFS();
 
             Assert.False(bfs.IsConnectedToSource(6));
         }
@@ -42,7 +42,7 @@ namespace Algorithms.Test.Graphs
         [Fact]
         public void Test_Path_Iteration()
         {
-            BreadthFirstSearch bfs = this.CreateDFS();
+            BreadthFirstSearch bfs = this.CreateBFS();
 
             using (IEnumerator<Int32> enumerator = bfs.PathFromSourceTo(3).GetEnumerator())
             {
@@ -58,7 +58,7 @@ namespace Algorithms.Test.Graphs
             }
         }
 
-        private BreadthFirstSearch CreateDFS()
+        private BreadthFirstSearch CreateBFS()
         {
             Graph graph = new Graph(8);
             graph.AddEdge(0, 2);
