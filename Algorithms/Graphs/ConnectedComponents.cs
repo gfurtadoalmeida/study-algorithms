@@ -8,7 +8,7 @@ namespace Algorithms.Graphs
         private Int32[] _ids;
 
         /// <summary>
-        /// How many componentes are.
+        /// How many componentes are connected.
         /// Being a component an isolated web of connected vertices.
         /// </summary>
         public Int32 Count { get; private set; }

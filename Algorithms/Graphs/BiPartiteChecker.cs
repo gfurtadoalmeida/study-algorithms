@@ -25,8 +25,8 @@ namespace Algorithms.Graphs
                 {
                     while (isBiPartite && adjacents.MoveNext())
                     {
-                        // If one oy my adjacents was visited and his color is equal to mine
-                        // it means I'm point to a vertice that is on the same side as me.
+                        // If one of my adjacents was visited and his color is equal to mine
+                        // it means I'm pointing to a vertice that is on the same side as me.
                         //
                         // 0 ------> 2
                         //           ^
