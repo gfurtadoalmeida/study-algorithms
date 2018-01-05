@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace Algorithms.Structures
 {
-    public sealed class Queue<T>
+    public sealed class Queue<T> : IEnumerable<T>
     {
         private Node _head;
         private Node _tail;
@@ -45,6 +47,23 @@ namespace Algorithms.Structures
             this._itensCount--;
 
             return item;
+        }
+
+        public IEnumerator<T> GetEnumerator()
+        {
+            Node actual = this._tail;
+
+            while(actual != null)
+            {
+                yield return actual.Value;
+
+                actual = actual.Previous;
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
         }
 
         private sealed class Node

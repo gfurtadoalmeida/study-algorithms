@@ -49,5 +49,31 @@ namespace Algorithms.Test.Structures
             Assert.Equal(2, queue.Dequeue());
             Assert.Equal(88, queue.Dequeue());
         }
+
+        [Fact]
+        public void Test_Enumeration()
+        {
+            Queue<Int32> queue = new Queue<Int32>();
+            queue.Enqueue(18);
+            queue.Enqueue(2);
+            queue.Enqueue(88);
+
+            using (var enumerator = queue.GetEnumerator())
+            {
+                enumerator.MoveNext();
+
+                Assert.Equal(18, queue.Dequeue());
+
+                enumerator.MoveNext();
+
+                Assert.Equal(2, queue.Dequeue());
+
+                enumerator.MoveNext();
+
+                Assert.Equal(88, queue.Dequeue());
+
+                Assert.False(enumerator.MoveNext());
+            }
+        }
     }
 }
