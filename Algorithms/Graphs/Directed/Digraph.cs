@@ -8,13 +8,13 @@ namespace Algorithms.Graphs.Directed
     /// Used on reachability problems.
     /// v -> w
     /// </summary>
-    public sealed class Digraph
+    public sealed class Digraph : IGraph
     {
         private Bag<Int32>[] _adjacencyVertices;
 
-        public int VerticesCount { get; private set; }
+        public Int32 VerticesCount { get; private set; }
 
-        public int EdgesCount { get; private set; }
+        public Int32 EdgesCount { get; private set; }
 
         public Digraph(Int32 verticesCount)
         {
@@ -43,11 +43,11 @@ namespace Algorithms.Graphs.Directed
             this.EdgesCount++;
         }
 
-        public IEnumerator<Int32> GetAdjacentVertices(Int32 verticeIndex)
+        public IEnumerable<Int32> GetAdjacentVertices(Int32 verticeIndex)
         {
             this.ThrowIfVerticeIndexOutOfRange(nameof(verticeIndex), verticeIndex);
 
-            return this._adjacencyVertices[verticeIndex].GetEnumerator();
+            return this._adjacencyVertices[verticeIndex];
         }
 
         public Digraph Reverse()
@@ -56,9 +56,10 @@ namespace Algorithms.Graphs.Directed
 
             for (int i = 0; i < this.VerticesCount; i++)
             {
-                using (var adjacents = this.GetAdjacentVertices(i))
-                    while (adjacents.MoveNext())
-                        digraph.AddEdge(adjacents.Current, i);
+                foreach (Int32 adjacentVertice in this.GetAdjacentVertices(i))
+                {
+                    digraph.AddEdge(adjacentVertice, i);
+                }
             }
 
             return digraph;

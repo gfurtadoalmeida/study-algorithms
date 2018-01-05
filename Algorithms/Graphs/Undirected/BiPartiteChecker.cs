@@ -21,7 +21,7 @@ namespace Algorithms.Graphs.Undirected
             {
                 marked[vertice] = true;
 
-                using (var adjacents = graph.GetAdjacentVertices(vertice))
+                using (var adjacents = graph.GetAdjacentVertices(vertice).GetEnumerator())
                 {
                     while (isBiPartite && adjacents.MoveNext())
                     {

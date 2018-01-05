@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using AST = Algorithms.Structures;
 
-namespace Algorithms.Graphs.Undirected
+namespace Algorithms.Graphs
 {
     /// <summary>
     /// Traverses a graph in a depthward motion. 
-    /// Goal: discover the existence of a connection.
+    /// Goal: discover the existence of a connection/reachability.
     /// </summary>
     public sealed class DepthFirstSearch
     {
@@ -22,12 +22,12 @@ namespace Algorithms.Graphs.Undirected
 
         public Int32 SourceVertice { get; }
 
-        public static DepthFirstSearch Create(Graph graph, Int32 sourceVertice)
+        public static DepthFirstSearch Create(IGraph graph, Int32 sourceVertice)
         {
             return new DepthFirstSearch(graph, sourceVertice);
         }
 
-        private DepthFirstSearch(Graph graph, Int32 sourceVertice)
+        private DepthFirstSearch(IGraph graph, Int32 sourceVertice)
         {
             if (graph == null)
                 throw new ArgumentNullException(nameof(graph));
@@ -68,7 +68,7 @@ namespace Algorithms.Graphs.Undirected
             return path;
         }
 
-        private void DFS(Graph graph, Int32 vertice)
+        private void DFS(IGraph graph, Int32 vertice)
         {
             // DFS operates on a recursive way, calling itself for each non-marked 
             // adjacent vertice of the current vertice.
@@ -85,15 +85,14 @@ namespace Algorithms.Graphs.Undirected
             //   - Set the last vertice connected to the adjacent vertice to "vertice".
             //   - Recursive call DSF to the adjacent vertices.
 
-            using (IEnumerator<Int32> adjacents = graph.GetAdjacentVertices(vertice))
+            foreach (Int32 adjacentVertice in graph.GetAdjacentVertices(vertice))
             {
-                while (adjacents.MoveNext())
-                    if (!this._connectedToSourceMap[adjacents.Current])
-                    {
-                        this._edgeTo[adjacents.Current] = vertice;
+                if (!this._connectedToSourceMap[adjacentVertice])
+                {
+                    this._edgeTo[adjacentVertice] = vertice;
 
-                        this.DFS(graph, adjacents.Current);
-                    }
+                    this.DFS(graph, adjacentVertice);
+                }
             }
         }
     }

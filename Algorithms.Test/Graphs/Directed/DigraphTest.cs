@@ -43,7 +43,7 @@ namespace Algorithms.Test.Graphs.Directed
             graph.AddEdge(1, 2);
             graph.AddEdge(2, 0);
 
-            using (IEnumerator<Int32> enumerator = graph.GetAdjacentVertices(0))
+            using (IEnumerator<Int32> enumerator = graph.GetAdjacentVertices(0).GetEnumerator())
             {
                 enumerator.MoveNext();
 
@@ -62,7 +62,7 @@ namespace Algorithms.Test.Graphs.Directed
 
             graph = graph.Reverse();
 
-            using (IEnumerator<Int32> enumerator = graph.GetAdjacentVertices(1))
+            using (IEnumerator<Int32> enumerator = graph.GetAdjacentVertices(1).GetEnumerator())
             {
                 enumerator.MoveNext();
 

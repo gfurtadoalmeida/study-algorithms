@@ -8,7 +8,7 @@ namespace Algorithms.Graphs.Undirected
     /// Used on connectivity problems.
     /// v - w
     /// </summary>
-    public sealed class Graph
+    public sealed class Graph : IGraph
     {
         private Bag<Int32>[] _adjacencyVertices;
 
@@ -42,11 +42,11 @@ namespace Algorithms.Graphs.Undirected
             this.EdgesCount++;
         }
 
-        public IEnumerator<Int32> GetAdjacentVertices(Int32 verticeIndex)
+        public IEnumerable<Int32> GetAdjacentVertices(Int32 verticeIndex)
         {
             this.ThrowIfVerticeIndexOutOfRange(nameof(verticeIndex), verticeIndex);
 
-            return this._adjacencyVertices[verticeIndex].GetEnumerator();
+            return this._adjacencyVertices[verticeIndex];
         }
 
         private void ThrowIfVerticeIndexOutOfRange(String parameterName, Int32 verticeIndex)

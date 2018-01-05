@@ -58,13 +58,10 @@ namespace Algorithms.Graphs.Undirected
             this._connected[vertice] = true;
             this._ids[vertice] = this.Count;
 
-            using (var adjacents = graph.GetAdjacentVertices(vertice))
+            foreach (Int32 adjacentVertice in graph.GetAdjacentVertices(vertice))
             {
-                while (adjacents.MoveNext())
-                {
-                    if (!this._connected[adjacents.Current])
-                        this.DFS(graph, adjacents.Current);
-                }
+                if (!this._connected[adjacentVertice])
+                    this.DFS(graph, adjacentVertice);
             }
         }
     }

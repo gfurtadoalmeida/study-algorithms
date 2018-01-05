@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using AST = Algorithms.Structures;
 
-namespace Algorithms.Graphs.Undirected
+namespace Algorithms.Graphs
 {
     /// <summary>
     /// Traverses a graph in a breadthward motion. 
@@ -20,12 +20,12 @@ namespace Algorithms.Graphs.Undirected
 
         public Int32 SourceVertice { get; }
 
-        public static BreadthFirstSearch Create(Graph graph, Int32 sourceVertice)
+        public static BreadthFirstSearch Create(IGraph graph, Int32 sourceVertice)
         {
             return new BreadthFirstSearch(graph, sourceVertice);
         }
 
-        private BreadthFirstSearch(Graph graph, Int32 sourceVertice)
+        private BreadthFirstSearch(IGraph graph, Int32 sourceVertice)
         {
             if (graph == null)
                 throw new ArgumentNullException(nameof(graph));
@@ -66,7 +66,7 @@ namespace Algorithms.Graphs.Undirected
             return path;
         }
 
-        private void BFS(Graph graph, Int32 sourceVertice)
+        private void BFS(IGraph graph, Int32 sourceVertice)
         {
             AST.Queue<Int32> queue = new AST.Queue<Int32>();
 
@@ -80,7 +80,7 @@ namespace Algorithms.Graphs.Undirected
             {
                 Int32 vertice = queue.Dequeue(); // Remove the next vertice from the queue.
 
-                using (IEnumerator<Int32> adjacents = graph.GetAdjacentVertices(vertice))
+                foreach (Int32 adjacentVertice in graph.GetAdjacentVertices(vertice))
                 {
                     // For every unmarked adjacent vertice:
                     //   - Save the last vertice that connected to it.
@@ -89,14 +89,13 @@ namespace Algorithms.Graphs.Undirected
                     // When no more adjacent vertices are found, start dequeuing vertices
                     // so we can visit its adjacent vertices.
 
-                    while (adjacents.MoveNext()) 
-                        if (!this._shortestPathToVerticeMap[adjacents.Current])       
-                        {
-                            this._edgeTo[adjacents.Current] = vertice;     
-                            this._shortestPathToVerticeMap[adjacents.Current] = true;  
+                    if (!this._shortestPathToVerticeMap[adjacentVertice])
+                    {
+                        this._edgeTo[adjacentVertice] = vertice;
+                        this._shortestPathToVerticeMap[adjacentVertice] = true;
 
-                            queue.Enqueue(adjacents.Current);  
-                        }
+                        queue.Enqueue(adjacentVertice);
+                    }
                 }
             }
         }

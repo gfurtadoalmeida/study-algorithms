@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using Algorithms.Graphs;
 using Algorithms.Graphs.Undirected;
 using Xunit;
 
-namespace Algorithms.Test.Graphs.Undirected
+namespace Algorithms.Test.Graphs
 {
     public sealed class BreadthFirstSearchTest
     {

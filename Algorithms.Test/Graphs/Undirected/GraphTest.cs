@@ -43,7 +43,7 @@ namespace Algorithms.Test.Graphs.Undirected
             graph.AddEdge(1, 2);
             graph.AddEdge(2, 0);
 
-            using (IEnumerator<Int32> enumerator = graph.GetAdjacentVertices(0))
+            using (IEnumerator<Int32> enumerator = graph.GetAdjacentVertices(0).GetEnumerator())
             {
                 enumerator.MoveNext();
 
