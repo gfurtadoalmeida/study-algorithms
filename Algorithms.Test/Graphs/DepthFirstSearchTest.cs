@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Algorithms.Graphs;
 using Algorithms.Graphs.Undirected;
 using Xunit;
@@ -45,18 +44,7 @@ namespace Algorithms.Test.Graphs
         {
             DepthFirstSearch dfs = this.CreateDFS();
 
-            using (IEnumerator<Int32> enumerator = dfs.PathFromSourceTo(3).GetEnumerator())
-            {
-                enumerator.MoveNext();
-
-                Assert.Equal(5, enumerator.Current);
-
-                enumerator.MoveNext();
-
-                Assert.Equal(3, enumerator.Current);
-
-                Assert.False(enumerator.MoveNext());
-            }
+            AssertUtilities.Sequence(new Int32[2] { 5, 3 }, dfs.PathFromSourceTo(3));
         }
 
         private DepthFirstSearch CreateDFS()

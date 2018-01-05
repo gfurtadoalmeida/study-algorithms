@@ -14,7 +14,7 @@ namespace Algorithms.Test.Structures
             Assert.True(stack.IsEmpty);
             Assert.Equal(0, stack.Count);
         }
-        
+
         [Fact]
         public void Test_Empty_WhenCleaning()
         {
@@ -58,21 +58,7 @@ namespace Algorithms.Test.Structures
             stack.Push(2);
             stack.Push(88);
 
-            using (var enumerator = stack.GetEnumerator())
-            {
-                enumerator.MoveNext();
-
-                Assert.Equal(88, enumerator.Current);
-
-                enumerator.MoveNext();
-
-                Assert.Equal(2, enumerator.Current);
-
-                enumerator.MoveNext();
-
-                Assert.Equal(18, enumerator.Current);
-                Assert.False(enumerator.MoveNext());
-            }
+            AssertUtilities.Sequence(new Int32[3] { 88, 2, 18 }, stack);
         }
     }
 }

@@ -3,7 +3,7 @@ using Xunit;
 
 namespace Algorithms.Test
 {
-    public static class AssertExtensions
+    public static class AssertUtilities
     {
         public static void Sequence<T>(IEnumerable<T> expected, IEnumerable<T> actual)
         {

@@ -62,13 +62,7 @@ namespace Algorithms.Test.Graphs.Directed
 
             graph = graph.Reverse();
 
-            using (IEnumerator<Int32> enumerator = graph.GetAdjacentVertices(1).GetEnumerator())
-            {
-                enumerator.MoveNext();
-
-                Assert.Equal(0, enumerator.Current);
-                Assert.False(enumerator.MoveNext());
-            }
+            AssertUtilities.Sequence(new Int32[1] { 0 }, graph.GetAdjacentVertices(1));
         }
     }
 }

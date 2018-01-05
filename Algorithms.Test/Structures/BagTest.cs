@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Algorithms.Structures;
 using Xunit;
 
@@ -35,20 +34,7 @@ namespace Algorithms.Test.Structures
             bag.Add(2);
             bag.Add(88);
 
-            using (IEnumerator<Int32> enumerator = bag.GetEnumerator())
-            {
-                enumerator.MoveNext();
-
-                Assert.Equal(88, enumerator.Current);
-
-                enumerator.MoveNext();
-
-                Assert.Equal(2, enumerator.Current);
-
-                enumerator.MoveNext();
-
-                Assert.Equal(18, enumerator.Current);
-            }
+            AssertUtilities.Sequence(new Int32[3] { 88, 2, 18 }, bag);
         }
     }
 }

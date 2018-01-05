@@ -6,16 +6,12 @@ namespace Algorithms.Test.Graphs.Directed
 {
     public sealed class DepthFirstSearchOrderTest
     {
-        private static readonly Int32[] PRE_ORDER = new Int32[6] { 0, 3, 4, 5, 1, 2 };
-        private static readonly Int32[] POST_ORDER = new Int32[6] { 5, 4, 3, 2, 1, 0 };
-        private static readonly Int32[] REVERSE_POST_ORDER = new Int32[6] { 0, 1, 2, 3, 4, 5 };
-
         [Fact]
         public void Test_Pre()
         {
             DepthFirstSearchOrder order = new DepthFirstSearchOrder(this.CreateDigraph(), DepthFirstSearchOrderType.Pre);
 
-            AssertExtensions.Sequence(PRE_ORDER, order.Pre);
+            AssertUtilities.Sequence(new Int32[6] { 0, 3, 4, 5, 1, 2 }, order.Pre);
         }
 
         [Fact]
@@ -23,7 +19,7 @@ namespace Algorithms.Test.Graphs.Directed
         {
             DepthFirstSearchOrder order = new DepthFirstSearchOrder(this.CreateDigraph(), DepthFirstSearchOrderType.Post);
 
-            AssertExtensions.Sequence(POST_ORDER, order.Post);
+            AssertUtilities.Sequence(new Int32[6] { 5, 4, 3, 2, 1, 0 }, order.Post);
         }
 
         [Fact]
@@ -31,7 +27,7 @@ namespace Algorithms.Test.Graphs.Directed
         {
             DepthFirstSearchOrder order = new DepthFirstSearchOrder(this.CreateDigraph(), DepthFirstSearchOrderType.ReversePost);
 
-            AssertExtensions.Sequence(REVERSE_POST_ORDER, order.ReversePost);
+            AssertUtilities.Sequence(new Int32[6] { 0, 1, 2, 3, 4, 5 }, order.ReversePost);
         }
 
         private Digraph CreateDigraph()

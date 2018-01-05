@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Algorithms.Graphs.Directed;
 using Xunit;
 
@@ -42,26 +41,7 @@ namespace Algorithms.Test.Graphs.Directed
 
             CycleChecker checker = new CycleChecker(graph);
 
-            using (IEnumerator<Int32> enumerator = checker.GetCycle().GetEnumerator())
-            {
-                enumerator.MoveNext();
-
-                Assert.Equal(2, enumerator.Current);
-
-                enumerator.MoveNext();
-
-                Assert.Equal(0, enumerator.Current);
-
-                enumerator.MoveNext();
-
-                Assert.Equal(1, enumerator.Current);
-
-                enumerator.MoveNext();
-
-                Assert.Equal(2, enumerator.Current);
-
-                Assert.False(enumerator.MoveNext());
-            }
+            AssertUtilities.Sequence(new Int32[4] { 2, 0, 1, 2 }, checker.GetCycle());
         }
     }
 }

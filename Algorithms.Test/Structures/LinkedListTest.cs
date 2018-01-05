@@ -77,16 +77,7 @@ namespace Algorithms.Test.Structures
             list.Add(4);
             list.Add(8);
 
-            Int32 count = 8;
-
-            var enumerator = list.GetEnumerator();
-
-            while (enumerator.MoveNext())
-            {
-                Assert.Equal(enumerator.Current, count);
-
-                count /= 2;
-            }
+            AssertUtilities.Sequence(new Int32[3] { 8, 4, 2 }, list);
         }
 
         [Fact]

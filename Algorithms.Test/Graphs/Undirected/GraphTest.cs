@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Algorithms.Graphs.Undirected;
 using Xunit;
 
@@ -43,16 +42,7 @@ namespace Algorithms.Test.Graphs.Undirected
             graph.AddEdge(1, 2);
             graph.AddEdge(2, 0);
 
-            using (IEnumerator<Int32> enumerator = graph.GetAdjacentVertices(0).GetEnumerator())
-            {
-                enumerator.MoveNext();
-
-                Assert.Equal(2, enumerator.Current);
-
-                enumerator.MoveNext();
-
-                Assert.Equal(1, enumerator.Current);
-            }
+            AssertUtilities.Sequence(new Int32[2] { 2, 1 }, graph.GetAdjacentVertices(0));
         }
     }
 }
