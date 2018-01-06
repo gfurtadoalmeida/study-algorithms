@@ -4,7 +4,7 @@ namespace Algorithms.Graphs.Undirected
 {
     public sealed class ConnectedComponents
     {
-        private Boolean[] _connected;
+        private Boolean[] _visited;
         private Int32[] _ids;
 
         /// <summary>
@@ -20,22 +20,22 @@ namespace Algorithms.Graphs.Undirected
 
         private ConnectedComponents(Graph graph)
         {
-            this._connected = new Boolean[graph.VerticesCount];
+            this._visited = new Boolean[graph.VerticesCount];
             this._ids = new Int32[graph.VerticesCount];
 
             // How does it work?
             // For each vertice:
-            //   - If the vertice is not already marked we:
+            //   - If the vertice is not already visited we:
             //     - Set its id to the current count.
             //     - Check recursively all its adjacents vertices setting their
             //       ids to the current count.
             //   - Increment count.
 
-            // Even though the property "Count" count how many connected componentes
+            // Even though the property "Count" count how many connected components
             // we have it is used to hold the current id while processing.
 
             for (int i = 0; i < graph.VerticesCount; i++)
-                if (!this._connected[i])
+                if (!this._visited[i])
                 {
                     this.DFS(graph, i);
 
@@ -55,12 +55,12 @@ namespace Algorithms.Graphs.Undirected
 
         private void DFS(Graph graph, Int32 vertice)
         {
-            this._connected[vertice] = true;
+            this._visited[vertice] = true;
             this._ids[vertice] = this.Count;
 
             foreach (Int32 adjacentVertice in graph.GetAdjacentVertices(vertice))
             {
-                if (!this._connected[adjacentVertice])
+                if (!this._visited[adjacentVertice])
                     this.DFS(graph, adjacentVertice);
             }
         }

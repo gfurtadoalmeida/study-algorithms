@@ -13,7 +13,7 @@ namespace Algorithms.Test.Graphs.Directed
             graph.AddEdge(0, 1);
             graph.AddEdge(0, 2);
 
-            CycleChecker checker = new CycleChecker(graph);
+            CycleChecker checker = CycleChecker.Create(graph);
 
             Assert.False(checker.HasCycle);
         }
@@ -26,7 +26,7 @@ namespace Algorithms.Test.Graphs.Directed
             graph.AddEdge(1, 2);
             graph.AddEdge(2, 0);
 
-            CycleChecker checker = new CycleChecker(graph);
+            CycleChecker checker = CycleChecker.Create(graph);
 
             Assert.True(checker.HasCycle);
         }
@@ -39,7 +39,7 @@ namespace Algorithms.Test.Graphs.Directed
             graph.AddEdge(1, 2);
             graph.AddEdge(2, 0);
 
-            CycleChecker checker = new CycleChecker(graph);
+            CycleChecker checker = CycleChecker.Create(graph);
 
             AssertUtilities.Sequence(new Int32[4] { 2, 0, 1, 2 }, checker.GetCycle());
         }

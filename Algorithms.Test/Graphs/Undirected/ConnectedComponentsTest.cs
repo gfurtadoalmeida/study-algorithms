@@ -14,7 +14,7 @@ namespace Algorithms.Test.Graphs.Undirected
         }
 
         [Fact]
-        public void Test_Connected()
+        public void Test_IsConnected()
         {
             ConnectedComponents cc = this.CreateCC();
 

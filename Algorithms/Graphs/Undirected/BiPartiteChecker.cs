@@ -6,12 +6,12 @@ namespace Algorithms.Graphs.Undirected
     {
         public static Boolean IsBiPartite(Graph graph)
         {
-            Boolean[] marked = new Boolean[graph.VerticesCount];
+            Boolean[] visited = new Boolean[graph.VerticesCount];
             Boolean[] color = new Boolean[graph.VerticesCount];
             Boolean isBiPartite = true;
 
             for (int i = 0; i < graph.VerticesCount; i++)
-                if (!marked[i])
+                if (!visited[i])
                     if (!IsBiPartite(i))
                         break;
 
@@ -19,7 +19,7 @@ namespace Algorithms.Graphs.Undirected
 
             Boolean IsBiPartite(Int32 vertice)
             {
-                marked[vertice] = true;
+                visited[vertice] = true;
 
                 using (var adjacents = graph.GetAdjacentVertices(vertice).GetEnumerator())
                 {
@@ -35,7 +35,7 @@ namespace Algorithms.Graphs.Undirected
                         // 0 ------> 1
 
 
-                        if (!marked[adjacents.Current])
+                        if (!visited[adjacents.Current])
                         {
                             color[adjacents.Current] = !color[vertice];
 

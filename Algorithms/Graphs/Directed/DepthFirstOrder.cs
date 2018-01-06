@@ -5,7 +5,7 @@ using AST = Algorithms.Structures;
 namespace Algorithms.Graphs.Directed
 {
     [Flags]
-    public enum DepthFirstSearchOrderType : byte
+    public enum DepthFirstOrderType : byte
     {
         /// <summary>
         /// Normal ordering.
@@ -18,19 +18,19 @@ namespace Algorithms.Graphs.Directed
         Post = 1 << 1,
 
         /// <summary>
-        /// Normal ordering but reading from left to righ.
+        /// Normal ordering but reading from right to left.
         /// </summary>
         ReversePost = 1 << 2
     }
 
-    public sealed class DepthFirstSearchOrder
+    public sealed class DepthFirstOrder
     {
-        private readonly Boolean[] _marked;
+        private readonly Boolean[] _visited;
         private readonly AST.Queue<Int32> _pre;
         private readonly AST.Queue<Int32> _post;
         private readonly AST.Stack<Int32> _reversePost;
 
-        public DepthFirstSearchOrderType OrderType { get; }
+        public DepthFirstOrderType OrderType { get; }
 
         public IEnumerable<Int32> Pre => this._pre;
 
@@ -38,19 +38,19 @@ namespace Algorithms.Graphs.Directed
 
         public IEnumerable<Int32> ReversePost => this._reversePost;
 
-        public DepthFirstSearchOrder(Digraph digraph, DepthFirstSearchOrderType orderType)
+        public DepthFirstOrder(Digraph digraph, DepthFirstOrderType orderType)
         {
             this.OrderType = orderType;
 
-            this._pre = (orderType & DepthFirstSearchOrderType.Pre) == DepthFirstSearchOrderType.Pre ? new AST.Queue<Int32>() : null;
-            this._post = (orderType & DepthFirstSearchOrderType.Post) == DepthFirstSearchOrderType.Post ? new AST.Queue<Int32>() : null;
-            this._reversePost = (orderType & DepthFirstSearchOrderType.ReversePost) == DepthFirstSearchOrderType.ReversePost ? new AST.Stack<Int32>() : null;
+            this._pre = (orderType & DepthFirstOrderType.Pre) == DepthFirstOrderType.Pre ? new AST.Queue<Int32>() : null;
+            this._post = (orderType & DepthFirstOrderType.Post) == DepthFirstOrderType.Post ? new AST.Queue<Int32>() : null;
+            this._reversePost = (orderType & DepthFirstOrderType.ReversePost) == DepthFirstOrderType.ReversePost ? new AST.Stack<Int32>() : null;
 
-            this._marked = new Boolean[digraph.VerticesCount];
+            this._visited = new Boolean[digraph.VerticesCount];
 
             for (int i = 0; i < digraph.VerticesCount; i++)
             {
-                if (!this._marked[i])
+                if (!this._visited[i])
                     this.DFS(digraph, i);
             }
         }
@@ -59,11 +59,11 @@ namespace Algorithms.Graphs.Directed
         {
             this._pre?.Enqueue(vertice);
 
-            this._marked[vertice] = true;
+            this._visited[vertice] = true;
 
             foreach (Int32 w in digraph.GetAdjacentVertices(vertice))
             {
-                if (!this._marked[w])
+                if (!this._visited[w])
                     this.DFS(digraph, w);
             }
 

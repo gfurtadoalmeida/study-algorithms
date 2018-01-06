@@ -9,13 +9,21 @@ namespace Algorithms.Graphs.Directed
 
         public Boolean IsDAG => this.Order != null;
 
-        public TopologicalChecker(Digraph digraph)
+        public static TopologicalChecker Create(Digraph digraph)
         {
-            CycleChecker checker = new CycleChecker(digraph);
+            if (digraph == null)
+                throw new ArgumentNullException(nameof(digraph));
+
+            return new TopologicalChecker(digraph);
+        }
+
+        private TopologicalChecker(Digraph digraph)
+        {
+            CycleChecker checker = CycleChecker.Create(digraph);
 
             if (!checker.HasCycle)
             {
-                DepthFirstSearchOrder dfs = new DepthFirstSearchOrder(digraph, DepthFirstSearchOrderType.ReversePost);
+                DepthFirstOrder dfs = new DepthFirstOrder(digraph, DepthFirstOrderType.ReversePost);
 
                 this.Order = dfs.ReversePost;
             }
