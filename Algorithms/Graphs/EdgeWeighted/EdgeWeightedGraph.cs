@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using Algorithms.Structures;
 
-namespace Algorithms.Graphs.EdgeWheighted
+namespace Algorithms.Graphs.EdgeWeighted
 {
     /// <summary>
     /// Used on connectivity problems where edges have wheight.
     /// v - w
     /// </summary>
-    public sealed class EdgeWheightedGraph
+    public sealed class EdgeWeightedGraph
     {
         private readonly Bag<Edge>[] _adjacencyVertices;
 
@@ -16,7 +16,7 @@ namespace Algorithms.Graphs.EdgeWheighted
 
         public Int32 EdgesCount { get; private set; }
 
-        public EdgeWheightedGraph(Int32 verticesCount)
+        public EdgeWeightedGraph(Int32 verticesCount)
         {
             this.VerticesCount = verticesCount;
             this.EdgesCount = 0;
