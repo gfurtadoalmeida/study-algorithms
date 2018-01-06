@@ -14,7 +14,7 @@ namespace Algorithms.Test.Graphs.Directed
             graph.AddEdge(1, 2);
             graph.AddEdge(2, 0);
 
-            TopologicalChecker checker = new TopologicalChecker(graph);
+            TopologicalChecker checker = TopologicalChecker.Create(graph);
 
             Assert.False(checker.IsDAG);
         }
@@ -26,7 +26,7 @@ namespace Algorithms.Test.Graphs.Directed
             graph.AddEdge(0, 1);
             graph.AddEdge(0, 2);
 
-            TopologicalChecker checker = new TopologicalChecker(graph);
+            TopologicalChecker checker = TopologicalChecker.Create(graph);
 
             Assert.True(checker.IsDAG);
         }
@@ -39,7 +39,7 @@ namespace Algorithms.Test.Graphs.Directed
             graph.AddEdge(0, 2);
             graph.AddEdge(2, 3);
 
-            TopologicalChecker checker = new TopologicalChecker(graph);
+            TopologicalChecker checker = TopologicalChecker.Create(graph);
 
             AssertUtilities.Sequence(new Int32[4] { 0, 1, 2, 3 }, checker.Order);
         }

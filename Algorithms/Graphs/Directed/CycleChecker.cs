@@ -18,7 +18,15 @@ namespace Algorithms.Graphs.Directed
 
         public Boolean HasCycle => this._cycle != null;
 
-        public CycleChecker(Digraph digraph)
+        public static CycleChecker Create(Digraph digraph)
+        {
+            if (digraph == null)
+                throw new ArgumentNullException(nameof(digraph));
+
+            return new CycleChecker(digraph);
+        }
+
+        private CycleChecker(Digraph digraph)
         {
             if (digraph == null)
                 throw new ArgumentNullException(nameof(digraph));
