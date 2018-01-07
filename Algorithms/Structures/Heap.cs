@@ -24,6 +24,8 @@ namespace Algorithms.Structures
         // Types:
         //   MaxHeap: Biggets item on top.
         //   MinHeap: Lowest item on top.
+        //
+        // Usefull for creating priority queues.
 
         // Comparisons:
         // When comparing two itens with IComparable<T>.CompareTo(), we get:
@@ -43,21 +45,21 @@ namespace Algorithms.Structures
         // We're using a resizable array', so we'd better keep 
         // track of the "true last index".
         private Int32 _lastIndex;
-        private T[] _array;
+        private IComparable<T>[] _array;
         private Int32 _heapOrderComparer;
 
         public Boolean IsEmpty => this._lastIndex == 0;
 
         public Int32 Count => this._lastIndex;
 
-        public Heap(Int32 maxItens) : this(HeapType.Max, maxItens)
+        public Heap(Int32 capacity) : this(HeapType.Max, capacity)
         {
         }
 
-        public Heap(HeapType heapType, Int32 maxItens)
+        public Heap(HeapType heapType, Int32 capacity)
         {
             // Always add 1 because a binary heap starts at index 1.
-            this._array = new T[maxItens + 1];
+            this._array = new IComparable<T>[capacity + 1];
 
             switch (heapType)
             {
@@ -97,11 +99,11 @@ namespace Algorithms.Structures
             // 3 - Set the last item to default of the type.
             // 4 - We sink the first item until we find its place. 
 
-            T topItem = this._array[BINHEAP_START_INDEX];
+            T topItem = (T)this._array[BINHEAP_START_INDEX];
 
             this.Exchange(1, this._lastIndex--);
 
-            this._array[this._lastIndex + 1] = default(T);
+            this._array[this._lastIndex + 1] = null;
 
             this.Sink(1);
 
@@ -109,6 +111,14 @@ namespace Algorithms.Structures
                 this.HalveArray();
 
             return topItem;
+        }
+
+        public T Top()
+        {
+            if (this.IsEmpty)
+                throw new InvalidOperationException();
+
+            return (T)this._array[BINHEAP_START_INDEX];
         }
 
         private void Swim(Int32 indexItem)
@@ -159,12 +169,12 @@ namespace Algorithms.Structures
 
         private Boolean IsNotInOrder(Int32 indexA, Int32 indexB)
         {
-            return this._array[indexA].CompareTo(this._array[indexB]) == this._heapOrderComparer;
+            return this._array[indexA].CompareTo((T)this._array[indexB]) == this._heapOrderComparer;
         }
 
         private void Exchange(Int32 indexTarget, Int32 indexSource)
         {
-            T item = this._array[indexTarget];
+            T item = (T)this._array[indexTarget];
 
             this._array[indexTarget] = this._array[indexSource];
             this._array[indexSource] = item;
@@ -182,7 +192,7 @@ namespace Algorithms.Structures
 
         private void ResizeArray(Int32 size)
         {
-            T[] temp = new T[size];
+            IComparable<T>[] temp = new IComparable<T>[size];
 
             Array.ConstrainedCopy(this._array,
                                   0,

@@ -60,7 +60,29 @@ namespace Algorithms.Test.Structures
             for (int i = 1; i < 11; i++)
                 Assert.Equal(heap.RemoveTop(), i);
         }
-        
+
+        [Fact]
+        public void Test_Insert_Top_Max()
+        {
+            Heap<Int32> heap = new Heap<Int32>(HeapType.Max, 10);
+
+            for (int i = 1; i < 11; i++)
+                heap.Insert(i);
+
+            Assert.Equal(10, heap.Top());
+        }
+
+        [Fact]
+        public void Test_Insert_Top_Min()
+        {
+            Heap<Int32> heap = new Heap<Int32>(HeapType.Min, 10);
+
+            for (int i = 1; i < 11; i++)
+                heap.Insert(i);
+
+            Assert.Equal(1, heap.Top());
+        }
+
         [Fact]
         public void Test_ArrayResize()
         {
