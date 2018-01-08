@@ -1,8 +1,8 @@
 ﻿using System;
-using Algorithms.Graphs.EdgeWeighted;
+using Algorithms.Graphs.Undirected.EdgeWeighted;
 using Xunit;
 
-namespace Algorithms.Test.Graphs.EdgeWeighted
+namespace Algorithms.Test.Graphs.Undirected.EdgeWeighted
 {
     public sealed class EdgeTest
     {

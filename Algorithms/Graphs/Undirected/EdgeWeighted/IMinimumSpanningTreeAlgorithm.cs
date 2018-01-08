@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Algorithms.Graphs.EdgeWeighted
+namespace Algorithms.Graphs.Undirected.EdgeWeighted
 {
     public interface IMinimumSpanningTreeAlgorithm
     {

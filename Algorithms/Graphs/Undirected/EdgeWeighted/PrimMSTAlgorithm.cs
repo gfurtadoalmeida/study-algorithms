@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Algorithms.Structures.PriorityQueue;
 
-namespace Algorithms.Graphs.EdgeWeighted
+namespace Algorithms.Graphs.Undirected.EdgeWeighted
 {
     /// <summary>
     /// Computes a minimum spanning tree in an edge-weighted graph.

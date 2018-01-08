@@ -1,15 +1,15 @@
-﻿using Algorithms.Graphs.EdgeWeighted;
+﻿using Algorithms.Graphs.Undirected.EdgeWeighted;
 using Xunit;
 
-namespace Algorithms.Test.Graphs.EdgeWheighted
+namespace Algorithms.Test.Graphs.Undirected.EdgeWheighted
 {
-    public sealed class LazyPrimMSTAlgorithmTest
+    public sealed class KruskalMSTAlgorithmTest
     {
         [Fact]
         public void Test_Weigth()
         {
             EdgeWeightedGraph graph = this.CreateGraph();
-            LazyPrimMSTAlgorithm msta = LazyPrimMSTAlgorithm.Create(graph);
+            KruskalMSTAlgorithm msta = KruskalMSTAlgorithm.Create(graph);
 
             Assert.Equal(1.6, msta.Weight);
         }
@@ -18,13 +18,13 @@ namespace Algorithms.Test.Graphs.EdgeWheighted
         public void Test_GetEdges_Iteration()
         {
             EdgeWeightedGraph graph = this.CreateGraph();
-            LazyPrimMSTAlgorithm msta = LazyPrimMSTAlgorithm.Create(graph);
+            KruskalMSTAlgorithm msta = KruskalMSTAlgorithm.Create(graph);
 
             AssertUtilities.Sequence(new Edge[4]
             {
                 new Edge(0, 4, .2),
-                new Edge(0, 1, .5),
                 new Edge(1, 2, .3),
+                new Edge(0, 1, .5),
                 new Edge(1, 3, .6)
             },
             msta.GetEdges());

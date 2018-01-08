@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Algorithms.Graphs.EdgeWeighted
+namespace Algorithms.Graphs.Undirected.EdgeWeighted
 {
     public sealed class Edge : IComparable<Edge>, IEquatable<Edge>
     {

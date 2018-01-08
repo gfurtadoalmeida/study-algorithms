@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Algorithms.Structures;
 
-namespace Algorithms.Graphs.EdgeWeighted
+namespace Algorithms.Graphs.Undirected.EdgeWeighted
 {
     /// <summary>
     /// Used on connectivity problems where edges have wheight.
