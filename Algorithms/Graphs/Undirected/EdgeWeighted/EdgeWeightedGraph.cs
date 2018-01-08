@@ -5,7 +5,7 @@ using Algorithms.Structures;
 namespace Algorithms.Graphs.Undirected.EdgeWeighted
 {
     /// <summary>
-    /// Used on connectivity problems where edges have wheight.
+    /// Used on connectivity problems where edges have weight.
     /// v - w
     /// </summary>
     public sealed class EdgeWeightedGraph
