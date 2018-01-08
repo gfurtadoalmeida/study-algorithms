@@ -9,25 +9,25 @@ namespace Algorithms.Test.Graphs.Directed
         [Fact]
         public void Test_Pre()
         {
-            DepthFirstOrder order = new DepthFirstOrder(this.CreateDigraph(), DepthFirstOrderType.Pre);
+            DepthFirstOrder order = new DepthFirstOrder(this.CreateDigraph());
 
-            AssertUtilities.Sequence(new Int32[6] { 0, 3, 4, 5, 1, 2 }, order.Pre);
+            AssertUtilities.Sequence(new Int32[6] { 0, 3, 4, 5, 1, 2 }, order.Pre());
         }
 
         [Fact]
         public void Test_Post()
         {
-            DepthFirstOrder order = new DepthFirstOrder(this.CreateDigraph(), DepthFirstOrderType.Post);
+            DepthFirstOrder order = new DepthFirstOrder(this.CreateDigraph());
 
-            AssertUtilities.Sequence(new Int32[6] { 5, 4, 3, 2, 1, 0 }, order.Post);
+            AssertUtilities.Sequence(new Int32[6] { 5, 4, 3, 2, 1, 0 }, order.Post());
         }
 
         [Fact]
         public void Test_ReversePost()
         {
-            DepthFirstOrder order = new DepthFirstOrder(this.CreateDigraph(), DepthFirstOrderType.ReversePost);
+            DepthFirstOrder order = new DepthFirstOrder(this.CreateDigraph());
 
-            AssertUtilities.Sequence(new Int32[6] { 0, 1, 2, 3, 4, 5 }, order.ReversePost);
+            AssertUtilities.Sequence(new Int32[6] { 0, 1, 2, 3, 4, 5 }, order.ReversePost());
         }
 
         private Digraph CreateDigraph()

@@ -1,51 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using Algorithms.Graphs.Directed.EdgeWeighted;
 using AST = Algorithms.Structures;
 
 namespace Algorithms.Graphs.Directed
 {
-    [Flags]
-    public enum DepthFirstOrderType : byte
-    {
-        /// <summary>
-        /// Normal ordering.
-        /// </summary>
-        Pre = 1,
-
-        /// <summary>
-        /// Reverse ordering.
-        /// </summary>
-        Post = 1 << 1,
-
-        /// <summary>
-        /// Normal ordering but reading from right to left.
-        /// </summary>
-        ReversePost = 1 << 2
-    }
-
     public sealed class DepthFirstOrder
     {
-        private readonly Boolean[] _visited;
-        private readonly AST.Queue<Int32> _pre;
-        private readonly AST.Queue<Int32> _post;
-        private readonly AST.Stack<Int32> _reversePost;
+        private Boolean[] _visited;
+        private Int32[] _pre;                 // pre[v] = preOrder number of v.
+        private Int32[] _post;                // post[v] = postOrder number of v.
+        private AST.Queue<Int32> _preOrder;   // vertices in preOrder.
+        private AST.Queue<Int32> _postOrder;  // vertices in postOrder.
+        private Int32 _preCounter;            // counter or preorder numbering.
+        private Int32 _postCounter;           // counter for postorder numbering.
 
-        public DepthFirstOrderType OrderType { get; }
-
-        public IEnumerable<Int32> Pre => this._pre;
-
-        public IEnumerable<Int32> Post => this._post;
-
-        public IEnumerable<Int32> ReversePost => this._reversePost;
-
-        public DepthFirstOrder(Digraph digraph, DepthFirstOrderType orderType)
+        public DepthFirstOrder(Digraph digraph)
         {
-            this.OrderType = orderType;
-
-            this._pre = (orderType & DepthFirstOrderType.Pre) == DepthFirstOrderType.Pre ? new AST.Queue<Int32>() : null;
-            this._post = (orderType & DepthFirstOrderType.Post) == DepthFirstOrderType.Post ? new AST.Queue<Int32>() : null;
-            this._reversePost = (orderType & DepthFirstOrderType.ReversePost) == DepthFirstOrderType.ReversePost ? new AST.Stack<Int32>() : null;
-
+            this._pre = new Int32[digraph.VerticesCount];
+            this._post = new Int32[digraph.VerticesCount];
+            this._postOrder = new AST.Queue<Int32>();
+            this._preOrder = new AST.Queue<Int32>();
             this._visited = new Boolean[digraph.VerticesCount];
 
             for (int i = 0; i < digraph.VerticesCount; i++)
@@ -55,20 +30,85 @@ namespace Algorithms.Graphs.Directed
             }
         }
 
-        private void DFS(Digraph digraph, Int32 vertice)
+        public DepthFirstOrder(EdgeWeightedDigraph weightedGraph)
         {
-            this._pre?.Enqueue(vertice);
+            this._pre = new Int32[weightedGraph.VerticesCount];
+            this._post = new Int32[weightedGraph.VerticesCount];
+            this._postOrder = new AST.Queue<Int32>();
+            this._preOrder = new AST.Queue<Int32>();
+            this._visited = new Boolean[weightedGraph.VerticesCount];
 
-            this._visited[vertice] = true;
-
-            foreach (Int32 w in digraph.GetAdjacentVertices(vertice))
+            for (int i = 0; i < weightedGraph.VerticesCount; i++)
             {
-                if (!this._visited[w])
-                    this.DFS(digraph, w);
+                if (!this._visited[i])
+                    this.DFS(weightedGraph, i);
+            }
+        }
+
+        private void DFS(Digraph graph, Int32 vertice)
+        {
+            this._visited[vertice] = true;
+            this._pre[vertice] = _preCounter++;
+            this._preOrder.Enqueue(vertice);
+
+            foreach (Int32 adjacent in graph.GetAdjacentVertices(vertice))
+            {
+                if (!this._visited[adjacent])
+                {
+                    this.DFS(graph, adjacent);
+                }
             }
 
-            this._post?.Enqueue(vertice);
-            this._reversePost?.Push(vertice);
+            this._postOrder.Enqueue(vertice);
+            this._post[vertice] = this._postCounter++;
+        }
+
+        private void DFS(EdgeWeightedDigraph graph, Int32 vertice)
+        {
+            this._visited[vertice] = true;
+            this._pre[vertice] = _preCounter++;
+            this._preOrder.Enqueue(vertice);
+
+            foreach (DirectedEdge edge in graph.GetAdjacentVertices(vertice))
+            {
+                if (!this._visited[edge.Target])
+                {
+                    this.DFS(graph, edge.Target);
+                }
+            }
+
+            this._postOrder.Enqueue(vertice);
+            this._post[vertice] = this._postCounter++;
+        }
+
+        public Int32 Pre(Int32 vertice)
+        {
+            return this._pre[vertice];
+        }
+
+        public Int32 Post(Int32 vertice)
+        {
+            return this._post[vertice];
+        }
+
+        public IEnumerable<Int32> Post()
+        {
+            return this._postOrder;
+        }
+
+        public IEnumerable<Int32> Pre()
+        {
+            return this._preOrder;
+        }
+
+        public IEnumerable<Int32> ReversePost()
+        {
+            AST.Stack<Int32> reverse = new AST.Stack<Int32>();
+
+            foreach (Int32 vertice in this._postOrder)
+                reverse.Push(vertice);
+
+            return reverse;
         }
     }
 }
