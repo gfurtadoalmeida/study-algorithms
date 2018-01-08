@@ -9,8 +9,6 @@ namespace Algorithms.Graphs
 
         Int32 VerticesCount { get; }
 
-        void AddEdge(Int32 verticeIndex, Int32 adjacentVerticeIndex);
-
         IEnumerable<Int32> GetAdjacentVertices(Int32 verticeIndex);
     }
 }

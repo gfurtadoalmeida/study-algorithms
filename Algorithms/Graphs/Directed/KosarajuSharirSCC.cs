@@ -23,12 +23,12 @@ namespace Algorithms.Graphs.Directed
 
         private KosarajuSharirSCC(Digraph digraph)
         {
-            DepthFirstOrder dfs = new DepthFirstOrder(digraph.Reverse(), DepthFirstOrderType.ReversePost);
+            DepthFirstOrder dfs = new DepthFirstOrder(digraph.Reverse());
 
             this._visited = new Boolean[digraph.VerticesCount];
             this._ids = new Int32[digraph.VerticesCount];
 
-            foreach (Int32 vertice in dfs.ReversePost)
+            foreach (Int32 vertice in dfs.ReversePost())
             {
                 if (!this._visited[vertice])
                 {

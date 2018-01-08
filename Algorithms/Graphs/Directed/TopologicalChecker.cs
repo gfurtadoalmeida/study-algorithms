@@ -23,9 +23,9 @@ namespace Algorithms.Graphs.Directed
 
             if (!checker.HasCycle)
             {
-                DepthFirstOrder dfs = new DepthFirstOrder(digraph, DepthFirstOrderType.ReversePost);
+                DepthFirstOrder dfs = new DepthFirstOrder(digraph);
 
-                this.Order = dfs.ReversePost;
+                this.Order = dfs.ReversePost();
             }
         }
     }
