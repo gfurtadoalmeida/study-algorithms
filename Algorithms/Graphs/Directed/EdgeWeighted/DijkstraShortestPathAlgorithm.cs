@@ -30,7 +30,7 @@ namespace Algorithms.Graphs.Directed.EdgeWeighted
 
             this._distTo[vertice] = 0.0;
 
-            // Relax vertices in order of distance from s.
+            // Relax vertices in order of distance from vertice.
             this._crossingEdgesByWeight = new IndexedMinPQ<Double>(graph.VerticesCount);
             this._crossingEdgesByWeight.Add(vertice, this._distTo[vertice]);
 
@@ -39,7 +39,7 @@ namespace Algorithms.Graphs.Directed.EdgeWeighted
                 Int32 v = this._crossingEdgesByWeight.DeleteMin();
 
                 foreach (Edge edge in graph.GetAdjacentVertices(v))
-                    Relax(edge);
+                    this.Relax(edge);
             }
         }
 

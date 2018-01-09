@@ -48,7 +48,7 @@ namespace Algorithms.Graphs.Directed
         private void DFS(Digraph graph, Int32 vertice)
         {
             this._visited[vertice] = true;
-            this._pre[vertice] = _preCounter++;
+            this._pre[vertice] = this._preCounter++;
             this._preOrder.Enqueue(vertice);
 
             foreach (Int32 adjacent in graph.GetAdjacentVertices(vertice))
@@ -66,7 +66,7 @@ namespace Algorithms.Graphs.Directed
         private void DFS(EdgeWeightedDigraph graph, Int32 vertice)
         {
             this._visited[vertice] = true;
-            this._pre[vertice] = _preCounter++;
+            this._pre[vertice] = this._preCounter++;
             this._preOrder.Enqueue(vertice);
 
             foreach (Edge edge in graph.GetAdjacentVertices(vertice))

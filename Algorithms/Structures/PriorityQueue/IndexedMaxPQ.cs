@@ -138,7 +138,7 @@ namespace Algorithms.Structures.PriorityQueue
             return (T)this._itens[this._binHeap[1]];
         }
 
-        public IEnumerator<int> GetEnumerator()
+        public IEnumerator<Int32> GetEnumerator()
         {
             IndexedMinPQ<T> copy = new IndexedMinPQ<T>(this._binHeap.Length - 1);
 
