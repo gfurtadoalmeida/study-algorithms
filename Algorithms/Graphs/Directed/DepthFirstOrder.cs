@@ -69,7 +69,7 @@ namespace Algorithms.Graphs.Directed
             this._pre[vertice] = _preCounter++;
             this._preOrder.Enqueue(vertice);
 
-            foreach (DirectedEdge edge in graph.GetAdjacentVertices(vertice))
+            foreach (Edge edge in graph.GetAdjacentVertices(vertice))
             {
                 if (!this._visited[edge.Target])
                 {
