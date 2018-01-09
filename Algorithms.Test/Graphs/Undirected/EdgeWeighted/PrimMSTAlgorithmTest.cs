@@ -1,7 +1,8 @@
-﻿using Algorithms.Graphs.Undirected.EdgeWeighted;
+﻿using System;
+using Algorithms.Graphs.Undirected.EdgeWeighted;
 using Xunit;
 
-namespace Algorithms.Test.Graphs.Undirected.EdgeWheighted
+namespace Algorithms.Test.Graphs.Undirected.EdgeWeighted
 {
     public sealed class PrimMSTAlgorithmTest
     {
@@ -11,7 +12,7 @@ namespace Algorithms.Test.Graphs.Undirected.EdgeWheighted
             EdgeWeightedGraph graph = this.CreateGraph();
             PrimMSTAlgorithm msta = PrimMSTAlgorithm.Create(graph);
 
-            Assert.Equal(1.6, msta.Weight);
+            Assert.Equal(1.6, Math.Round(msta.Weight,1));
         }
 
         [Fact]

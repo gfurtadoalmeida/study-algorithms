@@ -1,7 +1,7 @@
 ﻿using Algorithms.Graphs.Undirected.EdgeWeighted;
 using Xunit;
 
-namespace Algorithms.Test.Graphs.Undirected.EdgeWheighted
+namespace Algorithms.Test.Graphs.Undirected.EdgeWeighted
 {
     public sealed class EdgeWeightedGraphTest
     {
