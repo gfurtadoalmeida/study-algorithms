@@ -8,7 +8,7 @@ namespace Algorithms.Graphs.Directed.EdgeWeighted
     /// Solves the single-source shortest-paths problem in edge-weighted digraphs with no negative cycles. 
     /// The edge weights can be positive, negative, or zero.
     /// </summary>
-    public sealed class BellmanFordShortestPathAlgorithm : IShortestPathAlgorithm
+    public sealed class BellmanFordShortestPathAlgorithm
     {
         private Double[] _distTo;         // distTo[v] = distance of shortest s->v path.
         private Edge[] _edgeTo;           // edgeTo[v] = last edge on shortest s->v path.

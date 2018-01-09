@@ -8,7 +8,7 @@ namespace Algorithms.Graphs.Directed.EdgeWeighted
     /// <summary>
     /// Solves the single-source shortest-paths problem in edge-weighted digraphs with no negative weights.
     /// </summary>
-    public sealed class DijkstraShortestPathAlgorithm : IShortestPathAlgorithm
+    public sealed class DijkstraShortestPathAlgorithm
     {
         private readonly Double[] _distTo; // distTo[v] = distance of shortest s->v path.
         private readonly Edge[] _edgeTo;   // edgeTo[v] = last edge on shortest s->v path.
