@@ -47,7 +47,7 @@ namespace Algorithms.Graphs.Undirected.EdgeWeighted
                 foreach (Edge edge in this.GetEdges())
                     weight += edge.Weight;
 
-                return Math.Round(weight, 5);
+                return weight;
             });
         }
 
