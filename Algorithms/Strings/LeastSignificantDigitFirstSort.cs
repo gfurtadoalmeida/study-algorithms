@@ -4,7 +4,7 @@ using Algorithms.Structures;
 namespace Algorithms.Strings
 {
     /// <summary>
-    /// Method of choice for string-sorting applications where all the keys are the same length.
+    /// String sorting where all the strings have the same length.
     /// Uses key-indexed counting sort reading from right to left.
     /// </summary>
     public static class LeastSignificantDigitFirstSort
