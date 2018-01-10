@@ -4,8 +4,13 @@ using Algorithms.Structures;
 namespace Algorithms.Strings
 {
     /// <summary>
-    /// String sorting where the strings have different lengths.
+    /// String sorting where the strings have different lengths and with small number of equal strings.
     /// Uses key-indexed counting sort reading left to right.
+    /// Not suitable for:
+    /// - Equal strings. 
+    /// - Strings keys with long common prefixes.
+    /// - Strings that fall into a small range.
+    /// - Small arrays.
     /// </summary>
     public static class MostSignificantDigitFirstSort
     {
