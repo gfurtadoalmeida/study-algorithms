@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text;
+using Algorithms.Structures;
 
 namespace Algorithms.Strings
 {
@@ -25,72 +26,64 @@ namespace Algorithms.Strings
         private readonly Char[] _alphabet;
         private readonly AlphabetCompactIndex _index;
 
-        public Int32 BinaryLogRadix { get; }
-
         /// <summary>
         /// Number of unique chars.
         /// </summary>
         public Int32 Radix { get; }
 
+        public Int32 BinaryLogRadix { get; }
+
+        public Char MinChar { get; }
+
+        public Char MaxChar { get; }
+
         public Alphabet(String alphabet)
         {
-            // Check that alphabet contains no duplicate chars.
-            Boolean[] processed = new Boolean[Char.MaxValue];
+            this._alphabet = alphabet.ToCharArray();
 
-            for (int i = 0; i < alphabet.Length; i++)
+            (Int32 minValue, Int32 maxValue) = this.CalculateBounds(this._alphabet);
+
             {
-                Char c = alphabet[i];
+                (Boolean containsDuplicate, Char duplicatedChar) = this.ContainsDuplicate(this._alphabet, minValue, maxValue);
 
-                if (processed[c])
-                    throw new InvalidOperationException("Illegal alphabet: repeated character = '" + c + "'");
-
-                processed[c] = true;
+                if (containsDuplicate)
+                    throw new InvalidOperationException("Illegal alphabet: repeated character = '" + duplicatedChar + "'");
             }
 
-            this._alphabet = alphabet.ToCharArray();
-            this._index = new AlphabetCompactIndex(this._alphabet);
-
-            this.Radix = alphabet.Length;
+            this._index = new AlphabetCompactIndex(minValue, maxValue);
 
             for (int i = 0; i < this._index.Length; i++)
                 this._index[i] = -1;
 
-            for (int i = 0; i < this.Radix; i++)
+            for (int i = 0; i < this._alphabet.Length; i++)
                 this._index[this._alphabet[i]] = i;
 
-            this.BinaryLogRadix = this.CalculateBinaryLogRadix();
+            this.Radix = alphabet.Length;
+            this.BinaryLogRadix = this.CalculateBinaryLogRadix(alphabet.Length);
+            this.MinChar = (Char)minValue;
+            this.MaxChar = (Char)maxValue;
         }
 
-        private Alphabet(Int32 radix)
+        public Alphabet(Int32 radix)
         {
-            this.Radix = radix;
+            this._alphabet = new Char[radix];
+            this._index = new AlphabetCompactIndex(0, radix - 1);
 
-            this._alphabet = new Char[this.Radix];
-            this._index = new AlphabetCompactIndex(this.Radix);
-
-            for (int i = 0; i < this.Radix; i++)
+            for (int i = 0; i < radix; i++)
             {
                 this._alphabet[i] = (Char)i;
                 this._index[i] = i;
             }
 
-            this.BinaryLogRadix = this.CalculateBinaryLogRadix();
+            this.Radix = radix;
+            this.BinaryLogRadix = this.CalculateBinaryLogRadix(radix);
+            this.MinChar = (Char)0;
+            this.MaxChar = (Char)(radix - 1);
         }
 
         public Boolean Contains(Char c)
         {
             return this._index.InRange(c) && this._index[c] != -1;
-        }
-
-        //Binary logarithm (rounded up) of the number of characters in this alphabet.</returns>
-        private Int32 CalculateBinaryLogRadix()
-        {
-            Int32 lgR = 0;
-
-            for (int i = this.Radix - 1; i >= 1; i /= 2)
-                lgR++;
-
-            return lgR;
         }
 
         public Int32 ToIndex(Char c)
@@ -130,41 +123,71 @@ namespace Algorithms.Strings
             return s.ToString();
         }
 
+        //Binary logarithm (rounded up) of the number of characters in this alphabet.
+        private Int32 CalculateBinaryLogRadix(Int32 radix)
+        {
+            Int32 lgR = 0;
+
+            for (int i = radix - 1; i >= 1; i /= 2)
+                lgR++;
+
+            return lgR;
+        }
+
+        private (Int32 minValue, Int32 maxValue) CalculateBounds(Char[] array)
+        {
+            Int32 minValue = array[0];
+            Int32 maxValue = array[array.Length - 1];
+
+            foreach (Char c in array)
+            {
+                if (c < minValue)
+                    minValue = c;
+                else if (c > maxValue)
+                    maxValue = c;
+            }
+
+            return (minValue, maxValue);
+        }
+
+        private (Boolean containsDuplicate, Char duplicatedChar) ContainsDuplicate(Char[] array, Int32 minValue, Int32 maxValue)
+        {
+            CompactBoundedArray<Boolean> processed = new CompactBoundedArray<Boolean>(minValue, maxValue);
+            Boolean containsDuplicate = false;
+            Char duplicatedChar = Char.MinValue;
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                Char c = array[i];
+
+                if (processed[c])
+                {
+                    containsDuplicate = true;
+                    duplicatedChar = c;
+
+                    break;
+                }
+                processed[c] = true;
+            }
+
+            return (containsDuplicate, duplicatedChar);
+        }
+
         private struct AlphabetCompactIndex
         {
             private readonly Int32[] _indexes;
-            private readonly Int32 _minValue;
-            private readonly Int32 _maxValue;
+            private readonly Int32 _lowerBound;
+            private readonly Int32 _upperBound;
 
             public Int32 Length { get; }
 
-            public AlphabetCompactIndex(Int32 radix)
+            public AlphabetCompactIndex(Int32 lowerBound, Int32 upperBound)
             {
-                this._indexes = new Int32[radix];
+                this._indexes = new Int32[upperBound - lowerBound + 1];
+                this._lowerBound = lowerBound;
+                this._upperBound = upperBound;
 
-                this.Length = radix;
-                this._minValue = 0;
-                this._maxValue = radix;
-            }
-
-            public AlphabetCompactIndex(Char[] alphabet)
-            {
-                Int32 minValue = alphabet[0];
-                Int32 maxValue = alphabet[alphabet.Length - 1];
-
-                foreach (Char c in alphabet)
-                {
-                    if (c < minValue)
-                        minValue = c;
-                    else if (c > maxValue)
-                        maxValue = c;
-                }
-
-                this._indexes = new Int32[maxValue - minValue + 1];
-                this._minValue = minValue;
-                this._maxValue = maxValue;
-
-                this.Length = this._indexes.Length;
+                this.Length = this._indexes.Length - 1;
             }
 
             public Int32 this[Int32 index]
@@ -175,13 +198,13 @@ namespace Algorithms.Strings
 
             public Int32 this[Char c]
             {
-                get => this._indexes[c - this._minValue];
-                set => this._indexes[c - this._minValue] = value;
+                get => this._indexes[c - this._lowerBound];
+                set => this._indexes[c - this._lowerBound] = value;
             }
 
             public Boolean InRange(Char c)
             {
-                return c >= this._minValue && c <= this._maxValue;
+                return c >= this._lowerBound && c <= this._upperBound;
             }
         }
     }

@@ -2,10 +2,16 @@
 using Algorithms.Strings;
 using Xunit;
 
-namespace Algorithms.Test.Structures.Strings
+namespace Algorithms.Test.Strings
 {
     public sealed class AlphabetTest
     {
+        [Fact]
+        public void Test_ThrowOn_Duplicates()
+        {
+            Assert.Throws<InvalidOperationException>(() => new Alphabet("AAB"));
+        }
+
         [Fact]
         public void Test_Radix()
         {
@@ -70,5 +76,20 @@ namespace Algorithms.Test.Structures.Strings
             AssertUtilities.Sequence(new Char[3] { '7', '8', '9' }, alphabet.ToChars(new Int32[3] { 7, 8, 9 }));
         }
 
+        [Fact]
+        public void Test_ToIndex_RadixConstructor()
+        {
+            Alphabet alphabet = new Alphabet(10);
+
+            Assert.Equal(9, alphabet.ToIndex((Char)9));
+        }
+
+        [Fact]
+        public void Test_ToChar_RadixConstructor()
+        {
+            Alphabet alphabet = new Alphabet(10);
+
+            Assert.Equal((Char)9, alphabet.ToChar(9));
+        }
     }
 }
