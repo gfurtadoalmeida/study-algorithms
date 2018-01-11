@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace Algorithms.Searching
 {
+    /// <summary>
+    /// Use: guaranteed performance for time-sensitive applications.
+    /// </summary>
     public sealed class RedBlackTree<TKey, TValue> : IOrderedSymbolTable<TKey, TValue> where TKey : IComparable<TKey>
     {
         private Node _root;

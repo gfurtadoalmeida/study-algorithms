@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace Algorithms.Searching
 {
+    /// <summary>
+    /// Use: randomly ordered keys.
+    /// </summary>
     public sealed class BinarySearchTree<TKey, TValue> : IOrderedSymbolTable<TKey, TValue> where TKey : IComparable<TKey>
     {
         private Node _root;

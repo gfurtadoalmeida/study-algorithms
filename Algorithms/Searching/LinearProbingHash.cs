@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace Algorithms.Searching
 {
+    /// <summary>
+    /// Built-in types with hash cached values.
+    /// </summary>
     public sealed class LinearProbingHash<TKey, TValue> : ISymbolTable<TKey, TValue> where TKey : IComparable<TKey>
     {
         private Int32 _keysInTable;

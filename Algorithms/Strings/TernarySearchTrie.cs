@@ -5,6 +5,9 @@ using AST = Algorithms.Structures;
 
 namespace Algorithms.Strings
 {
+    /// <summary>
+    /// Use: Non-random keys.
+    /// </summary>
     public sealed class TernarySearchTrie
     {
         private Node _root;

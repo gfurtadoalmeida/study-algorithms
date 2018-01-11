@@ -5,6 +5,9 @@ using AST = Algorithms.Structures;
 
 namespace Algorithms.Strings
 {
+    /// <summary>
+    /// Use: Short keys with small alphabets.
+    /// </summary>
     public sealed class Trie
     {
         private Node _root;
