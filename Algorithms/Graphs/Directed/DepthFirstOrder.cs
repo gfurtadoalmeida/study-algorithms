@@ -7,13 +7,13 @@ namespace Algorithms.Graphs.Directed
 {
     public sealed class DepthFirstOrder
     {
-        private Boolean[] _visited;
-        private Int32[] _pre;                 // pre[v] = preOrder number of v.
-        private Int32[] _post;                // post[v] = postOrder number of v.
-        private AST.Queue<Int32> _preOrder;   // vertices in preOrder.
-        private AST.Queue<Int32> _postOrder;  // vertices in postOrder.
-        private Int32 _preCounter;            // counter or preorder numbering.
-        private Int32 _postCounter;           // counter for postorder numbering.
+        private readonly Boolean[] _visited;
+        private readonly Int32[] _pre;                 // pre[v] = preOrder number of v.
+        private readonly Int32[] _post;                // post[v] = postOrder number of v.
+        private readonly AST.Queue<Int32> _preOrder;   // vertices in preOrder.
+        private readonly AST.Queue<Int32> _postOrder;  // vertices in postOrder.
+        private Int32 _preCounter;                     // counter or preorder numbering.
+        private Int32 _postCounter;                    // counter for postorder numbering.
 
         public DepthFirstOrder(Digraph digraph)
         {
@@ -26,7 +26,9 @@ namespace Algorithms.Graphs.Directed
             for (int i = 0; i < digraph.VerticesCount; i++)
             {
                 if (!this._visited[i])
+                {
                     this.DFS(digraph, i);
+                }
             }
         }
 
@@ -41,7 +43,9 @@ namespace Algorithms.Graphs.Directed
             for (int i = 0; i < weightedGraph.VerticesCount; i++)
             {
                 if (!this._visited[i])
+                { 
                     this.DFS(weightedGraph, i);
+                }
             }
         }
 
@@ -106,7 +110,9 @@ namespace Algorithms.Graphs.Directed
             AST.Stack<Int32> reverse = new AST.Stack<Int32>();
 
             foreach (Int32 vertice in this._postOrder)
+            {
                 reverse.Push(vertice);
+            }
 
             return reverse;
         }

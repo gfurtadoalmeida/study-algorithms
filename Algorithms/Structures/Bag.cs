@@ -16,9 +16,11 @@ namespace Algorithms.Structures
         {
             Node oldfirst = this._first;
 
-            this._first = new Node();
-            this._first.Item = item;
-            this._first.Next = oldfirst;
+            this._first = new Node
+            {
+                Item = item,
+                Next = oldfirst
+            };
 
             this.Count++;
         }

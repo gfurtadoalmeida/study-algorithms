@@ -5,7 +5,7 @@ namespace Algorithms.Searching
 {
     public sealed class SeparateChainHash<TKey, TValue> : ISymbolTable<TKey, TValue> where TKey : IComparable<TKey>
     {
-        private SequentialSearch<TKey, TValue>[] _sequentialSearches;
+        private readonly SequentialSearch<TKey, TValue>[] _sequentialSearches;
         private Boolean _countMayHaveChanged;
         private Int32 _count;
 
@@ -20,7 +20,9 @@ namespace Algorithms.Searching
                     this._count = 0;
 
                     for (int i = 0; i < this._sequentialSearches.Length; i++)
+                    {
                         this._count += this._sequentialSearches[i].Count;
+                    }
                 }
 
                 return this._count;
@@ -38,7 +40,9 @@ namespace Algorithms.Searching
             this._sequentialSearches = new SequentialSearch<TKey, TValue>[capacity];
 
             for (int i = 0; i < capacity; i++)
+            {
                 this._sequentialSearches[i] = new SequentialSearch<TKey, TValue>();
+            }
         }
 
         public void Add(TKey key, TValue value)
@@ -82,7 +86,9 @@ namespace Algorithms.Searching
                     enumerator = this._sequentialSearches[i].Keys().GetEnumerator();
 
                     while (enumerator.MoveNext())
+                    {
                         yield return enumerator.Current;
+                    }
                 }
             }
         }
@@ -109,7 +115,7 @@ namespace Algorithms.Searching
             {
             }
 
-            value = default(TValue);
+            value = default;
 
             return false;
         }

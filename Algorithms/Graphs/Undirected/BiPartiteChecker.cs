@@ -11,9 +11,13 @@ namespace Algorithms.Graphs.Undirected
             Boolean isBiPartite = true;
 
             for (int i = 0; i < graph.VerticesCount; i++)
+            {
                 if (!visited[i])
+                {
                     if (!IsBiPartite(i))
                         break;
+                }
+            }
 
             return isBiPartite;
 
@@ -42,7 +46,9 @@ namespace Algorithms.Graphs.Undirected
                             IsBiPartite(adjacents.Current);
                         }
                         else if (color[adjacents.Current] == color[vertice])
+                        {
                             isBiPartite = false;
+                        }
                     }
                 }
 

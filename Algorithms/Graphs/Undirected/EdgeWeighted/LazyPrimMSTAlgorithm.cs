@@ -13,9 +13,9 @@ namespace Algorithms.Graphs.Undirected.EdgeWeighted
     /// </summary>
     public sealed class LazyPrimMSTAlgorithm : IMinimumSpanningTreeAlgorithm
     {
-        private Boolean[] _visited; // visited[v] = true if v on tree, false otherwise.
-        private AST.Queue<Edge> _minimunSpanningTreeEdges;
-        private MinPQ<Edge> _crossingEdgesByWeight;
+        private readonly Boolean[] _visited; // visited[v] = true if v on tree, false otherwise.
+        private readonly AST.Queue<Edge> _minimunSpanningTreeEdges;
+        private readonly MinPQ<Edge> _crossingEdgesByWeight;
 
         public Double Weight { get; private set; }
 
@@ -34,7 +34,9 @@ namespace Algorithms.Graphs.Undirected.EdgeWeighted
             for (int i = 0; i < graph.VerticesCount; i++)
             {
                 if (!this._visited[i])
+                {
                     this.Prim(graph, i);
+                }
             }
         }
 
@@ -59,11 +61,15 @@ namespace Algorithms.Graphs.Undirected.EdgeWeighted
 
                 // Add vertex to tree.
                 if (!this._visited[sourceVertice])
+                {
                     this.Visit(graph, sourceVertice);
+                }
 
                 // Add vertex to tree.
                 if (!this._visited[targetVertice])
+                {
                     this.Visit(graph, targetVertice);
+                }
             }
         }
 
@@ -80,7 +86,9 @@ namespace Algorithms.Graphs.Undirected.EdgeWeighted
             foreach (Edge edge in graph.GetAdjacentVertices(vertice))
             {
                 if (!this._visited[edge.Other(vertice)])
+                {
                     this._crossingEdgesByWeight.Add(edge);
+                }
             }
         }
     }

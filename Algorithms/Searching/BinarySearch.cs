@@ -34,7 +34,9 @@ namespace Algorithms.Searching
             }
 
             if (this.Count == this._keys.Length)
+            {
                 this.Resize(2 * this._keys.Length);
+            }
 
             for (int j = this.Count; j > rank; j--)
             {
@@ -70,8 +72,8 @@ namespace Algorithms.Searching
 
             if (this.Contains(high))
                 return this.Rank(high) - this.Rank(low) + 1;
-            else
-                return this.Rank(high) - this.Rank(low);
+
+            return this.Rank(high) - this.Rank(low);
         }
 
         public void Delete(TKey key)
@@ -92,10 +94,12 @@ namespace Algorithms.Searching
                 this.Count--;
 
                 this._keys[this.Count] = null;
-                this._values[this.Count] = default(TValue);
+                this._values[this.Count] = default;
 
                 if (this.Count > 0 && this.Count == this._keys.Length / 4)
-                    Resize(this._keys.Length / 2);
+                {
+                    this.Resize(this._keys.Length / 2);
+                }
             }
         }
 
@@ -143,10 +147,14 @@ namespace Algorithms.Searching
                 return queue;
 
             for (int i = this.Rank(low); i < this.Rank(high); i++)
+            {
                 queue.Enqueue((TKey)this._keys[i]);
+            }
 
             if (this.Contains(high))
+            {
                 queue.Enqueue((TKey)this._keys[this.Rank(high)]);
+            }
 
             return queue;
         }
@@ -172,9 +180,13 @@ namespace Algorithms.Searching
                 Int32 cmp = key.CompareTo((TKey)this._keys[mid]);
 
                 if (cmp < 0)
+                {
                     high = mid - 1;
+                }
                 else if (cmp > 0)
+                {
                     low = mid + 1;
+                }
                 else
                     return mid;
             }
@@ -214,7 +226,7 @@ namespace Algorithms.Searching
             }
             else
             {
-                value = default(TValue);
+                value = default;
 
                 return false;
             }

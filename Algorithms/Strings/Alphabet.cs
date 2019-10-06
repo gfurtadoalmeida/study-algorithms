@@ -53,10 +53,14 @@ namespace Algorithms.Strings
             this._index = new AlphabetCompactIndex(minValue, maxValue);
 
             for (int i = 0; i < this._index.Length; i++)
+            {
                 this._index[i] = -1;
+            }
 
             for (int i = 0; i < this._alphabet.Length; i++)
+            {
                 this._index[this._alphabet[i]] = i;
+            }
 
             this.Radix = alphabet.Length;
             this.BinaryLogRadix = this.CalculateBinaryLogRadix(alphabet.Length);
@@ -100,7 +104,9 @@ namespace Algorithms.Strings
             Int32[] target = new Int32[s.Length];
 
             for (int i = 0; i < source.Length; i++)
+            {
                 target[i] = this.ToIndex(source[i]);
+            }
 
             return target;
         }
@@ -118,7 +124,9 @@ namespace Algorithms.Strings
             StringBuilder s = new StringBuilder(indices.Length);
 
             for (int i = 0; i < indices.Length; i++)
+            {
                 s.Append(this.ToChar(indices[i]));
+            }
 
             return s.ToString();
         }
@@ -129,7 +137,9 @@ namespace Algorithms.Strings
             Int32 lgR = 0;
 
             for (int i = radix - 1; i >= 1; i /= 2)
+            {
                 lgR++;
+            }
 
             return lgR;
         }
@@ -142,9 +152,13 @@ namespace Algorithms.Strings
             foreach (Char c in array)
             {
                 if (c < minValue)
+                {
                     minValue = c;
+                }
                 else if (c > maxValue)
+                {
                     maxValue = c;
+                }
             }
 
             return (minValue, maxValue);
@@ -167,6 +181,7 @@ namespace Algorithms.Strings
 
                     break;
                 }
+
                 processed[c] = true;
             }
 

@@ -121,24 +121,23 @@ namespace Algorithms.Searching
         }
 
         private Boolean TryGet(Node node, TKey key, out TValue value)
-        {            
+        {
             if (node != null)
             {
                 Int32 cmp = key.CompareTo(node.Key);
 
                 if (cmp < 0)
                     return this.TryGet(node.Left, key, out value);
-                else if (cmp > 0)
-                    return this.TryGet(node.Right, key, out value);
-                else
-                {
-                    value = node.Value;
 
-                    return true;
-                }
+                if (cmp > 0)
+                    return this.TryGet(node.Right, key, out value);
+
+                value = node.Value;
+
+                return true;
             }
 
-            value = default(TValue);
+            value = default;
 
             return false;
         }
@@ -153,11 +152,17 @@ namespace Algorithms.Searching
             Int32 cmp = key.CompareTo(node.Key);
 
             if (cmp < 0)
+            {
                 node.Left = this.Put(node.Left, key, value);
+            }
             else if (cmp > 0)
+            {
                 node.Right = this.Put(node.Right, key, value);
+            }
             else
+            {
                 node.Value = value;
+            }
 
             node.Count = this.GetNodeSize(node.Left) + this.GetNodeSize(node.Right) + 1;
 
@@ -181,15 +186,13 @@ namespace Algorithms.Searching
 
             if (cmp < 0)
                 return this.Floor(node.Left, key);
-            else
-            {
-                Node right = this.Floor(node.Right, key);
 
-                if (right != null)
-                    return right;
-                else
-                    return node;
-            }
+            Node right = this.Floor(node.Right, key);
+
+            if (right != null)
+                return right;
+
+            return node;
         }
 
         private Node Max(Node node)
@@ -209,15 +212,14 @@ namespace Algorithms.Searching
 
             if (cmp > 0)
                 return this.Ceiling(node.Right, key);
-            else
-            {
-                Node left = this.Ceiling(node.Left, key);
 
-                if (left != null)
-                    return left;
-                else
-                    return node;
-            }
+            Node left = this.Ceiling(node.Left, key);
+
+            if (left != null)
+                return left;
+
+            return node;
+
         }
 
         private Node Select(Node node, Int32 rank)
@@ -230,10 +232,11 @@ namespace Algorithms.Searching
 
             if (rank < countOnLeft)
                 return this.Select(node.Left, rank);
-            else if (rank > countOnLeft)
+
+            if (rank > countOnLeft)
                 return this.Select(node.Right, rank - countOnLeft - 1);
-            else
-                return node;
+
+            return node;
         }
 
         private Int32 Rank(Node node, TKey key)
@@ -246,10 +249,11 @@ namespace Algorithms.Searching
 
             if (cmp < 0)
                 return this.Rank(node.Left, key);
-            else if (cmp > 0)
+
+            if (cmp > 0)
                 return 1 + this.GetNodeSize(node.Left) + this.Rank(node.Right, key);
-            else
-                return this.GetNodeSize(node.Left);
+
+            return this.GetNodeSize(node.Left);
         }
 
         private Node DeleteMin(Node node)
@@ -282,9 +286,13 @@ namespace Algorithms.Searching
             Int32 cmp = key.CompareTo(node.Key);
 
             if (cmp < 0)
+            {
                 node.Left = this.Delete(node.Left, key);
+            }
             else if (cmp > 0)
+            {
                 node.Right = this.Delete(node.Right, key);
+            }
             else
             {
                 if (node.Right == null)
@@ -313,13 +321,19 @@ namespace Algorithms.Searching
             Int32 cmpHigh = high.CompareTo(node.Key);
 
             if (cmpLow < 0)
+            {
                 this.Keys(node.Left, low, high, queue);
+            }
 
             if (cmpLow <= 0 && cmpHigh >= 0)
+            {
                 queue.Enqueue(node.Key);
+            }
 
             if (cmpHigh > 0)
+            {
                 this.Keys(node.Right, low, high, queue);
+            }
         }
 
         private sealed class Node

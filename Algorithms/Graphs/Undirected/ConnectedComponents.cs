@@ -4,8 +4,8 @@ namespace Algorithms.Graphs.Undirected
 {
     public sealed class ConnectedComponents
     {
-        private Boolean[] _visited;
-        private Int32[] _ids;
+        private readonly Boolean[] _visited;
+        private readonly Int32[] _ids;
 
         /// <summary>
         /// How many componentes are connected.
@@ -35,12 +35,14 @@ namespace Algorithms.Graphs.Undirected
             // we have it is used to hold the current id while processing.
 
             for (int i = 0; i < graph.VerticesCount; i++)
+            {
                 if (!this._visited[i])
                 {
                     this.DFS(graph, i);
 
                     this.Count++;
                 }
+            }
         }
 
         public Boolean IsConnected(Int32 sourceVertice, Int32 targetVertice)
@@ -61,7 +63,9 @@ namespace Algorithms.Graphs.Undirected
             foreach (Int32 adjacentVertice in graph.GetAdjacentVertices(vertice))
             {
                 if (!this._visited[adjacentVertice])
+                {
                     this.DFS(graph, adjacentVertice);
+                }
             }
         }
     }

@@ -6,7 +6,7 @@ namespace Algorithms.Structures
 {
     public sealed class Stack<T> : IEnumerable<T>
     {
-        private LinkedList<T> _list = new LinkedList<T>();
+        private readonly LinkedList<T> _list = new LinkedList<T>();
 
         public Boolean IsEmpty => this._list.IsEmpty;
 

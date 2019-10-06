@@ -39,14 +39,13 @@ namespace Algorithms.Structures
 
         private const Int32 MAXHEAP_ORDER_COMPARER = -1;
         private const Int32 MINHEAP_ORDER_COMPARER = 1;
-
         private const Int32 BINHEAP_START_INDEX = 1;
 
         // We're using a resizable array', so we'd better keep 
         // track of the "true last index".
         private Int32 _lastIndex;
         private IComparable<T>[] _array;
-        private Int32 _heapOrderComparer;
+        private readonly Int32 _heapOrderComparer;
 
         public Boolean IsEmpty => this._lastIndex == 0;
 
@@ -83,7 +82,9 @@ namespace Algorithms.Structures
             this._lastIndex++;
 
             if (this._lastIndex == this._array.Length)
+            {
                 this.DoubleArray();
+            }
 
             this._array[this._lastIndex] = item;
 
@@ -108,7 +109,9 @@ namespace Algorithms.Structures
             this.Sink(1);
 
             if (this._lastIndex > BINHEAP_START_INDEX && this._lastIndex <= this._array.Length / 4)
+            {
                 this.HalveArray();
+            }
 
             return topItem;
         }
@@ -151,7 +154,9 @@ namespace Algorithms.Structures
                 // Compare the left and right child.
                 // If the left child has a lower order than then right child, we'll use the right child.
                 if (indexChild < this._lastIndex && this.IsNotInOrder(indexChild, indexChild + 1))
+                {
                     indexChild++;
+                }
 
                 // Compare the parent with the child.
                 if (this.IsNotInOrder(indexItem, indexChild))
@@ -199,6 +204,7 @@ namespace Algorithms.Structures
                                   temp,
                                   0,
                                   this._array.Length > size ? size : this._array.Length);
+
             Array.Clear(this._array, 0, this._array.Length);
 
             this._array = temp;

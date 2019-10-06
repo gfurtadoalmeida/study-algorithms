@@ -38,7 +38,9 @@ namespace Algorithms.Graphs.Directed
             for (int i = 0; i < digraph.VerticesCount; i++)
             {
                 if (!this._visited[i])
+                {
                     this.DFS(digraph, i);
+                }
             }
         }
 
@@ -73,7 +75,9 @@ namespace Algorithms.Graphs.Directed
                     this._cycle = new AST.Stack<Int32>();
 
                     for (int i = vertice; i != adjacent; i = this._edgeTo[i])
+                    {
                         this._cycle.Push(i);
+                    }
 
                     this._cycle.Push(adjacent);
                     this._cycle.Push(vertice);

@@ -13,7 +13,7 @@ namespace Algorithms.Graphs.Undirected.EdgeWeighted
     {
         private const Double FLOATING_POINT_EPSILON = 1E-12;
 
-        private Queue<Edge> _mst;
+        private readonly Queue<Edge> _mst;
 
         public Double Weight { get; private set; }
 

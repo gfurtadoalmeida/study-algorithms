@@ -23,27 +23,37 @@ namespace Algorithms.Strings
                 // 1 - Compute frequency counts.
 
                 for (int i = 0; i < array.Length; i++)
+                {
                     count[array[i][c] + 1]++;
+                }
 
                 // 2 - Compute cumulates.
 
                 for (int i = count.LowerBound; i < count.UpperBound; i++)
+                {
                     count[i + 1] += count[i];
+                }
 
                 // 3 - Move data.
 
                 for (int i = 0; i < array.Length; i++)
+                {
                     aux[count[array[i][c]]++] = array[i];
+                }
 
                 // 4 - Copy data back.
 
                 for (int i = 0; i < array.Length; i++)
+                {
                     array[i] = aux[i];
-                
+                }
+
                 // Cleaning for the next round.
 
                 for (int i = count.LowerBound; i < count.UpperBound; i++)
+                {
                     count[i] = 0;
+                }
             }
         }
     }

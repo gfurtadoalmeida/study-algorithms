@@ -14,7 +14,7 @@ namespace Algorithms.Strings
     /// </summary>
     public static class MostSignificantDigitFirstSort
     {
-        private static Int32 CUT_OFF = 15; // Cutoff for small subarrays.
+        private const Int32 CUT_OFF = 15; // Cutoff for small subarrays.
 
         public static void Sort(String[] array, Alphabet alphabet)
         {
@@ -42,32 +42,42 @@ namespace Algorithms.Strings
             // 1 - Compute frequency counts.
 
             for (int i = low; i <= high; i++)
+            {
                 count[CharAt(array[i], index) + 2]++;
+            }
 
             // 2 - Transform counts to indices.
 
             for (int i = 0; i < alphabet.Radix + 1; i++)
+            {
                 count[i + 1] += count[i];
+            }
 
             // 4 - Distribute.
 
             for (int i = low; i <= high; i++)
+            {
                 aux[count[CharAt(array[i], index) + 1]++] = array[i];
+            }
 
             // 5 - Copy back.
 
             for (int i = low; i <= high; i++)
+            {
                 array[i] = aux[i - low];
+            }
 
             // 6 - Recursively sort for each character value.
 
             for (int i = 0; i < alphabet.Radix; i++)
-                Sort(array, 
-                     aux, 
-                     low + count[i], 
-                     low + count[i + 1] - 1, 
-                     index + 1, 
+            {
+                Sort(array,
+                     aux,
+                     low + count[i],
+                     low + count[i + 1] - 1,
+                     index + 1,
                      alphabet);
+            }
         }
 
         private static Int32 CharAt(String text, Int32 index)
@@ -81,8 +91,12 @@ namespace Algorithms.Strings
         private static void InsertionSort(String[] array, Int32 low, Int32 high, Int32 index)
         {
             for (int i = low; i <= high; i++)
+            {
                 for (int j = i; j > low && IsLess(array[j], array[j - 1], index); j--)
+                {
                     Exchange(array, j, j - 1);
+                }
+            }
         }
 
         private static void Exchange(String[] array, Int32 indexSource, Int32 indexTarget)

@@ -12,8 +12,8 @@ namespace Algorithms.Structures.Union
     /// </summary>
     public sealed class UnionFinder : IUnionFinder
     {
-        private Int32[] _parent; // parent[i] = parent of i.
-        private Byte[] _rank;    // rank[i] = rank of subtree rooted at i (never more than 31).
+        private readonly Int32[] _parent; // parent[i] = parent of i.
+        private readonly Byte[] _rank;    // rank[i] = rank of subtree rooted at i (never more than 31).
 
         public Int32 Count { get; private set; }
 
@@ -78,9 +78,13 @@ namespace Algorithms.Structures.Union
 
             // Make the root of the smaller rank point to the root of larger rank.
             if (this._rank[rootObjectOne] < this._rank[rootObjectTwo])
+            {
                 this._parent[rootObjectOne] = rootObjectTwo;
+            }
             else if (this._rank[rootObjectOne] > this._rank[rootObjectTwo])
+            {
                 this._parent[rootObjectTwo] = rootObjectOne;
+            }
             else
             {
                 this._parent[rootObjectTwo] = rootObjectOne;

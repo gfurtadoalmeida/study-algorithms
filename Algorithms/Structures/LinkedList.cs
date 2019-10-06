@@ -7,20 +7,23 @@ namespace Algorithms.Structures
     public sealed class LinkedList<T> : IEnumerable<T>
     {
         private Node _head;
-        private Int32 _itensCount;
 
         public Boolean IsEmpty => this._head == null;
 
-        public Int32 Count => this._itensCount;
+        public Int32 Count { get; private set; }
 
         public void Add(T item)
         {
             if (this.IsEmpty)
+            {
                 this._head = new Node(item, null);
+            }
             else
+            {
                 this._head = new Node(item, this._head);
+            }
 
-            this._itensCount++;
+            this.Count++;
         }
 
         public T Remove()
@@ -31,7 +34,7 @@ namespace Algorithms.Structures
             T item = this._head.Value;
 
             this._head = this._head.Next;
-            this._itensCount--;
+            this.Count--;
 
             return item;
         }
@@ -46,6 +49,7 @@ namespace Algorithms.Structures
                 if (current.Value.Equals(item))
                 {
                     contains = true;
+
                     break;
                 }
 

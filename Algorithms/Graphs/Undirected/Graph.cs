@@ -10,7 +10,7 @@ namespace Algorithms.Graphs.Undirected
     /// </summary>
     public sealed class Graph : IGraph
     {
-        private Bag<Int32>[] _adjacencyVertices;
+        private readonly Bag<Int32>[] _adjacencyVertices;
 
         public Int32 VerticesCount { get; private set; }
 
@@ -24,7 +24,9 @@ namespace Algorithms.Graphs.Undirected
             this._adjacencyVertices = new Bag<Int32>[verticesCount];
 
             for (int i = 0; i < verticesCount; i++)
+            {
                 this._adjacencyVertices[i] = new Bag<Int32>();
+            }
         }
 
         public void AddEdge(Int32 verticeIndex, Int32 adjacentVerticeIndex)

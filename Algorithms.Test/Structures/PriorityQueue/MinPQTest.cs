@@ -57,7 +57,7 @@ namespace Algorithms.Test.Structures.PriorityQueue
             for (int i = 1; i < 11; i++)
                 pq.Add(i);
 
-            Assert.Equal(pq.Min(), 1);
+            Assert.Equal(1, pq.Min());
         }
     }
 }

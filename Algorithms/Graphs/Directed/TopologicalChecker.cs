@@ -5,11 +5,12 @@ using Algorithms.Graphs.Directed.EdgeWeighted;
 namespace Algorithms.Graphs.Directed
 {
     /// <summary>
-    ///  Linear ordering of its vertices such that for every directed edge uv from vertex u to vertex v, u comes before v in the ordering.
+    ///  Linear ordering of its vertices such that for every directed 
+    ///  edge uv from vertex u to vertex v, u comes before v in the ordering.
     /// </summary>
     public sealed class TopologicalChecker
     {
-        private Int32[] _rank; // rank[v] = rank of vertex v in order.
+        private readonly Int32[] _rank; // rank[v] = rank of vertex v in order.
 
         public IEnumerable<Int32> Order { get; }
 
@@ -68,8 +69,8 @@ namespace Algorithms.Graphs.Directed
         {
             if (this.Order != null)
                 return this._rank[vertice];
-            else
-                return -1;
+
+            return -1;
         }
     }
 }

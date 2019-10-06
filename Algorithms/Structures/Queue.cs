@@ -8,11 +8,10 @@ namespace Algorithms.Structures
     {
         private Node _head;
         private Node _tail;
-        private Int32 _itensCount;
 
         public Boolean IsEmpty => this._head == null;
 
-        public Int32 Count => this._itensCount;
+        public Int32 Count { get; private set; }
 
         public void Enqueue(T item)
         {
@@ -29,7 +28,7 @@ namespace Algorithms.Structures
                 this._head = newHead;
             }
 
-            this._itensCount++;
+            this.Count++;
         }
 
         public T Dequeue()
@@ -42,9 +41,11 @@ namespace Algorithms.Structures
             this._tail = this._tail.Previous;
 
             if (this._tail == null)
+            {
                 this._head = null;
+            }
 
-            this._itensCount--;
+            this.Count--;
 
             return item;
         }

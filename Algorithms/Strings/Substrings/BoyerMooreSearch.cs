@@ -43,11 +43,15 @@ namespace Algorithms.Strings.Substrings
             Int32 patternSize = pattern.Length;
 
             for (int c = 0; c < alphabet.Radix; c++)
+            {
                 this._right[c] = -1; // -1 for chars not in pattern.
+            }
 
             // Computes the rightmost position for chars in pattern.
             for (int j = 0; j < patternSize; j++)
+            {
                 this._right[alphabet.ToIndex(pattern[j])] = j;
+            }
         }
 
         public Int32 Search(String text)
@@ -93,7 +97,9 @@ namespace Algorithms.Strings.Substrings
                         skip = j - this._right[this._alphabet.ToIndex(text[i + j])];
 
                         if (skip < 1)
+                        {
                             skip = 1;
+                        }
 
                         break;
                     }

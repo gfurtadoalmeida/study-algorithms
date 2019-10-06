@@ -22,7 +22,9 @@ namespace Algorithms.Sorting
                 for (int j = i + 1; j < count; j++)
                 {
                     if (base.IsLess(input[j], input[indexMin]))
+                    {
                         indexMin = j;
+                    }
                 }
 
                 base.Exchange(input, i, indexMin);

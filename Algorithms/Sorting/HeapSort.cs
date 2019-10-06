@@ -11,8 +11,10 @@ namespace Algorithms.Sorting
             Int32 maxIndex = input.Length - 1;
 
             for (int k = (maxIndex / 2) - 1; k > -1; k--)
+            {
                 this.Sink(input, k, maxIndex);
-            
+            }
+
             while (maxIndex > 0)
             {
                 this.Exchange(input, 0, maxIndex--);
@@ -35,7 +37,9 @@ namespace Algorithms.Sorting
                 // Compare the left and right child.
                 // If the left child has a lower order than then right child, we'll use the right child.
                 if (indexChild < count && this.IsLess(input[indexChild], input[indexChild + 1]))
+                {
                     indexChild++;
+                }
 
                 // Compare the parent with the child.
                 if (this.IsLess(input[indexItem], input[indexChild]))

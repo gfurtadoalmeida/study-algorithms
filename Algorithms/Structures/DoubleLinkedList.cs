@@ -8,11 +8,10 @@ namespace Algorithms.Structures
     {
         private Node _head;
         private Node _tail;
-        private Int32 _itensCount;
 
         public Boolean IsEmpty => this._head == null;
 
-        public Int32 Count => this._itensCount;
+        public Int32 Count { get; private set; }
 
         public void Add(T item)
         {
@@ -27,7 +26,7 @@ namespace Algorithms.Structures
                 this._head.Next.Previous = this._head;
             }
 
-            this._itensCount++;
+            this.Count++;
         }
 
         public void AddAfter(T parentItem, T childItem)
@@ -40,13 +39,17 @@ namespace Algorithms.Structures
             Node childNode = new Node(childItem, parentNode, parentNode.Next);
 
             if (parentNode == this._tail)
+            {
                 this._tail = childNode;
+            }
             else
+            {
                 parentNode.Next.Previous = childNode;
+            }
 
             parentNode.Next = childNode;
 
-            this._itensCount++;
+            this.Count++;
         }
 
         public void AddBefore(T parentItem, T grandParentItem)
@@ -59,19 +62,25 @@ namespace Algorithms.Structures
             Node grandParentNode = new Node(grandParentItem, parentNode.Previous, parentNode);
 
             if (parentNode == this._head)
+            {
                 this._head = grandParentNode;
+            }
             else
+            {
                 parentNode.Previous.Next = grandParentNode;
+            }
 
             parentNode.Previous = grandParentNode;
 
-            this._itensCount++;
+            this.Count++;
         }
 
         public void AddEnd(T item)
         {
             if (this.IsEmpty)
+            {
                 this.Add(item);
+            }
             else
             {
                 this._tail.Next = new Node(item, this._tail, null);
@@ -89,9 +98,11 @@ namespace Algorithms.Structures
             this._head = this._head.Next;
 
             if (this._head == null)
+            {
                 this._tail = null;
+            }
 
-            this._itensCount--;
+            this.Count--;
 
             return item;
         }
@@ -121,14 +132,20 @@ namespace Algorithms.Structures
                         this._head = this._head.Next;
 
                         if (this._head == null)
+                        {
                             this._tail = null;
+                        }
                         else
+                        {
                             this._head.Previous = null;
+                        }
                     }
                     else
+                    {
                         node.Previous.Next = node.Next;
+                    }
 
-                    this._itensCount--;
+                    this.Count--;
                 }
             }
         }

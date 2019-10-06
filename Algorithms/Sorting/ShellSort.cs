@@ -22,7 +22,9 @@ namespace Algorithms.Sorting
 
             // Find the biggest interval below input size.
             while (h < count / 3)
+            {
                 h = h * 3 + 1;
+            }
 
             while (h >= 1)
             {
@@ -33,7 +35,9 @@ namespace Algorithms.Sorting
                     for (int j = i; j >= h; j -= h)
                     {
                         if (base.IsLess(input[j], input[j - h]))
+                        {
                             base.Exchange(input, j, j - h);
+                        }
                         else
                             break;
                     }

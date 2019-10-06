@@ -10,9 +10,13 @@ namespace Algorithms.Graphs.Undirected
             Boolean hasCycle = false;
 
             for (int i = 0; i < graph.VerticesCount; i++)
+            {
                 if (!visited[i])
+                {
                     if (HasCycle(i, i))
                         break;
+                }
+            }
 
             return hasCycle;
 
@@ -25,11 +29,17 @@ namespace Algorithms.Graphs.Undirected
                     while (!hasCycle && adjacents.MoveNext())
                     {
                         if (adjacents.Current == vertice) // Self-loop: my adjacent is me.
+                        {
                             hasCycle = true;
+                        }
                         else if (!visited[adjacents.Current])
+                        {
                             HasCycle(adjacents.Current, vertice);
+                        }
                         else if (adjacents.Current != parentVertice) // Back-edge: if it's visited and not my parent so it looped to a vertice.
+                        {
                             hasCycle = true;
+                        }
                     }
                 }
 

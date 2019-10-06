@@ -25,7 +25,9 @@ namespace Algorithms.Searching
             Node node = this.Ceiling(this._root, key);
 
             if (node != null)
+            {
                 return node.Key;
+            }
 
             throw new KeyNotFoundException();
         }
@@ -43,34 +45,46 @@ namespace Algorithms.Searching
         public void Delete(TKey key)
         {
             if (!this.IsNodeRed(this._root.Left) && !this.IsNodeRed(this._root.Right))
+            {
                 this._root.Color = Node.NodeColor.Red;
+            }
 
             this._root = this.Delete(this._root, key);
 
             if (!this.IsEmpty)
+            {
                 this._root.Color = Node.NodeColor.Black;
+            }
         }
 
         public void DeleteMax()
         {
             if (!this.IsNodeRed(this._root.Left) && !this.IsNodeRed(this._root.Right))
+            {
                 this._root.Color = Node.NodeColor.Red;
+            }
 
             this._root = this.DeleteMax(this._root);
 
             if (!this.IsEmpty)
+            {
                 this._root.Color = Node.NodeColor.Black;
+            }
         }
 
         public void DeleteMin()
         {
             if (!this.IsNodeRed(this._root.Left) && !this.IsNodeRed(this._root.Right))
+            {
                 this._root.Color = Node.NodeColor.Red;
+            }
 
             this._root = this.DeleteMin(this._root);
 
             if (!this.IsEmpty)
+            {
                 this._root.Color = Node.NodeColor.Black;
+            }
         }
 
         public TKey Floor(TKey key)
@@ -147,17 +161,16 @@ namespace Algorithms.Searching
 
                 if (cmp < 0)
                     return this.TryGet(node.Left, key, out value);
-                else if (cmp > 0)
-                    return this.TryGet(node.Right, key, out value);
-                else
-                {
-                    value = node.Value;
 
-                    return true;
-                }
+                if (cmp > 0)
+                    return this.TryGet(node.Right, key, out value);
+
+                value = node.Value;
+
+                return true;
             }
 
-            value = default(TValue);
+            value = default;
 
             return false;
         }
@@ -170,20 +183,32 @@ namespace Algorithms.Searching
             Int32 cmp = key.CompareTo(node.Key);
 
             if (cmp < 0)
+            {
                 node.Left = this.Put(node.Left, key, value);
+            }
             else if (cmp > 0)
+            {
                 node.Right = this.Put(node.Right, key, value);
+            }
             else
+            {
                 node.Value = value;
+            }
 
             if (this.IsNodeRed(node.Right) && !this.IsNodeRed(node.Left))
+            {
                 node = this.RotateNodeLeft(node);
+            }
 
             if (this.IsNodeRed(node.Left) && this.IsNodeRed(node.Left.Left))
+            {
                 node = this.RotateNodeRight(node);
+            }
 
             if (this.IsNodeRed(node.Left) && this.IsNodeRed(node.Right))
+            {
                 this.FlipNodeColors(node);
+            }
 
             node.Count = 1
                          + this.GetNodeSize(node.Left)
@@ -209,15 +234,13 @@ namespace Algorithms.Searching
 
             if (cmp < 0)
                 return this.Floor(node.Left, key);
-            else
-            {
-                Node Right = this.Floor(node.Right, key);
 
-                if (Right != null)
-                    return Right;
-                else
-                    return node;
-            }
+            Node Right = this.Floor(node.Right, key);
+
+            if (Right != null)
+                return Right;
+            else
+                return node;
         }
 
         private Node Max(Node node)
@@ -237,15 +260,13 @@ namespace Algorithms.Searching
 
             if (cmp > 0)
                 return this.Ceiling(node.Right, key);
-            else
-            {
-                Node Left = this.Ceiling(node.Left, key);
 
-                if (Left != null)
-                    return Left;
-                else
-                    return node;
-            }
+            Node Left = this.Ceiling(node.Left, key);
+
+            if (Left != null)
+                return Left;
+            else
+                return node;
         }
 
         private Node Select(Node node, Int32 rank)
@@ -258,10 +279,11 @@ namespace Algorithms.Searching
 
             if (rank < countOnLeft)
                 return this.Select(node.Left, rank);
-            else if (rank > countOnLeft)
+
+            if (rank > countOnLeft)
                 return this.Select(node.Right, rank - countOnLeft - 1);
-            else
-                return node;
+
+            return node;
         }
 
         private Int32 Rank(Node node, TKey key)
@@ -274,10 +296,11 @@ namespace Algorithms.Searching
 
             if (cmp < 0)
                 return this.Rank(node.Left, key);
-            else if (cmp > 0)
+
+            if (cmp > 0)
                 return 1 + this.GetNodeSize(node.Left) + this.Rank(node.Right, key);
-            else
-                return this.GetNodeSize(node.Left);
+
+            return this.GetNodeSize(node.Left);
         }
 
         private Node MoveNodeRedLeft(Node node)
@@ -300,13 +323,19 @@ namespace Algorithms.Searching
         private Node BalanceNode(Node node)
         {
             if (this.IsNodeRed(node.Right))
+            {
                 node = this.RotateNodeLeft(node);
+            }
 
             if (this.IsNodeRed(node.Left) && this.IsNodeRed(node.Left.Left))
+            {
                 node = this.RotateNodeRight(node);
+            }
 
             if (this.IsNodeRed(node.Left) && this.IsNodeRed(node.Right))
+            {
                 this.FlipNodeColors(node);
+            }
 
             node.Count = 1
                          + this.GetNodeSize(node.Left)
@@ -320,7 +349,9 @@ namespace Algorithms.Searching
                 return null;
 
             if (!this.IsNodeRed(node.Left) && !this.IsNodeRed(node.Left.Left))
+            {
                 node = this.MoveNodeRedLeft(node);
+            }
 
             node.Left = this.DeleteMin(node.Left);
 
@@ -346,13 +377,19 @@ namespace Algorithms.Searching
         private Node DeleteMax(Node node)
         {
             if (this.IsNodeRed(node.Left))
+            {
                 node = this.RotateNodeRight(node);
+            }
 
             if (node.Right == null)
+            {
                 return null;
+            }
 
             if (!this.IsNodeRed(node.Right) && !this.IsNodeRed(node.Right.Left))
+            {
                 node = this.MoveNodeRedRight(node);
+            }
 
             node.Right = this.DeleteMax(node.Right);
 
@@ -364,20 +401,26 @@ namespace Algorithms.Searching
             if (key.CompareTo(node.Key) < 0)
             {
                 if (!this.IsNodeRed(node.Left) && !this.IsNodeRed(node.Left.Left))
+                {
                     node = this.MoveNodeRedLeft(node);
+                }
 
                 node.Left = this.Delete(node.Left, key);
             }
             else
             {
                 if (this.IsNodeRed(node.Left))
+                {
                     node = this.RotateNodeRight(node);
+                }
 
                 if (key.CompareTo(node.Key) == 0 && (node.Right == null))
                     return null;
 
                 if (!this.IsNodeRed(node.Right) && !this.IsNodeRed(node.Right.Left))
+                {
                     node = this.MoveNodeRedRight(node);
+                }
 
                 if (key.CompareTo(node.Key) == 0)
                 {
@@ -403,13 +446,19 @@ namespace Algorithms.Searching
             Int32 cmpHigh = high.CompareTo(node.Key);
 
             if (cmpLow < 0)
+            {
                 this.Keys(node.Left, low, high, queue);
+            }
 
             if (cmpLow <= 0 && cmpHigh >= 0)
+            {
                 queue.Enqueue(node.Key);
+            }
 
             if (cmpHigh > 0)
+            {
                 this.Keys(node.Right, low, high, queue);
+            }
         }
 
         private Boolean IsNodeRed(Node node)

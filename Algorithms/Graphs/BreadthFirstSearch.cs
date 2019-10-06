@@ -12,11 +12,11 @@ namespace Algorithms.Graphs
     {
         // For each vertice on the graph, have a boolean
         // to mark if a short path was found.
-        private Boolean[] _shortestPathToVerticeMap;
+        private readonly Boolean[] _shortestPathToVerticeMap;
 
         // For each vertice on the graph, store the last vertice
         // that was used to access the vertice _edgeTo[x]
-        private Int32[] _edgeTo;
+        private readonly Int32[] _edgeTo;
 
         public Int32 SourceVertice { get; }
 
@@ -59,7 +59,9 @@ namespace Algorithms.Graphs
             AST.Stack<Int32> path = new AST.Stack<Int32>();
 
             for (int i = vertice; i != this.SourceVertice; i = this._edgeTo[i])
+            {
                 path.Push(i);
+            }
 
             path.Push(this.SourceVertice);
 

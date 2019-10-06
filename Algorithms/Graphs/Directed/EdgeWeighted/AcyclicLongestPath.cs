@@ -10,8 +10,8 @@ namespace Algorithms.Graphs.Directed.EdgeWeighted
     /// </summary>
     public sealed class AcyclicLongestPath
     {
-        private Double[] _distTo;       // distTo[v] = distance  of longest s->v path.
-        private Edge[] _edgeTo; // edgeTo[v] = last edge on longest s->v path.
+        private readonly Double[] _distTo; // distTo[v] = distance  of longest s->v path.
+        private readonly Edge[] _edgeTo;   // edgeTo[v] = last edge on longest s->v path.
 
         public AcyclicLongestPath(EdgeWeightedDigraph graph, Int32 vertice)
         {
@@ -19,7 +19,9 @@ namespace Algorithms.Graphs.Directed.EdgeWeighted
             this._edgeTo = new Edge[graph.VerticesCount];
 
             for (int i = 0; i < graph.VerticesCount; i++)
+            {
                 this._distTo[i] = Double.NegativeInfinity;
+            }
 
             this._distTo[vertice] = 0.0;
 
@@ -31,7 +33,9 @@ namespace Algorithms.Graphs.Directed.EdgeWeighted
             foreach (Int32 v in topological.Order)
             {
                 foreach (Edge edge in graph.GetAdjacentVertices(v))
+                {
                     this.Relax(edge);
+                }
             }
         }
 

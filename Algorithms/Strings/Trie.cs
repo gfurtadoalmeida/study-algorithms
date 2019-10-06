@@ -23,10 +23,7 @@ namespace Algorithms.Strings
 
         public Trie(Alphabet alphabet)
         {
-            if (alphabet == null)
-                throw new ArgumentNullException(nameof(alphabet));
-
-            this.Alphabet = alphabet;
+            this.Alphabet = alphabet ?? throw new ArgumentNullException(nameof(alphabet));
         }
 
         public Boolean Contains(String key)
@@ -69,20 +66,28 @@ namespace Algorithms.Strings
                 throw new ArgumentNullException(nameof(key));
 
             if (value == null)
+            {
                 this.Delete(key);
+            }
             else
+            {
                 this._root = this.Add(this._root, key, value, 0);
+            }
         }
 
         private Node Add(Node node, String key, Object value, Int32 index)
         {
             if (node == null)
+            {
                 node = new Node(this.Alphabet, null);
+            }
 
             if (index == key.Length)
             {
                 if (node.Value == null)
+                {
                     this.Count++;
+                }
 
                 node.Value = value;
 
@@ -118,7 +123,9 @@ namespace Algorithms.Strings
                 return;
 
             if (node.Value != null)
+            {
                 results.Enqueue(prefix.ToString());
+            }
 
             for (char c = this.Alphabet.MinChar; c <= this.Alphabet.MaxChar; c++)
             {
@@ -147,7 +154,9 @@ namespace Algorithms.Strings
             Int32 index = prefix.Length;
 
             if (index == pattern.Length && node.Value != null)
+            {
                 results.Enqueue(prefix.ToString());
+            }
 
             if (index == pattern.Length)
                 return;
@@ -184,8 +193,8 @@ namespace Algorithms.Strings
 
             if (length == -1)
                 return null;
-            else
-                return query.Substring(0, length);
+
+            return query.Substring(0, length);
         }
 
         private Int32 GetLongestPrefixOf(Node node, String query, Int32 index, Int32 length)
@@ -194,7 +203,9 @@ namespace Algorithms.Strings
                 return length;
 
             if (node.Value != null)
+            {
                 length = index;
+            }
 
             if (index == query.Length)
                 return length;

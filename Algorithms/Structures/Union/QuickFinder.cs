@@ -4,7 +4,7 @@ namespace Algorithms.Structures.Union
 {
     public sealed class QuickFinder : IUnionFinder
     {
-        private Int32[] _ids; // id[i] = component identifier of i
+        private readonly Int32[] _ids; // id[i] = component identifier of i
 
         public Int32 Count { get; private set; }
 
@@ -15,7 +15,9 @@ namespace Algorithms.Structures.Union
             this._ids = new Int32[capacity];
 
             for (int i = 0; i < capacity; i++)
+            {
                 this._ids[i] = i;
+            }
         }
 
         public Int32 Find(Int32 id)

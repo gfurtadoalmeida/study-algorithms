@@ -19,22 +19,30 @@ namespace Algorithms.Sorting
             // 1 - Count frequencies of each iten using key as index.
 
             for (int i = 0; i < itens.Length; i++)
+            {
                 frequency[itens[i].Key + 1]++;
+            }
 
             // 2 - Compute frequency cumulates which specify destinations.
 
             for (int i = 0; i < radix; i++)
+            {
                 frequency[i + 1] += frequency[i];
+            }
 
             // 3 - Access cumulates using key as index to move items.
 
             for (int i = 0; i < itens.Length; i++)
+            {
                 aux[frequency[itens[i].Key]++] = itens[i];
+            }
 
             // 4 - Copy back into original array.
 
             for (int i = 0; i < itens.Length; i++)
+            {
                 itens[i] = aux[i];
+            }
         }
     }
 }

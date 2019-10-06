@@ -52,12 +52,14 @@ namespace Algorithms.Strings
 
             if (c < x.Char)
                 return this.Get(x.Left, key, index);
-            else if (c > x.Char)
+
+            if (c > x.Char)
                 return this.Get(x.Right, key, index);
-            else if (index < key.Length - 1)
+
+            if (index < key.Length - 1)
                 return this.Get(x.Middle, key, index + 1);
-            else
-                return x;
+
+            return x;
         }
 
         public void Add(String key, Object value)
@@ -77,18 +79,28 @@ namespace Algorithms.Strings
 
             if (node == null)
             {
-                node = new Node();
-                node.Char = c;
+                node = new Node
+                {
+                    Char = c
+                };
             }
 
             if (c < node.Char)
+            {
                 node.Left = this.Add(node.Left, key, value, index);
+            }
             else if (c > node.Char)
+            {
                 node.Right = this.Add(node.Right, key, value, index);
+            }
             else if (index < key.Length - 1)
+            {
                 node.Middle = this.Add(node.Middle, key, value, index + 1);
+            }
             else
+            {
                 node.Value = value;
+            }
 
             return node;
         }
@@ -110,15 +122,21 @@ namespace Algorithms.Strings
                 Char c = query[i];
 
                 if (c < node.Char)
+                {
                     node = node.Left;
+                }
                 else if (c > node.Char)
+                {
                     node = node.Right;
+                }
                 else
                 {
                     i++;
 
                     if (node.Value != null)
+                    {
                         length = i;
+                    }
 
                     node = node.Middle;
                 }
@@ -149,7 +167,9 @@ namespace Algorithms.Strings
                 return queue;
 
             if (node.Value != null)
+            {
                 queue.Enqueue(prefix);
+            }
 
             this.GetKeysWithPrefix(node.Middle, new StringBuilder(prefix), queue);
 
@@ -164,7 +184,9 @@ namespace Algorithms.Strings
             this.GetKeysWithPrefix(node.Left, prefix, queue);
 
             if (node.Value != null)
+            {
                 queue.Enqueue(prefix.ToString() + node.Char);
+            }
 
             this.GetKeysWithPrefix(node.Middle, prefix.Append(node.Char), queue);
 
@@ -190,12 +212,16 @@ namespace Algorithms.Strings
             Char c = pattern[index];
 
             if (c == '.' || c < node.Char)
+            {
                 this.GetKeysThatMatch(node.Left, prefix, index, pattern, queue);
+            }
 
             if (c == '.' || c == node.Char)
             {
                 if (index == pattern.Length - 1 && node.Value != null)
+                {
                     queue.Enqueue(prefix.ToString() + node.Char);
+                }
 
                 if (index < pattern.Length - 1)
                 {
@@ -206,7 +232,9 @@ namespace Algorithms.Strings
             }
 
             if (c == '.' || c > node.Char)
+            {
                 this.GetKeysThatMatch(node.Right, prefix, index, pattern, queue);
+            }
         }
 
         private sealed class Node

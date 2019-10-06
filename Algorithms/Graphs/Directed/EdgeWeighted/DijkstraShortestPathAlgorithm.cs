@@ -26,20 +26,26 @@ namespace Algorithms.Graphs.Directed.EdgeWeighted
             this._edgeTo = new Edge[graph.VerticesCount];
 
             for (int i = 0; i < graph.VerticesCount; i++)
+            {
                 this._distTo[i] = Double.PositiveInfinity;
+            }
 
             this._distTo[vertice] = 0.0;
 
             // Relax vertices in order of distance from vertice.
-            this._crossingEdgesByWeight = new IndexedMinPQ<Double>(graph.VerticesCount);
-            this._crossingEdgesByWeight.Add(vertice, this._distTo[vertice]);
+            this._crossingEdgesByWeight = new IndexedMinPQ<Double>(graph.VerticesCount)
+            {
+                { vertice, this._distTo[vertice] }
+            };
 
             while (!this._crossingEdgesByWeight.IsEmpty)
             {
                 Int32 v = this._crossingEdgesByWeight.DeleteMin();
 
                 foreach (Edge edge in graph.GetAdjacentVertices(v))
+                {
                     this.Relax(edge);
+                }
             }
         }
 
@@ -79,9 +85,13 @@ namespace Algorithms.Graphs.Directed.EdgeWeighted
                 this._edgeTo[target] = edge;
 
                 if (this._crossingEdgesByWeight.Contains(target))
+                {
                     this._crossingEdgesByWeight.DecreaseItem(target, this._distTo[target]);
+                }
                 else
+                {
                     this._crossingEdgesByWeight.Add(target, this._distTo[target]);
+                }
             }
         }
     }

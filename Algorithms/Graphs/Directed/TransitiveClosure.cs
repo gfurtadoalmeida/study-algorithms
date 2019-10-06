@@ -4,7 +4,7 @@ namespace Algorithms.Graphs.Directed
 {
     public sealed class TransitiveClosure
     {
-        private DirectedDepthFirstSearch[] _all;
+        private readonly DirectedDepthFirstSearch[] _all;
 
         public static TransitiveClosure Create(Digraph digraph)
         {
@@ -19,7 +19,9 @@ namespace Algorithms.Graphs.Directed
             this._all = new DirectedDepthFirstSearch[digraph.VerticesCount];
 
             for (int i = 0; i < digraph.VerticesCount; i++)
+            {
                 this._all[i] = new DirectedDepthFirstSearch(digraph, i);
+            }
         }
 
         public Boolean IsReachable(Int32 sourceVertice, Int32 targetVertice)

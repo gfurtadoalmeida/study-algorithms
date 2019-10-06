@@ -32,8 +32,12 @@ namespace Algorithms.Graphs.Directed
             this._reachableFromSourceMap = new Boolean[digraph.VerticesCount];
 
             foreach (Int32 vertice in sources)
+            {
                 if (!this._reachableFromSourceMap[vertice])
+                {
                     this.DFS(digraph, vertice);
+                }
+            }
         }
 
         public Boolean HasDirectPathTo(Int32 vertice)
@@ -52,7 +56,9 @@ namespace Algorithms.Graphs.Directed
             foreach (Int32 adjacentVertice in digraph.GetAdjacentVertices(vertice))
             {
                 if (!this._reachableFromSourceMap[adjacentVertice])
+                {
                     this.DFS(digraph, adjacentVertice);
+                }
             }
         }
     }

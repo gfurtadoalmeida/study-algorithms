@@ -53,7 +53,7 @@ namespace Algorithms.Test.Searching
         {
             var hash = new LinearProbingHash<Byte, Char>();
 
-            Assert.Throws(typeof(KeyNotFoundException), () => hash.Get(100));
+            Assert.Throws<KeyNotFoundException>(() => hash.Get(100));
         }
 
         [Fact]
@@ -94,7 +94,7 @@ namespace Algorithms.Test.Searching
         private LinearProbingHash<Byte, Char> CreateFullLinearProbingHash()
         {
             LinearProbingHash<Byte, Char> hash = new LinearProbingHash<Byte, Char>(7);
-            
+
             hash.Add(1, 'A');
             hash.Add(2, 'B');
             hash.Add(3, 'C');

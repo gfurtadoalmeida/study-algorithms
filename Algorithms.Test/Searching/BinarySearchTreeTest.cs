@@ -54,7 +54,7 @@ namespace Algorithms.Test.Searching
         {
             var bst = new BinarySearchTree<Byte, Char>();
 
-            Assert.Throws(typeof(KeyNotFoundException), () => bst.Get(100));
+            Assert.Throws<KeyNotFoundException>(() => bst.Get(100));
         }
 
         [Fact]
@@ -149,7 +149,7 @@ namespace Algorithms.Test.Searching
         {
             var bst = this.CreateFullBST();
 
-            Assert.Throws(typeof(KeyNotFoundException), () => bst.Select(100));
+            Assert.Throws<KeyNotFoundException>(() => bst.Select(100));
         }
 
         [Fact]

@@ -8,12 +8,14 @@ namespace Algorithms.Searching
     /// </summary>
     public sealed class LinearProbingHash<TKey, TValue> : ISymbolTable<TKey, TValue> where TKey : IComparable<TKey>
     {
-        private Int32 _keysInTable;
         private Int32 _tableSize;
         private Object[] _keys;
         private TValue[] _values;
 
-        public Int32 Count => this._keysInTable;
+        /// <summary>
+        /// Number of keys in table.
+        /// </summary>
+        public Int32 Count { get; private set; }
 
         public Boolean IsEmpty => this.Count == 0;
         
@@ -25,29 +27,32 @@ namespace Algorithms.Searching
         {
             this._keys = new Object[capacity];
             this._values = new TValue[capacity];
-
             this._tableSize = capacity;
         }
 
         public void Add(TKey key, TValue value)
         {
-            if (this._keysInTable >= this._tableSize / 2)
+            if (this.Count >= this._tableSize / 2)
+            {
                 this.Resize(2 * this._tableSize);
+            }
 
             Int32 i;
 
             for (i = this.Hash(key); this._keys[i] != null; i = (i + 1) % this._tableSize)
+            {
                 if (this._keys[i].Equals(key))
                 {
                     this._values[i] = value;
 
                     return;
                 }
+            }
 
             this._keys[i] = key;
             this._values[i] = value;
 
-            this._keysInTable++;
+            this.Count++;
         }
 
         public Boolean Contains(TKey key)
@@ -62,10 +67,12 @@ namespace Algorithms.Searching
                 Int32 hash = this.Hash(key);
 
                 while (!key.Equals(this._keys[hash]))
+                {
                     hash = (hash + 1) % this._tableSize;
+                }
 
                 this._keys[hash] = null;
-                this._values[hash] = default(TValue);
+                this._values[hash] = default;
 
                 hash = (hash + 1) % this._tableSize;
 
@@ -75,19 +82,21 @@ namespace Algorithms.Searching
                     TValue valToRedo = this._values[hash];
 
                     this._keys[hash] = null;
-                    this._values[hash] = default(TValue);
+                    this._values[hash] = default;
 
-                    this._keysInTable--;
+                    this.Count--;
 
                     this.Add((TKey)keyToRedo, valToRedo);
 
                     hash = (hash + 1) % this._tableSize;
                 }
 
-                this._keysInTable--;
+                this.Count--;
 
-                if (this._keysInTable > 0 && this._keysInTable == this._tableSize / 8)
+                if (this.Count > 0 && this.Count == this._tableSize / 8)
+                {
                     this.Resize(this._tableSize / 2);
+                }
             }
         }
 
@@ -102,8 +111,12 @@ namespace Algorithms.Searching
         public IEnumerable<TKey> Keys()
         {
             for (int i = 0; i < this._keys.Length; i++)
+            {
                 if (this._keys[i] != null)
+                {
                     yield return (TKey)this._keys[i];
+                }
+            }
         }
 
         private Int32 Hash(TKey key)
@@ -121,8 +134,12 @@ namespace Algorithms.Searching
             LinearProbingHash<TKey, TValue> temp = new LinearProbingHash<TKey, TValue>(size);
 
             for (int i = 0; i < this._tableSize; i++)
+            {
                 if (this._keys[i] != null)
+                {
                     temp.Add((TKey)this._keys[i], this._values[i]);
+                }
+            }
 
             this._keys = temp._keys;
             this._values = temp._values;
@@ -132,14 +149,16 @@ namespace Algorithms.Searching
         private Boolean TryGet(TKey key, out TValue value)
         {
             for (int i = this.Hash(key); this._keys[i] != null; i = (i + 1) % this._tableSize)
+            {
                 if (this._keys[i].Equals(key))
                 {
                     value = this._values[i];
 
                     return true;
                 }
+            }
 
-            value = default(TValue);
+            value = default;
 
             return false;
         }

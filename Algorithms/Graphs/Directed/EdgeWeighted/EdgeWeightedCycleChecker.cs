@@ -6,10 +6,10 @@ namespace Algorithms.Graphs.Directed.EdgeWeighted
 {
     public sealed class EdgeWeightedCycleChecker
     {
-        private Boolean[] _visited;
-        private Boolean[] _onStack;     // onStack[v] = is vertex on the stack?
-        private Edge[] _edgeTo;         // edgeTo[v] = previous edge on path to v.
-        private AST.Stack<Edge> _cycle; // Directed cycle (or null if no such cycle).
+        private readonly Boolean[] _visited;
+        private readonly Boolean[] _onStack; // onStack[v] = is vertex on the stack?
+        private readonly Edge[] _edgeTo;     // edgeTo[v] = previous edge on path to v.
+        private AST.Stack<Edge> _cycle;      // Directed cycle (or null if no such cycle).
 
         public Boolean HasCycle => this._cycle != null;
 
@@ -27,7 +27,9 @@ namespace Algorithms.Graphs.Directed.EdgeWeighted
             for (int i = 0; i < graph.VerticesCount; i++)
             {
                 if (!this._visited[i])
+                {
                     this.DFS(graph, i);
+                }
             }
         }
 

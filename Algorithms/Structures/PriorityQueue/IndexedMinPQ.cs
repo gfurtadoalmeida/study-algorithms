@@ -23,7 +23,9 @@ namespace Algorithms.Structures.PriorityQueue
             this._indexList = new Int32[capacity + 1];
 
             for (int i = 0; i <= capacity; i++)
+            {
                 this._indexList[i] = -1;
+            }
         }
 
         public void Add(Int32 index, T item)
@@ -143,7 +145,9 @@ namespace Algorithms.Structures.PriorityQueue
             IndexedMinPQ<T> copy = new IndexedMinPQ<T>(this._binHeap.Length - 1);
 
             for (int i = 1; i <= this.Count; i++)
+            {
                 copy.Add(this._binHeap[i], (T)this._itens[this._binHeap[i]]);
+            }
 
             while (!copy.IsEmpty)
                 yield return copy.DeleteMin();
@@ -186,7 +190,9 @@ namespace Algorithms.Structures.PriorityQueue
                 Int32 i = 2 * index;
 
                 if (i < this.Count && this.IsGreater(i, i + 1))
+                {
                     i++;
+                }
 
                 if (!this.IsGreater(index, i))
                     break;

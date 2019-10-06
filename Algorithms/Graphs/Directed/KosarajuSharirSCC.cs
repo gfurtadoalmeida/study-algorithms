@@ -3,12 +3,12 @@
 namespace Algorithms.Graphs.Directed
 {
     /// <summary>
-    /// Finds how many strongly connected compopnentes are in a digraph.
+    /// Finds how many strongly connected componentes are in a digraph.
     /// </summary>
     public sealed class KosarajuSharirSCC
     {
-        private Boolean[] _visited;
-        private Int32[] _ids;
+        private readonly Boolean[] _visited;
+        private readonly Int32[] _ids;
 
         /// <summary>
         /// How many componentes.
@@ -57,7 +57,9 @@ namespace Algorithms.Graphs.Directed
             foreach (Int32 adjacent in digraph.GetAdjacentVertices(vertice))
             {
                 if (!this._visited[adjacent])
+                {
                     this.DFS(digraph, adjacent);
+                }
             }
         }
     }

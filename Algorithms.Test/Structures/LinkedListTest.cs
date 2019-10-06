@@ -18,8 +18,10 @@ namespace Algorithms.Test.Structures
         [Fact]
         public void Test_Empty_WhenCleaning()
         {
-            LinkedList<Int32> list = new LinkedList<Int32>();
-            list.Add(2);
+            LinkedList<Int32> list = new LinkedList<Int32>
+            {
+                2
+            };
             list.Remove();
 
             Assert.True(list.IsEmpty);
@@ -29,9 +31,11 @@ namespace Algorithms.Test.Structures
         [Fact]
         public void Test_NotEmpty_WhenPushing()
         {
-            LinkedList<Int32> list = new LinkedList<Int32>();
-            list.Add(18);
-            list.Add(2);
+            LinkedList<Int32> list = new LinkedList<Int32>
+            {
+                18,
+                2
+            };
 
             Assert.False(list.IsEmpty);
             Assert.Equal(2, list.Count);
@@ -40,10 +44,12 @@ namespace Algorithms.Test.Structures
         [Fact]
         public void Test_AddRemoveOrder()
         {
-            LinkedList<Int32> list = new LinkedList<Int32>();
-            list.Add(18);
-            list.Add(2);
-            list.Add(88);
+            LinkedList<Int32> list = new LinkedList<Int32>
+            {
+                18,
+                2,
+                88
+            };
 
             Assert.Equal(88, list.Remove());
             Assert.Equal(2, list.Remove());
@@ -53,9 +59,11 @@ namespace Algorithms.Test.Structures
         [Fact]
         public void Test_Enumeration_Count()
         {
-            LinkedList<Int32> list = new LinkedList<Int32>();
-            list.Add(18);
-            list.Add(2);
+            LinkedList<Int32> list = new LinkedList<Int32>
+            {
+                18,
+                2
+            };
 
             Int32 count = 0; 
             
@@ -72,10 +80,12 @@ namespace Algorithms.Test.Structures
         [Fact]
         public void Test_Enumeration_Values()
         {
-            LinkedList<Int32> list = new LinkedList<Int32>();
-            list.Add(2);
-            list.Add(4);
-            list.Add(8);
+            LinkedList<Int32> list = new LinkedList<Int32>
+            {
+                2,
+                4,
+                8
+            };
 
             AssertUtilities.Sequence(new Int32[3] { 8, 4, 2 }, list);
         }
@@ -83,9 +93,11 @@ namespace Algorithms.Test.Structures
         [Fact]
         public void Test_Contains()
         {
-            LinkedList<Int32> list = new LinkedList<Int32>();
-            list.Add(18);
-            list.Add(2);
+            LinkedList<Int32> list = new LinkedList<Int32>
+            {
+                18,
+                2
+            };
 
             Assert.True(list.Contains(18));
             Assert.True(list.Contains(2));
@@ -94,9 +106,11 @@ namespace Algorithms.Test.Structures
         [Fact]
         public void Test_NotContains()
         {
-            LinkedList<Int32> list = new LinkedList<Int32>();
-            list.Add(18);
-            list.Add(2);
+            LinkedList<Int32> list = new LinkedList<Int32>
+            {
+                18,
+                2
+            };
 
             Assert.False(list.Contains(88));
         }

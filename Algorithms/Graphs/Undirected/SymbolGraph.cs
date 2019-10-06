@@ -28,10 +28,14 @@ namespace Algorithms.Graphs.Undirected
                     // using the Count as index. It gets incremented, so we have an index.
 
                     if (!this._symboTable.Contains(enumerator.Current.Key))
+                    {
                         this._symboTable.Add(enumerator.Current.Key, this._symboTable.Count);
+                    }
 
                     if (!this._symboTable.Contains(enumerator.Current.Value))
+                    {
                         this._symboTable.Add(enumerator.Current.Value, this._symboTable.Count);
+                    }
                 }
             }
 
@@ -43,7 +47,9 @@ namespace Algorithms.Graphs.Undirected
             using (var keys = this._symboTable.Keys().GetEnumerator())
             {
                 while(keys.MoveNext())
+                {
                     this._keys[this._symboTable.Get(keys.Current)] = keys.Current;
+                }
             }
 
             this.Graph = new Graph(this._symboTable.Count);

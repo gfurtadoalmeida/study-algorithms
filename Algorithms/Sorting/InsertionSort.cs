@@ -22,11 +22,15 @@ namespace Algorithms.Sorting
                     // one by one until the target is in the correct position.
 
                     if (base.IsLess(input[j], input[j - 1]))
+                    {
                         base.Exchange(input, j, j - 1);
+                    }
                     else
+                    {
                         // As the itens on the left are already sorted, if the item
                         // is bigger or equal to a position, we're finished.
                         break;
+                    }
                 }
             }
         }

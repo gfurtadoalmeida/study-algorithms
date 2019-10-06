@@ -18,9 +18,11 @@ namespace Algorithms.Test.Structures
         [Fact]
         public void Test_NotEmpty_WhenAdding()
         {
-            Bag<Int32> bag = new Bag<Int32>();
-            bag.Add(18);
-            bag.Add(2);
+            Bag<Int32> bag = new Bag<Int32>
+            {
+                18,
+                2
+            };
 
             Assert.False(bag.IsEmpty);
             Assert.Equal(2, bag.Count);
@@ -29,10 +31,12 @@ namespace Algorithms.Test.Structures
         [Fact]
         public void Test_Iteration()
         {
-            Bag<Int32> bag = new Bag<Int32>();
-            bag.Add(18);
-            bag.Add(2);
-            bag.Add(88);
+            Bag<Int32> bag = new Bag<Int32>
+            {
+                18,
+                2,
+                88
+            };
 
             AssertUtilities.Sequence(new Int32[3] { 88, 2, 18 }, bag);
         }

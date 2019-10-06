@@ -4,7 +4,7 @@ namespace Algorithms.Structures.Union
 {
     public sealed class QuickUnionFinder : IUnionFinder
     {
-        private Int32[] _parent; // parent[i] = parent of i.
+        private readonly Int32[] _parent; // parent[i] = parent of i.
 
         public Int32 Count { get; private set; }
 
@@ -23,7 +23,9 @@ namespace Algorithms.Structures.Union
         public Int32 Find(Int32 id)
         {
             while (id != this._parent[id])
+            {
                 id = this._parent[id];
+            }
 
             return id;
         }

@@ -18,8 +18,10 @@ namespace Algorithms.Test.Structures.PriorityQueue
         [Fact]
         public void Test_Empty_WhenCleaning()
         {
-            IndexedMinPQ<Int32> pq = new IndexedMinPQ<Int32>(1);
-            pq.Add(0, 2);
+            IndexedMinPQ<Int32> pq = new IndexedMinPQ<Int32>(1)
+            {
+                { 0, 2 }
+            };
             pq.DeleteMin();
 
             Assert.True(pq.IsEmpty);
@@ -29,9 +31,11 @@ namespace Algorithms.Test.Structures.PriorityQueue
         [Fact]
         public void Test_NotEmpty_WhenAdding()
         {
-            IndexedMinPQ<Int32> pq = new IndexedMinPQ<Int32>(2);
-            pq.Add(0, 18);
-            pq.Add(1, 2);
+            IndexedMinPQ<Int32> pq = new IndexedMinPQ<Int32>(2)
+            {
+                { 0, 18 },
+                { 1, 2 }
+            };
 
             Assert.False(pq.IsEmpty);
             Assert.Equal(2, pq.Count);

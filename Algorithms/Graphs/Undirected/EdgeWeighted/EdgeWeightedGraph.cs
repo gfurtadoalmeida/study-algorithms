@@ -24,7 +24,9 @@ namespace Algorithms.Graphs.Undirected.EdgeWeighted
             this._adjacencyVertices = new Bag<Edge>[verticesCount];
 
             for (int i = 0; i < verticesCount; i++)
+            {
                 this._adjacencyVertices[i] = new Bag<Edge>();
+            }
         }
 
         public void AddEdge(Edge edge)
@@ -54,7 +56,9 @@ namespace Algorithms.Graphs.Undirected.EdgeWeighted
                 foreach (Edge edge in this.GetAdjacentVertices(i))
                 {
                     if (edge.Other(i) > i)
+                    {
                         bag.Add(edge);
+                    }
                 }
             }
 

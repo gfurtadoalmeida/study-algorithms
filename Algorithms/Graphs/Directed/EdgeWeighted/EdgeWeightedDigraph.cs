@@ -24,7 +24,9 @@ namespace Algorithms.Graphs.Directed.EdgeWeighted
             this._adjacencyVertices = new Bag<Edge>[verticesCount];
 
             for (int i = 0; i < verticesCount; i++)
+            {
                 this._adjacencyVertices[i] = new Bag<Edge>();
+            }
         }
 
         public void AddEdge(Edge edge)

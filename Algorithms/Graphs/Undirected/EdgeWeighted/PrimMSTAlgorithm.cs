@@ -11,10 +11,10 @@ namespace Algorithms.Graphs.Undirected.EdgeWeighted
     {
         private const Double FLOATING_POINT_EPSILON = 1E-12;
 
-        private Edge[] _edgeTo;     // edgeTo[v]  = shortest edge from tree vertex to non-tree vertex.
-        private Double[] _distTo;   // distTo[v]  = weight of shortest such edge.
-        private Boolean[] _visited; // visited[v] = true if v on tree.
-        private IndexedMinPQ<Double> _crossingEdgesByWeight;
+        private readonly Edge[] _edgeTo;     // edgeTo[v]  = shortest edge from tree vertex to non-tree vertex.
+        private readonly Double[] _distTo;   // distTo[v]  = weight of shortest such edge.
+        private readonly Boolean[] _visited; // visited[v] = true if v on tree.
+        private readonly IndexedMinPQ<Double> _crossingEdgesByWeight;
         private Lazy<Double> _lazyWeight;
 
         public Double Weight => _lazyWeight.Value;
@@ -37,7 +37,9 @@ namespace Algorithms.Graphs.Undirected.EdgeWeighted
             for (int i = 0; i < graph.VerticesCount; i++)
             {
                 if (!this._visited[i])
+                {
                     this.Prim(graph, i);
+                }
             }
 
             this._lazyWeight = new Lazy<Double>(() =>
@@ -45,7 +47,9 @@ namespace Algorithms.Graphs.Undirected.EdgeWeighted
                 Double weight = 0;
 
                 foreach (Edge edge in this.GetEdges())
+                {
                     weight += edge.Weight;
+                }
 
                 return weight;
             });
@@ -60,7 +64,9 @@ namespace Algorithms.Graphs.Undirected.EdgeWeighted
                 Edge e = this._edgeTo[i];
 
                 if (e != null)
+                {
                     mst.Enqueue(e);
+                }
             }
 
             return mst;
@@ -94,13 +100,16 @@ namespace Algorithms.Graphs.Undirected.EdgeWeighted
                     this._edgeTo[targetVertice] = edge;
 
                     if (this._crossingEdgesByWeight.Contains(targetVertice))
+                    {
                         this._crossingEdgesByWeight.DecreaseItem(targetVertice, this._distTo[targetVertice]);
+                    }
                     else
+                    {
                         this._crossingEdgesByWeight.Add(targetVertice, this._distTo[targetVertice]);
+                    }
                 }
             }
         }
-
     }
 }
 

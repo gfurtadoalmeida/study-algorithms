@@ -34,9 +34,13 @@ namespace Algorithms.Sorting
                     else
                     {
                         if (cmp > 0)
+                        {
                             this.Exchange(input, idxEqualtToPartition, idxGreaterThanPartition--);
+                        }
                         else
+                        {
                             idxEqualtToPartition++;
+                        }
                     }
                 }
 

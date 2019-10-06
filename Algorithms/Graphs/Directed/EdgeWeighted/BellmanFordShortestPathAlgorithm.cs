@@ -10,12 +10,12 @@ namespace Algorithms.Graphs.Directed.EdgeWeighted
     /// </summary>
     public sealed class BellmanFordShortestPathAlgorithm
     {
-        private Double[] _distTo;         // distTo[v] = distance of shortest s->v path.
-        private Edge[] _edgeTo;           // edgeTo[v] = last edge on shortest s->v path.
-        private Boolean[] _onQueue;       // onQueue[v] = is v currently on the queue?
-        private AST.Queue<Int32> _queue;  // queue of vertices to relax.
-        private Int32 _cost;              // number of calls to Relax().
-        private IEnumerable<Edge> _cycle; // negative cycle (or null if no such cycle).
+        private readonly Double[] _distTo;         // distTo[v] = distance of shortest s->v path.
+        private readonly Edge[] _edgeTo;           // edgeTo[v] = last edge on shortest s->v path.
+        private readonly Boolean[] _onQueue;       // onQueue[v] = is v currently on the queue?
+        private readonly AST.Queue<Int32> _queue;  // queue of vertices to relax.
+        private Int32 _cost;                       // number of calls to Relax().
+        private IEnumerable<Edge> _cycle;          // negative cycle (or null if no such cycle).
 
         public Boolean HasNegativeCycle => this._cycle != null;
 
@@ -26,7 +26,9 @@ namespace Algorithms.Graphs.Directed.EdgeWeighted
             this._onQueue = new Boolean[graph.VerticesCount];
 
             for (int v = 0; v < graph.VerticesCount; v++)
+            {
                 this._distTo[v] = Double.PositiveInfinity;
+            }
 
             this._distTo[vertice] = 0.0;
 
@@ -88,7 +90,9 @@ namespace Algorithms.Graphs.Directed.EdgeWeighted
             for (int i = 0; i < vertice; i++)
             {
                 if (this._edgeTo[i] != null)
+                {
                     graph.AddEdge(this._edgeTo[i]);
+                }
             }
 
             EdgeWeightedCycleChecker checker = EdgeWeightedCycleChecker.Create(graph);

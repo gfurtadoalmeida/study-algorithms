@@ -28,7 +28,9 @@ namespace Algorithms.Strings.Substrings
             Int32 patternSize = this._pattern.Length;
 
             for (int i = 0; i < alphabet.Radix; i++)
+            {
                 this._dfa[i] = new Int32[patternSize];
+            }
 
             this._dfa[alphabet.ToIndex(this._pattern[0])][0] = 1;
 
@@ -45,7 +47,9 @@ namespace Algorithms.Strings.Substrings
                 Int32 indexCharPattern = alphabet.ToIndex(pattern[j]);
 
                 for (int c = 0; c < alphabet.Radix; c++)
+                {
                     this._dfa[c][j] = this._dfa[c][i];  // Mismatch: move to the left.
+                }
 
                 this._dfa[indexCharPattern][j] = j + 1; // Match: For a match transition, move to the right one position.
 
@@ -61,13 +65,15 @@ namespace Algorithms.Strings.Substrings
             Int32 patternSize = this._pattern.Length;
 
             for (i = 0, j = 0; i < textSize && j < patternSize; i++)
+            {
                 j = this._dfa[this._alphabet.ToIndex(text[i])][j];
-            
+            }
+
             // Reached _dfa[c][j] so as the value == patternSize?
             if (j == patternSize)
                 return i - patternSize; // Found.
-            else
-                return -1;
+
+            return -1;
         }
     }
 }

@@ -54,7 +54,7 @@ namespace Algorithms.Test.Searching
         {
             var bin = new BinarySearch<Byte, Char>();
 
-            Assert.Throws(typeof(KeyNotFoundException), () => bin.Get(100));
+            Assert.Throws<KeyNotFoundException>(() => bin.Get(100));
         }
 
         [Fact]
@@ -149,7 +149,7 @@ namespace Algorithms.Test.Searching
         {
             var bin = this.CreateFullBinarySearch();
 
-            Assert.Throws(typeof(KeyNotFoundException), () => bin.Select(100));
+            Assert.Throws<KeyNotFoundException>(() => bin.Select(100));
         }
 
         [Fact]

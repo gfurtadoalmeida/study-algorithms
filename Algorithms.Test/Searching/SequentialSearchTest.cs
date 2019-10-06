@@ -53,7 +53,7 @@ namespace Algorithms.Test.Searching
         {
             var seq = new SequentialSearch<Byte, Char>();
 
-            Assert.Throws(typeof(KeyNotFoundException), () => seq.Get(100));
+            Assert.Throws<KeyNotFoundException>(() => seq.Get(100));
         }
 
         [Fact]
@@ -94,7 +94,7 @@ namespace Algorithms.Test.Searching
         private SequentialSearch<Byte, Char> CreateFullSequencialSearch()
         {
             SequentialSearch<Byte, Char> seq = new SequentialSearch<Byte, Char>();
-            
+
             seq.Add(1, 'A');
             seq.Add(2, 'B');
             seq.Add(3, 'C');

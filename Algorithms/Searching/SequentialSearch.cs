@@ -14,12 +14,14 @@ namespace Algorithms.Searching
         public void Add(TKey key, TValue value)
         {
             for (Node node = this._first; node != null; node = node.Next)
+            {
                 if (node.Key.Equals(key))
                 {
                     node.Value = value;
 
                     return;
                 }
+            }
 
             this._first = new Node(key, value, this._first);
 
@@ -59,14 +61,15 @@ namespace Algorithms.Searching
         private Boolean TryGet(TKey key, out TValue value)
         {
             for (Node node = this._first; node != null; node = node.Next)
+            {
                 if (node.Key.Equals(key))
                 {
                     value = node.Value;
 
                     return true;
                 }
-
-            value = default(TValue);
+            }
+            value = default;
 
             return false;
         }

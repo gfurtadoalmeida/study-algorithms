@@ -21,7 +21,8 @@ namespace Algorithms.Graphs.Undirected.EdgeWeighted
         {
             if (vertice == this.Source)
                 return this.Target;
-            else if (vertice == this.Target)
+
+            if (vertice == this.Target)
                 return this.Source;
 
             throw new Exception("Inconsistent edge.");
@@ -31,8 +32,8 @@ namespace Algorithms.Graphs.Undirected.EdgeWeighted
         {
             if (this.Weight < edge.Weight)
                 return -1;
-            else if
-                (this.Weight > edge.Weight)
+
+            if (this.Weight > edge.Weight)
                 return 1;
 
             return 0;

@@ -11,7 +11,7 @@ namespace Algorithms.Strings
     /// </summary>
     public static class QuickSort3WaySort
     {
-        private static Int32 CUT_OFF = 15; // Cutoff for small subarrays.
+        private const Int32 CUT_OFF = 15; // Cutoff for small subarrays.
 
         public static void Sort(String[] array)
         {
@@ -37,17 +37,25 @@ namespace Algorithms.Strings
                 Int32 t = CharAt(array[idxEqualToPartition], index);
 
                 if (t < partition)
+                {
                     Exchange(array, idxLessThanPartition++, idxEqualToPartition++);
+                }
                 else if (t > partition)
+                {
                     Exchange(array, idxEqualToPartition, idxGreaterThanPartition--);
+                }
                 else
+                {
                     idxEqualToPartition++;
+                }
             }
 
             Sort(array, low, idxLessThanPartition - 1, index);
 
             if (partition >= 0)
+            {
                 Sort(array, idxLessThanPartition, idxGreaterThanPartition, index + 1);
+            }
 
             Sort(array, idxGreaterThanPartition + 1, high, index);
 
@@ -68,8 +76,12 @@ namespace Algorithms.Strings
         private static void InsertionSort(String[] array, Int32 low, Int32 high, Int32 index)
         {
             for (int i = low; i <= high; i++)
+            {
                 for (int j = i; j > low && IsLess(array[j], array[j - 1], index); j--)
+                {
                     Exchange(array, j, j - 1);
+                }
+            }
         }
 
         private static void Exchange(String[] array, Int32 indexSource, Int32 indexTarget)

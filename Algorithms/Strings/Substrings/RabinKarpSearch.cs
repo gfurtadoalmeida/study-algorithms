@@ -9,12 +9,12 @@ namespace Algorithms.Strings.Substrings
     /// </summary>
     public sealed class RabinKarpSearch
     {
-        private String _pattern;
-        private Int64 _patternHash;
-        private Int32 _patternLength;
-        private Int64 _largePrime; // Small enough to avoid Int64 overflow.
-        private Int32 _radix;
-        private Int64 _rm; // R^(M-1) % Q
+        private readonly String _pattern;
+        private readonly Int64 _patternHash;
+        private readonly Int32 _patternLength;
+        private readonly Int64 _largePrime; // Small enough to avoid Int64 overflow.
+        private readonly Int32 _radix;
+        private readonly Int64 _rm; // R^(M-1) % Q
 
         public RabinKarpSearch(String pattern, Alphabet alphabet)
         {
@@ -27,7 +27,9 @@ namespace Algorithms.Strings.Substrings
             this._rm = 1;
 
             for (int i = 1; i <= this._patternLength - 1; i++)
+            {
                 this._rm = (this._radix * this._rm) % this._largePrime;
+            }
 
             this._patternHash = this.Hash(pattern, this._patternLength);
         }
@@ -67,7 +69,9 @@ namespace Algorithms.Strings.Substrings
             Int64 hash = 0;
 
             for (int i = 0; i < m; i++)
+            {
                 hash = (this._radix * hash + key[i]) % this._largePrime;
+            }
 
             return hash;
         }

@@ -6,9 +6,9 @@ namespace Algorithms.Strings.Substrings
 {
     public sealed class NFARegularExpressionSearch
     {
-        private Digraph _graph; // Digraph of transitions.
-        private String _expression;
-        private Int32 _expressionSize;
+        private readonly Digraph _graph; // Digraph of transitions.
+        private readonly String _expression;
+        private readonly Int32 _expressionSize;
 
         public NFARegularExpressionSearch(String expression)
         {
@@ -39,7 +39,9 @@ namespace Algorithms.Strings.Substrings
                         this._graph.AddEdge(or, i);
                     }
                     else if (expression[or] == '(')
+                    {
                         lp = or;
+                    }
                 }
 
                 // Closure operator (uses 1-character lookahead).
@@ -50,7 +52,9 @@ namespace Algorithms.Strings.Substrings
                 }
 
                 if (expression[i] == '(' || expression[i] == '*' || expression[i] == ')')
+                {
                     this._graph.AddEdge(i, i + 1);
+                }
             }
 
             if (operations.Count != 0)
@@ -65,7 +69,9 @@ namespace Algorithms.Strings.Substrings
             for (int i = 0; i < this._graph.VerticesCount; i++)
             {
                 if (dfs.HasDirectPathTo(i))
+                {
                     pc.Add(i);
+                }
             }
 
             // Compute possible NFA states for text[i+1]
@@ -82,7 +88,9 @@ namespace Algorithms.Strings.Substrings
                         continue;
 
                     if ((this._expression[vertice] == text[i]) || this._expression[vertice] == '.')
+                    {
                         match.Add(vertice + 1);
+                    }
                 }
 
                 dfs = new DirectedDepthFirstSearch(this._graph, match);
@@ -91,7 +99,9 @@ namespace Algorithms.Strings.Substrings
                 for (int v = 0; v < this._graph.VerticesCount; v++)
                 {
                     if (dfs.HasDirectPathTo(v))
+                    {
                         pc.Add(v);
+                    }
                 }
 
                 // Optimization if no states reachable.
