@@ -1,16 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.2</TargetFramework>
-
+    <TargetFramework>netcoreapp3.0</TargetFramework>
     <IsPackable>false</IsPackable>
-
     <Authors>Gabriel Furtado de Almeida</Authors>
-
     <Company />
-
     <Description />
-
+    <Copyright>Gabriel Furtado de Almeida</Copyright>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
 
@@ -26,5 +22,4 @@
   <ItemGroup>
     <ProjectReference Include="..\Algorithms\Algorithms.csproj" />
   </ItemGroup>
-
 </Project>

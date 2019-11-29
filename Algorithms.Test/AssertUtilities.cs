@@ -11,36 +11,35 @@ namespace Algorithms.Test
             Int32 countExpected = 0;
             Int32 countActual = 0;
 
-            using (IEnumerator<T> enumeratorActual = actual.GetEnumerator())
-            using (IEnumerator<T> enumeratorExpected = expected.GetEnumerator())
+            using IEnumerator<T> enumeratorActual = actual.GetEnumerator();
+            using IEnumerator<T> enumeratorExpected = expected.GetEnumerator();
+
+            while (enumeratorActual.MoveNext())
             {
-                while (enumeratorActual.MoveNext())
+                countExpected++;
+                countActual++;
+
+                if (!enumeratorExpected.MoveNext())
                 {
-                    countExpected++;
-                    countActual++;
-
-                    if (!enumeratorExpected.MoveNext())
-                    {
-                        // Unroll to count.
-                        while (enumeratorActual.MoveNext())
-                            countActual++;
-
-                        throw new SequenceSizeException(countExpected, countActual);
-                    }
-
-                    Assert.Equal(enumeratorExpected.Current, enumeratorActual.Current);
-                }
-
-                if (enumeratorExpected.MoveNext())
-                {
-                    countExpected++;
-
                     // Unroll to count.
-                    while (enumeratorExpected.MoveNext())
-                        countExpected++;
+                    while (enumeratorActual.MoveNext())
+                        countActual++;
 
                     throw new SequenceSizeException(countExpected, countActual);
                 }
+
+                Assert.Equal(enumeratorExpected.Current, enumeratorActual.Current);
+            }
+
+            if (enumeratorExpected.MoveNext())
+            {
+                countExpected++;
+
+                // Unroll to count.
+                while (enumeratorExpected.MoveNext())
+                    countExpected++;
+
+                throw new SequenceSizeException(countExpected, countActual);
             }
         }
     }

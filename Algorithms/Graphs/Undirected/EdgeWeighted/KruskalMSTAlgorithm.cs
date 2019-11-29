@@ -8,11 +8,9 @@ namespace Algorithms.Graphs.Undirected.EdgeWeighted
     /// <summary>
     /// Computes a minimum spanning tree in an edge-weighted graph.
     /// Return edges odered by weight.
-    /// </summary
+    /// </summary>
     public sealed class KruskalMSTAlgorithm : IMinimumSpanningTreeAlgorithm
     {
-        private const Double FLOATING_POINT_EPSILON = 1E-12;
-
         private readonly Queue<Edge> _mst;
 
         public Double Weight { get; private set; }

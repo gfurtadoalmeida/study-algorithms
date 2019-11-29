@@ -501,7 +501,7 @@ namespace Algorithms.Searching
             node.Left.Color = flip(node.Left);
             node.Right.Color = flip(node.Right);
 
-            Node.NodeColor flip(Node nd)
+            static Node.NodeColor flip(Node nd)
             {
                 return nd.Color == Node.NodeColor.Red ? Node.NodeColor.Black : Node.NodeColor.Red;
             }

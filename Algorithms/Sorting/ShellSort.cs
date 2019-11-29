@@ -43,7 +43,7 @@ namespace Algorithms.Sorting
                     }
                 }
 
-                h = h / 3; // Reducing interval.
+                h /= 3; // Reducing interval.
             }
         }
     }

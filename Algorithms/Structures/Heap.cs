@@ -32,7 +32,7 @@ namespace Algorithms.Structures
         //   -1: item A is less than item B.
         //    0: item A is equal to item B.
         //    1: item A is greater than item B.
-        // 
+        //
         // Hence the following constants used in the method IsNotInOrder (through _heapOrderComparer field):
         // MAXHEAP_ORDER_COMPARER: in MAX HEAP, an item A is out of order if it's value is lower in order than item B.
         // MINHEAP_ORDER_COMPARER: in MAX HEAP, an item A is out of order if it's value is greater in order than item B.
@@ -41,7 +41,7 @@ namespace Algorithms.Structures
         private const Int32 MINHEAP_ORDER_COMPARER = 1;
         private const Int32 BINHEAP_START_INDEX = 1;
 
-        // We're using a resizable array', so we'd better keep 
+        // We're using a resizable array', so we'd better keep
         // track of the "true last index".
         private Int32 _lastIndex;
         private IComparable<T>[] _array;
@@ -60,19 +60,12 @@ namespace Algorithms.Structures
             // Always add 1 because a binary heap starts at index 1.
             this._array = new IComparable<T>[capacity + 1];
 
-            switch (heapType)
+            this._heapOrderComparer = heapType switch
             {
-                case HeapType.Max:
-                    this._heapOrderComparer = MAXHEAP_ORDER_COMPARER;
-                    break;
-
-                case HeapType.Min:
-                    this._heapOrderComparer = MINHEAP_ORDER_COMPARER;
-                    break;
-
-                default:
-                    throw new ArgumentException($"Heap type '{heapType}' not implemented.", nameof(heapType));
-            }
+                HeapType.Max => MAXHEAP_ORDER_COMPARER,
+                HeapType.Min => MINHEAP_ORDER_COMPARER,
+                _ => throw new ArgumentException($"Heap type '{heapType}' not implemented.", nameof(heapType)),
+            };
         }
 
         public void Insert(T item)
@@ -95,10 +88,10 @@ namespace Algorithms.Structures
         {
             // When removing, as we want the greater in order item:
             // 1 - Remove the first item (greater in order).
-            // 2 - Exchange the last item (the lowest in order/hierarchy) with 
+            // 2 - Exchange the last item (the lowest in order/hierarchy) with
             //     the position of the first item.
             // 3 - Set the last item to default of the type.
-            // 4 - We sink the first item until we find its place. 
+            // 4 - We sink the first item until we find its place.
 
             T topItem = (T)this._array[BINHEAP_START_INDEX];
 

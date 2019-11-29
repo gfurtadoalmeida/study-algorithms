@@ -15,19 +15,12 @@ namespace Algorithms.Sorting
 
         public MergeSort(MergeSortType mergeSortType)
         {
-            switch (mergeSortType)
+            this._method = mergeSortType switch
             {
-                case MergeSortType.TopDown:
-                    this._method = this.TopDownSort;
-                    break;
-
-                case MergeSortType.BottomUp:
-                    this._method = this.BottomUpSort;
-                    break;
-
-                default:
-                    throw new NotImplementedException($"The merge sort type '{mergeSortType}' is not implemented.");
-            }
+                MergeSortType.TopDown => this.TopDownSort,
+                MergeSortType.BottomUp => this.BottomUpSort,
+                _ => throw new NotImplementedException($"The merge sort type '{mergeSortType}' is not implemented."),
+            };
         }
 
         public override void Sort(T[] input)
@@ -47,7 +40,7 @@ namespace Algorithms.Sorting
             // Dividing until we find the minimum array size
             // for each side (right and left).
 
-            // Sweep (split-merge) one side first (half-array) and 
+            // Sweep (split-merge) one side first (half-array) and
             // then the second.
 
             this.TopDownSort(input, low, mid);

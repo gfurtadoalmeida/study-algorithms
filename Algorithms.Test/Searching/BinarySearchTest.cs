@@ -153,7 +153,7 @@ namespace Algorithms.Test.Searching
         }
 
         [Fact]
-        private void Test_DeleteMin()
+        public void Test_DeleteMin()
         {
             var bin = this.CreateFullBinarySearch();
 
@@ -163,7 +163,7 @@ namespace Algorithms.Test.Searching
         }
 
         [Fact]
-        private void Test_DeleteMax()
+        public void Test_DeleteMax()
         {
             var bin = this.CreateFullBinarySearch();
 

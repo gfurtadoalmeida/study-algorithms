@@ -97,7 +97,7 @@ namespace Algorithms.Structures.PriorityQueue
             this.Swim(this._indexList[index]);
             this.Sink(this._indexList[index]);
         }
-        
+
         public void IncreaseItem(Int32 index, T item)
         {
             if (!this.Contains(index))
@@ -179,7 +179,7 @@ namespace Algorithms.Structures.PriorityQueue
             {
                 this.Exchange(index, index / 2);
 
-                index = index / 2;
+                index /= 2;
             }
         }
 

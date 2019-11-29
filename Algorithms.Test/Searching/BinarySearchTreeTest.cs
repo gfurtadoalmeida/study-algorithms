@@ -153,7 +153,7 @@ namespace Algorithms.Test.Searching
         }
 
         [Fact]
-        private void Test_DeleteMin()
+        public void Test_DeleteMin()
         {
             var bst = this.CreateFullBST();
 
@@ -163,7 +163,7 @@ namespace Algorithms.Test.Searching
         }
 
         [Fact]
-        private void Test_DeleteMax()
+        public void Test_DeleteMax()
         {
             var bst = this.CreateFullBST();
 
@@ -214,7 +214,7 @@ namespace Algorithms.Test.Searching
 
             //         6F
             //       /   \
-            //     4D     7G  
+            //     4D     7G
             //     / \     \
             //   2B  5E    11K
             //   / \       /

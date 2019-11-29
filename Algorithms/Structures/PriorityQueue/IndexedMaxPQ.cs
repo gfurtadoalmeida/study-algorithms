@@ -179,7 +179,7 @@ namespace Algorithms.Structures.PriorityQueue
             {
                 this.Exchange(index, index / 2);
 
-                index = index / 2;
+                index /= 2;
             }
         }
 

@@ -147,7 +147,7 @@ namespace Algorithms.Strings
         private (Int32 minValue, Int32 maxValue) CalculateBounds(Char[] array)
         {
             Int32 minValue = array[0];
-            Int32 maxValue = array[array.Length - 1];
+            Int32 maxValue = array[^1];
 
             foreach (Char c in array)
             {

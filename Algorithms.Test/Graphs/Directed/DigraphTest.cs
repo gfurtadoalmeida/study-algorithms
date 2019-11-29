@@ -43,13 +43,12 @@ namespace Algorithms.Test.Graphs.Directed
             graph.AddEdge(1, 2);
             graph.AddEdge(2, 0);
 
-            using (IEnumerator<Int32> enumerator = graph.GetAdjacentVertices(0).GetEnumerator())
-            {
-                enumerator.MoveNext();
+            using IEnumerator<Int32> enumerator = graph.GetAdjacentVertices(0).GetEnumerator();
 
-                Assert.Equal(1, enumerator.Current);
-                Assert.False(enumerator.MoveNext());
-            }
+            enumerator.MoveNext();
+
+            Assert.Equal(1, enumerator.Current);
+            Assert.False(enumerator.MoveNext());
         }
 
         [Fact]

@@ -9,13 +9,11 @@ namespace Algorithms.Graphs.Undirected.EdgeWeighted
     /// </summary>
     public sealed class PrimMSTAlgorithm : IMinimumSpanningTreeAlgorithm
     {
-        private const Double FLOATING_POINT_EPSILON = 1E-12;
-
         private readonly Edge[] _edgeTo;     // edgeTo[v]  = shortest edge from tree vertex to non-tree vertex.
         private readonly Double[] _distTo;   // distTo[v]  = weight of shortest such edge.
         private readonly Boolean[] _visited; // visited[v] = true if v on tree.
         private readonly IndexedMinPQ<Double> _crossingEdgesByWeight;
-        private Lazy<Double> _lazyWeight;
+        private readonly Lazy<Double> _lazyWeight;
 
         public Double Weight => _lazyWeight.Value;
 
