@@ -9,10 +9,8 @@ steps:
     name: Build
     inputs:
       command: 'build'
-      projects: '**/*.csproj'
 
   - task: DotNetCoreCLI@2
     name: Test
     inputs:
       command: 'test'
-      projects: '**/*.Test.csproj'

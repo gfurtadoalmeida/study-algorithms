@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Algorithms.Structures;
+using DataStructures;
 
 namespace Algorithms.Graphs.Undirected
 {
@@ -54,7 +54,7 @@ namespace Algorithms.Graphs.Undirected
         private void ThrowIfVerticeIndexOutOfRange(String parameterName, Int32 verticeIndex)
         {
             if (verticeIndex < 0 || verticeIndex > this._adjacencyVertices.Length - 1)
-                throw new ArgumentOutOfRangeException(parameterName, 
+                throw new ArgumentOutOfRangeException(parameterName,
                                                       "Value must be greater or equal to zero and less than " + this.VerticesCount);
         }
     }

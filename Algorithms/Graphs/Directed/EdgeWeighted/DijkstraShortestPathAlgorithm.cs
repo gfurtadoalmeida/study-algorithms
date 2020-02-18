@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Algorithms.Structures.PriorityQueue;
-using AST = Algorithms.Structures;
+using DataStructures.PriorityQueue;
+using AST = DataStructures;
 
 namespace Algorithms.Graphs.Directed.EdgeWeighted
 {

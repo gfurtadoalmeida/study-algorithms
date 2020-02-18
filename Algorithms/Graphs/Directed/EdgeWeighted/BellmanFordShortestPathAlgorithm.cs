@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using AST = Algorithms.Structures;
+using AST = DataStructures;
 
 namespace Algorithms.Graphs.Directed.EdgeWeighted
 {
     /// <summary>
-    /// Solves the single-source shortest-paths problem in edge-weighted digraphs with no negative cycles. 
+    /// Solves the single-source shortest-paths problem in edge-weighted digraphs with no negative cycles.
     /// The edge weights can be positive, negative, or zero.
     /// </summary>
     public sealed class BellmanFordShortestPathAlgorithm

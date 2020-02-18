@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using AST = Algorithms.Structures;
+using AST = DataStructures;
 
 namespace Algorithms.Graphs.Directed.EdgeWeighted
 {

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using AST = Algorithms.Structures;
+using AST = DataStructures;
 
 namespace Algorithms.Graphs
 {
     /// <summary>
-    /// Traverses a graph in a depthward motion. 
+    /// Traverses a graph in a depthward motion.
     /// Goal: discover the existence of a connection/reachability.
     /// </summary>
     public sealed class DepthFirstSearch
@@ -72,12 +72,12 @@ namespace Algorithms.Graphs
 
         private void DFS(IGraph graph, Int32 vertice)
         {
-            // DFS operates on a recursive way, calling itself for each non-marked 
+            // DFS operates on a recursive way, calling itself for each non-marked
             // adjacent vertice of the current vertice.
-            // It will not find the shortest path, but will answer if there is or not a 
+            // It will not find the shortest path, but will answer if there is or not a
             // connection to some vertice.
 
-            // Mark it connected because this function will be called only for 
+            // Mark it connected because this function will be called only for
             // vertices connected to source.
             this._connectedToSourceMap[vertice] = true;
 

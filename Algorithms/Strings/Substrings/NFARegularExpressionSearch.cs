@@ -1,6 +1,6 @@
 ﻿using System;
 using Algorithms.Graphs.Directed;
-using AST = Algorithms.Structures;
+using AST = DataStructures;
 
 namespace Algorithms.Strings.Substrings
 {

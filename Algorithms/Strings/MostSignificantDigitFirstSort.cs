@@ -1,5 +1,5 @@
 ﻿using System;
-using Algorithms.Structures;
+using DataStructures;
 
 namespace Algorithms.Strings
 {
@@ -7,7 +7,7 @@ namespace Algorithms.Strings
     /// String sorting where the strings have different lengths and with small number of equal strings.
     /// Uses key-indexed counting sort reading left to right.
     /// Not suitable for:
-    /// - Equal strings. 
+    /// - Equal strings.
     /// - Strings keys with long common prefixes.
     /// - Strings that fall into a small range.
     /// - Small arrays.

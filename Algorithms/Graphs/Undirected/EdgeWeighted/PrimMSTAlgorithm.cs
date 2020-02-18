@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Algorithms.Structures.PriorityQueue;
+using DataStructures.PriorityQueue;
 
 namespace Algorithms.Graphs.Undirected.EdgeWeighted
 {

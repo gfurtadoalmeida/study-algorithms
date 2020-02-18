@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using AST = Algorithms.Structures;
+using AST = DataStructures;
 
 namespace Algorithms.Graphs
 {
     /// <summary>
-    /// Traverses a graph in a breadthward motion. 
+    /// Traverses a graph in a breadthward motion.
     /// Goal: discover the shortest path to a vertice.
     /// </summary>
     public sealed class BreadthFirstSearch

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using AST = Algorithms.Structures;
+using AST = DataStructures;
 
 namespace Algorithms.Graphs.Directed
 {
@@ -59,7 +59,7 @@ namespace Algorithms.Graphs.Directed
                 if (this.HasCycle)
                     return;
 
-                // The cycle occurrs when an adjacent vertice is on the stack of 
+                // The cycle occurrs when an adjacent vertice is on the stack of
                 // "vertices being processed".
                 // If vertice A is being processed (onStack) and one of its adjacents
                 // points to A again, we have a cycle.
@@ -83,7 +83,7 @@ namespace Algorithms.Graphs.Directed
                     this._cycle.Push(vertice);
                 }
             }
-            
+
             // If we fully processed a vertice, it means the vertice is no more on
             // the stack.
 

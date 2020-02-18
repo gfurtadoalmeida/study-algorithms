@@ -1,10 +1,10 @@
 ﻿using System;
-using AST = Algorithms.Structures;
+using AST = DataStructures;
 
 namespace Algorithms.Evaluation
 {
     /// <summary>
-    /// Evaluates arithmetic expressions that are fully parenthesized, with 
+    /// Evaluates arithmetic expressions that are fully parenthesized, with
     /// numbers and characters separated by whitespace.
     /// </summary>
     public static class DijkstraTwoStackEvaluation
@@ -66,7 +66,7 @@ namespace Algorithms.Evaluation
                         // If token is not operator or parentheses: push double value.
                         values.Push(Double.Parse(token));
                         break;
-                } 
+                }
             }
 
             return values.Pop();

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Algorithms.Graphs.Directed.EdgeWeighted;
-using AST = Algorithms.Structures;
+using AST = DataStructures;
 
 namespace Algorithms.Graphs.Directed
 {
@@ -43,7 +43,7 @@ namespace Algorithms.Graphs.Directed
             for (int i = 0; i < weightedGraph.VerticesCount; i++)
             {
                 if (!this._visited[i])
-                { 
+                {
                     this.DFS(weightedGraph, i);
                 }
             }

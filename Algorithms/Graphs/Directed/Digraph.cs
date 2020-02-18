@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Algorithms.Structures;
+using DataStructures;
 
 namespace Algorithms.Graphs.Directed
 {

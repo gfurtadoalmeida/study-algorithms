@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using AST = Algorithms.Structures;
+using AST = DataStructures;
 
 namespace Algorithms.Strings
 {

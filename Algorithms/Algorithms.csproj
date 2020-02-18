@@ -1,12 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
-    <Authors>Gabriel Furtado de Almeida</Authors>
-    <Company />
-    <Description />
-    <Copyright>Gabriel Furtado de Almeida</Copyright>
-    <LangVersion>latest</LangVersion>
+    <TargetFramework>netstandard2.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DataStructures\DataStructures.csproj" />
+  </ItemGroup>
 
 </Project>

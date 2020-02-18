@@ -1,5 +1,5 @@
 ﻿using System;
-using Algorithms.Structures;
+using DataStructures;
 
 namespace Algorithms.Strings
 {

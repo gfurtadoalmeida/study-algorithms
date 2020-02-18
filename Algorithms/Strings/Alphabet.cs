@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text;
-using Algorithms.Structures;
+using DataStructures;
 
 namespace Algorithms.Strings
 {
