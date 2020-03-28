@@ -1,6 +1,6 @@
 # Algorithms & Data Structures
 
-Some algorithms and data structures I'm learning.
+Some algorithms and data structures I'm learning.  
 My [annotations](\notes.md).
 
 ## Books

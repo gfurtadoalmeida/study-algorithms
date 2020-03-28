@@ -1,6 +1,6 @@
 trigger:
   branches:
-    include: 
+    include:
       - master
   paths:
     include:
@@ -30,4 +30,4 @@ steps:
     name: Test
     inputs:
       command: 'test'
-      projects:  '**/*.csproj'
+      projects:  '**/*.Test.csproj'
