@@ -1,7 +1,13 @@
 # Algorithms & Data Structures
 
-Some algorithms and data structures I'm learning.  
-My [annotations](\notes.md).
+Projects and [annotations](\notes.md) used to learn some algorithms and data structures.  
+
+Each folder contains two projects:
+
+* Main: implementation.
+* Test: verify if it works.
+
+**Do not expect optimized code.**
 
 ## Books
 
