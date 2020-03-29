@@ -1,6 +1,6 @@
 # Algorithms & Data Structures
 
-Projects and [annotations](\notes.md) used to learn some algorithms and data structures.  
+Projects and [annotations](/notes.md) used to learn some algorithms and data structures.  
 
 Each folder contains two projects:
 
