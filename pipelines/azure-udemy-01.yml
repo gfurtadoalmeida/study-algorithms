@@ -23,11 +23,11 @@ steps:
     name: Build
     inputs:
       command: 'build'
-      projects:  '/udemy-01/**/*.csproj'
+      projects:  'udemy-01/**/*.csproj'
       arguments: '--configuration Release'
 
   - task: DotNetCoreCLI@2
     name: Test
     inputs:
       command: 'test'
-      projects:  '/udemy-01/**/*.Test.csproj'
+      projects:  'udemy-01/**/*.Test.csproj'
