@@ -3,9 +3,8 @@ trigger:
     include:
       - master
   paths:
-    exclude:
-      - 'README.md'
-      - 'notes.md'
+    include:
+      - 'udemy-01/*'
 
 strategy:
   matrix:
