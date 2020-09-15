@@ -1,17 +1,17 @@
-name: book-01
+name: udemy-01
 
 on:
   push:
     branches: [ master ]
     paths:
-    - 'book-01/**'
+    - 'udemy-01/**'
   pull_request:
     branches: [ master ]
     paths:
-    - 'book-01/**'
+    - 'udemy-01/**'
 defaults:
   run:
-    working-directory: book-01
+    working-directory: udemy-01
 jobs:
   build:
     runs-on: windows-latest
