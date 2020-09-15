@@ -5,10 +5,12 @@ on:
     branches: [ master ]
   pull_request:
     branches: [ master ]
-
+defaults:
+  run:
+    working-directory: book-01
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
     - uses: actions/checkout@v2
@@ -18,10 +20,7 @@ jobs:
         dotnet-version: 3.1.301
     - name: Install dependencies
       run: dotnet restore
-      working-directory: /book-01/
     - name: Build
       run: dotnet build --configuration Release --no-restore
-      working-directory: /book-01/
     - name: Test
       run: dotnet test --no-restore --verbosity normal
-      working-directory: /book-01/
