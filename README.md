@@ -1,7 +1,5 @@
 # Algorithms & Data Structures
 
-![book-01](https://github.com/gfurtadoalmeida/study-algorithms/workflows/book-01/badge.svg) ![book-01](https://github.com/gfurtadoalmeida/study-algorithms/workflows/udemy-01/badge.svg)
-
 Projects and [annotations](/notes.md) used to learn some algorithms and data structures.  
 
 Each folder contains two projects:
@@ -13,11 +11,11 @@ Each folder contains two projects:
 
 ## Books
 
-1. [Algorithms, 4th edition](http://a.co/6IdwySJ)
+1. [Algorithms, 4th edition](http://a.co/6IdwySJ) ![Azure DevOps builds](https://img.shields.io/azure-devops/build/gfurtadoalmeida/GitHub/34) ![Azure DevOps tests (compact)](https://img.shields.io/azure-devops/tests/gfurtadoalmeida/GitHub/34)
 
 ## Udemy
 
-1. [Data Structures & Algorithms](https://www.udemy.com/course/learn-data-structure-algorithms-with-java-interview/)
+1. [Data Structures & Algorithms](https://www.udemy.com/course/learn-data-structure-algorithms-with-java-interview/) ![Azure DevOps builds](https://img.shields.io/azure-devops/build/gfurtadoalmeida/GitHub/35?) ![Azure DevOps tests (compact)](https://img.shields.io/azure-devops/tests/gfurtadoalmeida/GitHub/35)
 
 ## Support References
 
