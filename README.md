@@ -11,11 +11,11 @@ Each folder contains two projects:
 
 ## Books
 
-1. [Algorithms, 4th edition](http://a.co/6IdwySJ) ![Azure DevOps builds](https://img.shields.io/azure-devops/build/gfurtadoalmeida/GitHub/34) ![Azure DevOps tests (compact)](https://img.shields.io/azure-devops/tests/gfurtadoalmeida/GitHub/34)
+1. [Algorithms, 4th edition](http://a.co/6IdwySJ) ![GitHub Build Status](https://github.com/gfurtadoalmeida/study-algorithms/actions/workflows/build-book-01.yml/badge.svg)
 
 ## Udemy
 
-1. [Data Structures & Algorithms](https://www.udemy.com/course/learn-data-structure-algorithms-with-java-interview/) ![Azure DevOps builds](https://img.shields.io/azure-devops/build/gfurtadoalmeida/GitHub/35?) ![Azure DevOps tests (compact)](https://img.shields.io/azure-devops/tests/gfurtadoalmeida/GitHub/35)
+1. [Data Structures & Algorithms](https://www.udemy.com/course/learn-data-structure-algorithms-with-java-interview/) ![GitHub Build Status](https://github.com/gfurtadoalmeida/study-algorithms/actions/workflows/build-udemy-01.yml/badge.svg)
 
 ## Support References
 
