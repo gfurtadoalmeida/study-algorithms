@@ -1,4 +1,4 @@
-name: build-book-01
+name: build-udemy-01
 
 on:
   push:
